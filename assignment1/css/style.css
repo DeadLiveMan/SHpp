@@ -53,14 +53,12 @@
 }
 
 header {
-	display: flex;
 	text-align: center;
 	background-color: grey;
 	color: green;
 }
 
 footer {
-	display: flex;
 	padding: 0px;
 	text-align: center;
 	background-color: grey;
