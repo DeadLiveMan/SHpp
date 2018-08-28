@@ -17,4 +17,17 @@
     
     .floats {
       overflow: hidden;
+	  float: right;
+    }
+	
+	.blocks {
+      overflow: hidden;
+    }
+	
+	.flexbox {
+      overflow: hidden;
+    }
+	
+	.grid {
+      overflow: hidden;
     }
