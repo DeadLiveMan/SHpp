@@ -33,7 +33,7 @@
 	padding: 10px;
 	box-sizing: border-box;
 	display: flex;
-	width: 33%;
+	width: 33.3%;
 }
 
 .column2 {
@@ -41,7 +41,7 @@
 	padding: 10px;
 	box-sizing: border-box;
 	display: flex;
-	width: 33%;
+	width: 33.3%;
 }
 
 .column3 {
@@ -49,7 +49,7 @@
 	padding: 10px;
 	box-sizing: border-box;
 	display: flex;
-	width: 33%;
+	width: 33.3%;
 }
 
 header {
@@ -59,14 +59,13 @@ header {
 }
 
 footer {
-	flex-shrink: 0;
+	margin: auto 0 0 0;
 	text-align: center;
 	background-color: grey;
 }
 
 body {
 
-	height: 100%;
 	display: flex;
 	flex-direction: column;
 }
