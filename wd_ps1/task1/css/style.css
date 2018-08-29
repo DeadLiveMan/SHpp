@@ -12,25 +12,33 @@
       font-weight: bold;
       font-family: Helvetica;
       text-align: center;
-      padding: 1rem;
+      /*padding: 1rem;*/
+	  width: 100%;
+	  
     }
     
     .floats {
-      overflow: hidden;
-	  float: left;
+		float: left;
+		width: 33.3%;
     }
 	
-	.blocks {
-      overflow: hidden;
+	.inline-blocks {
 	  display: inline-block;
+	  margin-left: -0.135em;
+	  margin-right: -0.135em;
+	  width: 33.3%;
+	  
     }
 	
 	.flexbox {
       overflow: hidden;
-	  float: left;
+	  display: flex;
+	  flex-direction: row;
+	  width:100%;
     }
 	
 	.grid {
       overflow: hidden;
-	  grid-template-columns: 150px 1fr auto;
+	  display:grid;
+	  grid-template-columns: auto auto auto;
     }
