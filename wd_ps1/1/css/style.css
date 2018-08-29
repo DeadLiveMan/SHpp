@@ -17,17 +17,20 @@
     
     .floats {
       overflow: hidden;
-	  float: right;
+	  float: left;
     }
 	
 	.blocks {
       overflow: hidden;
+	  display: inline-block;
     }
 	
 	.flexbox {
       overflow: hidden;
+	  float: left;
     }
 	
 	.grid {
       overflow: hidden;
+	  grid-template-columns: 150px 1fr auto;
     }

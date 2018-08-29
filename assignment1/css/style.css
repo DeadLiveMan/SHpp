@@ -59,7 +59,14 @@ header {
 }
 
 footer {
+	flex-shrink: 0;
 	padding: 0px;
 	text-align: center;
 	background-color: grey;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
