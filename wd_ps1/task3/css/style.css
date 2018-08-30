@@ -1,0 +1,21 @@
+header {
+	margin: 0px 10% 0px 10%;
+	font-size: 20px;
+	background-color: red;
+
+}
+
+.left-side {
+	float: left;
+	font-size: 40px;
+}
+
+.right-side {
+	float: right;
+	display: flex;
+	flex-direction: row;
+}
+
+.right-side div {
+	margin-left: 10px;
+}
