@@ -12,27 +12,23 @@ body {
 	font-weight: bold;
 	font-family: Helvetica;
 	text-align: center;
-	/*padding: 1rem;*/
 	width: 100%;
    }
    
-   .floats {
+.floats .column{
 	float: left;
-	width: 33.3%;
+	width: 33.333%;
    }
 
-.inline-blocks {
+.inline-blocks .column{
 	display: inline-block;
-	margin-left: -0.135em;
-	margin-right: -0.135em;
-	width: 33.3%;
+	width: 33.333%;
    }
 
 .flexbox {
 	overflow: hidden;
 	display: flex;
 	flex-direction: row;
-	width:100%;
    }
 
 .grid {
