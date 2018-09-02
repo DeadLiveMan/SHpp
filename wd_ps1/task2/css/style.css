@@ -28,6 +28,10 @@
 	width: 33.3%;
 }
 
+.content {
+	flex-grow: 1;
+}
+
 header {
 	text-align: center;
 	background-color: grey;
@@ -35,7 +39,7 @@ header {
 }
 
 footer {
-	margin: auto 0 0 0;
+	/*margin: auto 0 0 0;*/
 	text-align: center;
 	background-color: grey;
 }
