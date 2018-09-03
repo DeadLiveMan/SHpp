@@ -1,21 +1,83 @@
+body {
+	margin: 0px 2% 0px 2%;
+}
+
 header {
-	margin: 0px 10% 0px 10%;
-	font-size: 20px;
-	background-color: red;
-
-}
-
-.left-side {
-	float: left;
-	font-size: 40px;
-}
-
-.right-side {
-	float: right;
+	font-weight: bold;
 	display: flex;
 	flex-direction: row;
+	align-items: center;
+	margin-left: 8%;
+	margin-right: 8%;
 }
 
-.right-side div {
-	margin-left: 10px;
+
+.header-left {
+	width: 60%;
+	font-size: 65px;
+	margin-left: 4px;
+	font-family: Arial, serif;
+
+}
+
+.header-right {
+	width: 40%;
+	/*margin-left: auto;*/
+	display: flex;
+	justify-content: space-between;
+	margin-left: 55px;
+	margin-right: 5px;
+	font-family: Arial, serif;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	margin-top: 6px;
+}
+
+a {
+	text-decoration: none;
+}
+
+.news {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background: #16a085;
+}
+
+.news-content {
+	width: 45%;
+	margin-left: 2%;
+	color: white;
+}
+
+.news-image {
+	width: 30%;
+	/*margin-right: 5%;
+	margin-top: 5%; */
+}
+
+.news-title {
+	/*align-content: center;*/
+	font-size: 40px;
+
+}
+
+.news-button {
+	/*height: 20px;*/
+	width: 150px;
+	border-style: solid;
+	/*border-color: beige;*/
+	border-radius: 5px;
+
+	font-size: 30px;
+	text-align: center;
+}
+
+a:hover {
+	/*background: rgba(255,0,0,0);*/
+	text-shadow:  0 0 1em red;
 }
