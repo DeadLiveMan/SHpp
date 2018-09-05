@@ -152,6 +152,7 @@ font-family: Arial, serif;
 .footer__title {
     margin-top: 10px;
     color: wheat;
+    font-size: 25px;
 }
 
 .email-button {
@@ -162,6 +163,7 @@ font-family: Arial, serif;
     border: solid whitesmoke;
     font-size: 30px;
     text-align: center;
+    align-self: center;
 }
 
 header a:hover {
@@ -186,7 +188,7 @@ footer {
 	flex-direction: column;
 	align-content: center;
 	justify-content: center;
-	width: 400px;
+	width: 30%;
 }
 
 .text__area {
