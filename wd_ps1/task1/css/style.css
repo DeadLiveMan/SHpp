@@ -12,7 +12,7 @@ body {
 	font-weight: bold;
 	font-family: Helvetica;
 	text-align: center;
-	width: 100%;
+	padding: 1rem;
    }
    
 .floats .column{
@@ -29,6 +29,10 @@ body {
 	display: flex;
 	flex-direction: row;
    }
+
+.flexbox .column {
+	flex-grow: 1;
+}
 
 .grid {
 	display:grid;
