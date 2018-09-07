@@ -203,4 +203,5 @@ header a:hover {
 
 input, textarea {
     margin: 5px;
+    max-width: 100%;
 }
