@@ -103,6 +103,7 @@ header a:hover {
     background-color: #2980b9;
     border-color: tan;
     color: #f1c40f;
+    cursor: pointer;
 }
 
 /*************MENU***************************/
@@ -156,6 +157,8 @@ header a:hover {
     transition: 0.5s;
     transform: rotate(0deg);
 }
+
+
 
 /*********************FOOTER**********************/
 
