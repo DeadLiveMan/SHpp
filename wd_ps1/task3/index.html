@@ -86,7 +86,7 @@
     <!-- second element-->
     <div class="menu__item">
             <a href="#" class="menu__img">
-                <img src="css/fonts/micro.png">
+                <img src="css/fonts/wrench.svg">
             </a>
         <p class="menu__title">
             Repairman Developer
@@ -102,7 +102,7 @@
     <!-- third element-->
     <div class="menu__item">
             <a href="#" class="menu__img">
-                <img src="css/fonts/micro.png">
+                <img src="css/fonts/trash-alt.svg">
             </a>
         <p class="menu__title">
                     Resource
@@ -117,24 +117,62 @@
 </div>
 
 <!----------------------------------- FOOTER --------------------------->
-<footer>
-    <div class="footer__title" id="contacts">
-        Contact us!
+<footer class="footer" id="contacts">
+    <div class="footer__contacts">
+        <h1 class="footer__title">
+            Contact us!
+        </h1>
+        <div class="footer__form">
+            <form action="#">
+                <input type="text" placeholder="Type here your name, please">
+                <input type="email" placeholder="Type here your email, please">
+                <input type="tel" placeholder="Type here your phone, please">
+                <textarea class="text__area" placeholder="Ask your question"></textarea>
+                <div class="content__button">
+                    <button>
+                            Send email!
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="footer__form">
-        <form action="#">
-            <input type="text" placeholder="Type here your name, please">
-            <input type="email" placeholder="Type here your email, please">
-            <input type="tel" placeholder="Type here your phone, please">
-            <textarea class="text__area" placeholder="Ask your question"></textarea>
-            <div class="content__button">
-                <button formaction="">
-                    <div>
-                        Send email!
-                    </div>
-                </button>
-            </div>
-        </form>
+
+    <div class="footer__contacts">
+        <h1 class="footer__title">
+            Sign in!
+        </h1>
+        <div class="footer__form">
+            <form action="#">
+                <input type="text" placeholder="Type here your login, please">
+                <input type="password" placeholder="Type here your password, please">
+                <div class="content__button">
+                    <button formaction="">
+                        Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer__contacts">
+        <h1 class="footer__title">
+            Registration!
+        </h1>
+        <div class="footer__form">
+            <form action="#">
+                <input type="text" placeholder="Type here your login, please">
+                <input type="email" placeholder="Type here your email, please">
+                <input type="password" placeholder="Type here your password, please">
+                <input type="password" placeholder="Confirm here your password, please">
+                <input type="date" placeholder="Type here your birthday">
+                <input type="url" placeholder="Type here your website, please">
+                <div class="content__button">
+                    <button formaction="">
+                            Register
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </footer>
 
