@@ -30,7 +30,6 @@
 
 .content {
 	flex-grow: 1;
-	/*overflow: hidden;*/
 }
 
 header {
@@ -40,7 +39,6 @@ header {
 }
 
 footer {
-	/*margin: auto 0 0 0;*/
 	text-align: center;
 	background-color: grey;
 }
