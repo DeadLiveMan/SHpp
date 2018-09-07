@@ -4,57 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Test page</title>
+    <title>WD_PS2</title>
     <style type="text/css">
         p {
             color: green;
         }
     </style>
+    <script src="js/script.js"></script>
 </head>
 <body>
-<script type="text/javascript">
-    /*Task 1*/
-    document.write("<p> Task 1 (Sum -1000 -- 1000)</p>");
-    let sum = 0;
-    for (let i = -1000; i <= 1000; i++) {
-        sum += i;
-    }
-    document.write("sum = " + sum);
-
-    /*Task 2*/
-    document.write("<p> Task 2 (Sum -1000 -- 1000) where last numbers 2 or 3 or 7</p>");
-    sum = 0;
-    for (let i = -1000; i <= 1000; i++) {
-        if (i % 10 === 2 || i % 10 === 3 || i % 10 === 7) {
-            sum += i;
-        }
-    }
-    document.write("sum = " + sum);
-
-    /*Task 3*/
-    document.write("<p> Task 3</p>");
-    sum = 0;
-    for (let i = 0; i <= 50; i++) {
-        for(let j = 0; j <= i; j++) {
-            document.write("*");
-        }
-        document.write("<br/>");
-    }
-
-    /*Task 3*/
-    document.write("<p> Task 3</p>");
-    sum = 0;
-    for (let i = 0; i <= 50; i++) {
-        for(let j = 0; j <= i; j++) {
-            document.write("*");
-        }
-        document.write("<br/>");
-    }
-
-</script>
-
-
-
+<button onclick="$d = task_3()">
+    Start
+</button>
+<p>@d</p>
 
 </body>
 </html>
