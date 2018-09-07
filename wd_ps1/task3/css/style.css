@@ -41,7 +41,7 @@ header a:hover {
     justify-content: flex-end;
 }
 
-.header_links div {
+.header_links a {
     margin-left: 5%;
 }
 
