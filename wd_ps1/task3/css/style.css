@@ -45,7 +45,6 @@ a {
 }
 
 /* -----------------------------------CONTENT--------------------------------------------*/
-
 .content {
     padding-left: 20%;
     padding-right: 6%;
@@ -106,7 +105,6 @@ a {
 }
 
 /*************MENU***************************/
-
 .menu {
     padding-top: 20px;
     padding-bottom: 20px;
@@ -157,10 +155,7 @@ a {
     transform: rotate(0deg);
 }
 
-
-
 /*********************FOOTER**********************/
-
 .footer {
     text-align: center;
     display: flex;
