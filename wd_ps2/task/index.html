@@ -5,18 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WD_PS2</title>
-    <style type="text/css">
-        p {
-            color: green;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js"></script>
 </head>
 <body>
-<button onclick="$d = task_3()">
-    Start
-</button>
-<p>@d</p>
-
+<div class="content">
+    <div class="column">
+        <div>
+            Task 1: <br/>
+            The sum numbers -1000 to 1000
+        </div>
+        <div>
+            <p>
+                <label>
+                    <input id="task_1_start" type="text" value="-1000">
+                    to
+                    <input id="task_1_end" type="text" value="1000">
+                    <button onclick="sum_1()">Start</button>
+                </label>
+            </p>
+        </div>
+        <div class="task1">
+            Result:
+            <p id="sum_1"></p>
+        </div>
+    </div>
+    <div class="column">
+        <div>
+            <p>The sum numbers -1000 to 1000 (with 2,3,7 in last position)</p>
+        </div>
+        <div>
+            <p>
+                <label>
+                    <input id="task_2_start" type="text" value="-1000">
+                    to
+                    <input id="task_2_end" type="text" value="1000">
+                    <button onclick="sum_2()">Start</button>
+                    <br/>
+                    Positions:
+                    <br/>
+                    <input id="positions" type="text" value="2,3,7">
+                </label>
+            </p>
+        </div>
+        <div>
+            <p>Result:</p>
+            <p id="sum_2"></p>
+        </div>
+    </div>
+    <div class="column">
+        <div>
+            <p>Вывести 50 звезд</p>
+        </div>
+        <div>
+            <label>
+                <input id="task_3_stars" type="text" value="50">
+                <button onclick="stars_50()">Start</button>
+            </label>
+        </div>
+        <div>
+            <p>Result:</p>
+            <p id="stars_50"></p>
+        </div>
+    </div>
+    <div class="column">
+        <div>
+            Подсчет времени
+        </div>
+        <div>
+            <form onsubmit="return false">
+                <label>
+                    Input time in seconds: <input type="text" name="seconds">
+                    <button onclick="getFullTime(seconds)">Convert Time</button>
+                </label>
+            </form>
+        </div>
+        <div>
+            <p id="full_time">Result: </p>
+        </div>
+    </div>
+</div>
 </body>
 </html>

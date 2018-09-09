@@ -1,0 +1,26 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: white;
+}
+
+.column {
+    display: flex;
+    flex-grow: 1;
+    background-color: white;
+}
+
+.column div {
+    width: 33.333%;
+    flex-grow: 1;
+    padding-top: 10px;
+    padding-left: 10px;
+    height: 250px;
+    background-color: #2980b9;
+    overflow: scroll;
+}
+
+input {
+    width: 30%;
+}
