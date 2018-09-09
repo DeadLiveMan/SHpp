@@ -1,8 +1,11 @@
 
-function sum_1() {
+function sumFirstTask() {
     let sum = 0;
     let sum1 = document.getElementById("task_1_start").value;
     let sum2 = document.getElementById("task_1_end").value;
+    let element = document.getElementById("sum_1");
+    const minValue = -1000;
+    const maxValue = 1000;
 
     // Check the numbers
     if (!isNumeric(sum1) || !isNumeric(sum2)) {
@@ -10,47 +13,54 @@ function sum_1() {
         document.getElementById("sum_1").style.color = "darkOrange";
         return;
     }
-    const minValue = -1000;
-    const maxValue = 1000;
 
     sum1 = Number(sum1);
     sum2 = Number(sum2);
 
     if (sum1 < minValue || sum2 > maxValue || sum1 > sum2) {
-        document.getElementById("sum_1").innerHTML = "Index can be -1000 to 1000 <br> and start index <= end index <br>";
-        document.getElementById("sum_1").style.color = "darkOrange";
+        element.innerHTML = "Index can be -1000 to 1000 <br> and start index <= end index <br>";
+        element.style.color = "darkOrange";
         return;
     }
 
     for (let i = sum1; i <= sum2; i++) {
         sum += i;
     }
-    document.getElementById("sum_1").style.color = "black";
-    document.getElementById("sum_1").innerHTML = sum + "<br>";
+    element.style.color = "black";
+    element.innerHTML = sum + "<br>";
 }
 
 function sum_2() {
     let sum = 0;
-    let sum1 = Number(document.getElementById("task_2_start").value);
-    let sum2 = Number(document.getElementById("task_2_end").value);
+    let sum1 = document.getElementById("task_2_start").value;
+    let sum2 = document.getElementById("task_2_end").value;
     let positions = document.getElementById("positions").value;
-
-    if (!isNumericWithComma(positions)) {
-        document.getElementById("sum_2").innerHTML = "Incorrect positions <br>";
-        document.getElementById("sum_2").style.color = "darkOrange";
-    }
-
+    let element = document.getElementById("sum_2");
     const minValue = -1000;
     const maxValue = 1000;
+
+    element.style.color = "darkOrange";
+
+    // Check the numbers
+    if (!isNumeric(sum1) || !isNumeric(sum2)) {
+        document.getElementById("sum_1").innerHTML = "Wrong input <br>";
+        document.getElementById("sum_1").style.color = "darkOrange";
+        return;
+    }
+
+    if (!isNumericWithComma(positions)) {
+        element.innerHTML = "Incorrect positions <br>";
+        return;
+    }
 
     sum1 = Number(sum1);
     sum2 = Number(sum2);
 
     if (sum1 < minValue || sum2 > maxValue || sum1 > sum2) {
-        document.getElementById("sum_1").innerHTML = "Index can be -1000 to 1000 <br> and start index < end index <br>";
-        document.getElementById("sum_1").style.color = "darkOrange";
+        element.innerHTML = "Index can be -1000 to 1000 <br> and start index < end index <br>";
         return;
     }
+    element.style.color = "black";
 
     //get positions in massive
     let positionArray = positions.split(",");
@@ -60,39 +70,32 @@ function sum_2() {
             sum += i;
         }
     }
-    document.getElementById("sum_2").innerHTML = sum + "";
+    element.innerHTML = sum + "";
 }
 
-function stars_50() {
+function printStars() {
     let result = "";
     let stars = Number(document.getElementById("task_3_stars").value);
+    let element = document.getElementById("stars_50");
     for (let i = 1; i <= stars; i++) {
-        for(let j = 0; j < i; j++) {
+        for(let j = 0; j < i; j++)
             result += "*";
-        }
         result += "<br/>";
     }
-    document.getElementById("stars_50").innerHTML = result;
+    element.innerHTML = result;
 }
 
-function getFullTime(second) {
+function getDateTime(second) {
     const secondsInHour = 3600;
     const secondsInMinutes = 60;
     const decimal = 10;
     let sec = second.value;
+    let element = document.getElementById("full_time");
 
-    let hour = 0;
-    let minutes = 0;
-
-    while (sec >= secondsInHour) {
-        hour++;
-        sec -= secondsInHour;
-    }
-
-    while (sec >= secondsInMinutes) {
-        minutes++;
-        sec -= secondsInMinutes;
-    }
+    let hour = Math.floor(sec / secondsInHour);
+    sec -= secondsInHour * hour;
+    let minutes = Math.floor(sec / secondsInMinutes);
+    sec -= secondsInMinutes * minutes;
 
     if (hour < decimal)
         hour = "0" + hour;
@@ -101,12 +104,14 @@ function getFullTime(second) {
     if (sec < decimal)
         sec = "0" + sec;
 
-    document.getElementById("full_time").innerHTML = "Result: " + (hour + ":" + minutes + ":" + sec);
+    element.innerHTML = hour + ":" + minutes + ":" + sec;
 }
 
-function task_5(years) {
+function printAge(years) {
+    years = Number(years.value);
+    let element = document.getElementById("age");
     let fraze = "лет";
-    if (years < 1)
+    if (years < 1 || years > 110)
         fraze = "бред";
     if (years % 10 === 1)
         fraze = "год";
@@ -114,11 +119,17 @@ function task_5(years) {
         fraze = "года";
     if (years > 10 && years < 15)
         fraze = "лет";
-    document.write(years + " " + fraze);
+    element.innerHTML = (years + " " + fraze);
 }
 
-function task_6(firstData, secondData) {
+function intervalDate(firstData, secondData) {
 
+    firstData = firstData.value;
+    secondData = secondData.value;
+    let element = document.getElementById("interval");
+    let intervalDate;
+
+    element.innerHTML = (intervalDate);
 }
 
 function task_7(data) {
@@ -129,19 +140,22 @@ function task_8(chessBoardLength) {
     
 }
 
-function task_9(roomNumber, stages, entrance, roomsInStage) {
+function findRoom(roomNumber, stages, entrance, roomsInStage) {
+    roomNumber = roomNumber.value;
+    stages = stages.value;
+    entrance = entrance.value;
+    roomsInStage = roomsInStage.value;
+
+    let element = document.getElementById("room");
     let roomsInEntrance = stages * roomsInStage;
-    let currentEntrance = 1;
-    let currentStage = 1;
-    while (roomsInEntrance < roomNumber) {
-        currentEntrance++;
-        roomNumber -= roomsInEntrance;
-    }
-    while (roomsInStage < roomNumber) {
-        currentStage++;
-        roomNumber -= roomsInStage;
-    }
-    document.write("Entrance = " + currentEntrance + " stage = " + currentStage )
+
+    let currentEntrance = Math.floor(roomNumber / roomsInEntrance);
+    roomNumber -= roomsInEntrance * currentEntrance;
+    let currentStage = Math.floor(roomNumber / roomsInStage);
+    currentEntrance += 1;
+    currentStage += 1;
+
+    element.innerHTML = ("Entrance = " + currentEntrance + " stage = " + currentStage );
 }
 
 function task_10(number) {

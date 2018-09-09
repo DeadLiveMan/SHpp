@@ -12,18 +12,17 @@
 <div class="content">
     <div class="column">
         <div>
-            Task 1: <br/>
-            The sum numbers -1000 to 1000
+            <h1>Task 1:</h1>
+            Сумма чисел
         </div>
         <div>
-            <p>
+            <form autocomplete="off" onsubmit="return false">
                 <label>
-                    <input id="task_1_start" type="text" value="-1000">
-                    to
-                    <input id="task_1_end" type="text" value="1000">
-                    <button onclick="sum_1()">Start</button>
+                    от: <input id="task_1_start" type="text" value="-1000">
+                    до: <input id="task_1_end" type="text" value="1000">
+                    <button onclick="sumFirstTask()">Посчитать</button>
                 </label>
-            </p>
+            </form>
         </div>
         <div class="task1">
             Result:
@@ -32,21 +31,21 @@
     </div>
     <div class="column">
         <div>
-            <p>The sum numbers -1000 to 1000 (with 2,3,7 in last position)</p>
+            <h1>Task 2:</h1>
+            <p>Сумма чисел по фильтру</p>
         </div>
         <div>
-            <p>
+            <form autocomplete="off" onsubmit="return false">
                 <label>
+                    Начальное значение:
                     <input id="task_2_start" type="text" value="-1000">
-                    to
+                    Конечное значение:
                     <input id="task_2_end" type="text" value="1000">
-                    <button onclick="sum_2()">Start</button>
-                    <br/>
-                    Positions:
-                    <br/>
+                    Фильтр по последней цифре (вводить через запятую):
                     <input id="positions" type="text" value="2,3,7">
+                    <button onclick="sum_2()">Посчитать</button>
                 </label>
-            </p>
+            </form>
         </div>
         <div>
             <p>Result:</p>
@@ -55,13 +54,16 @@
     </div>
     <div class="column">
         <div>
-            <p>Вывести 50 звезд</p>
+            <h1>Task 3:</h1>
+            <p>Вывод треугольника</p>
         </div>
         <div>
-            <label>
-                <input id="task_3_stars" type="text" value="50">
-                <button onclick="stars_50()">Start</button>
-            </label>
+            <form autocomplete="off" onsubmit="return false">
+                <label>
+                    <input id="task_3_stars" type="text" value="50">
+                    <button onclick="printStars()">Вывести</button>
+                </label>
+            </form>
         </div>
         <div>
             <p>Result:</p>
@@ -70,18 +72,80 @@
     </div>
     <div class="column">
         <div>
+            <h1>Task 4:</h1>
             Подсчет времени
         </div>
         <div>
-            <form onsubmit="return false">
+            <form autocomplete="off" onsubmit="return false">
                 <label>
-                    Input time in seconds: <input type="text" name="seconds">
-                    <button onclick="getFullTime(seconds)">Convert Time</button>
+                    Введите время в секундах: <input type="text" name="seconds">
+                    <button onclick="getDateTime(seconds)">Посчитать время</button>
                 </label>
             </form>
         </div>
         <div>
-            <p id="full_time">Result: </p>
+            <p>Result: </p>
+            <p id="full_time"></p>
+        </div>
+    </div>
+    <div class="column">
+        <div>
+            <h1>Task 5:</h1>
+            Вывод возраста
+        </div>
+        <div>
+            <form autocomplete="off" onsubmit="return false">
+                <label>
+                    Введите возраст: <input type="text" name="inputAge">
+                    <button onclick="printAge(inputAge)">Вывести возраст</button>
+                </label>
+            </form>
+        </div>
+        <div>
+            <p>Result: </p>
+            <p id="age"></p>
+        </div>
+    </div>
+    <!-- fixme pls =========================================================================-->
+    <div class="column">
+        <div>
+            <h1>Task 6:</h1>
+            Расчет интервала даты/времени
+        </div>
+        <div>
+            <form autocomplete="off" onsubmit="return false">
+                <label>
+                    <input type="text" value="October 13, 2014 11:13:00" name="startDate">
+                    <input type="text" value="October 15, 2014 11:13:00" name="endDate">
+                    <button onclick="intervalDate(startDate, endDate)">Расчитать интервал</button>
+                </label>
+            </form>
+        </div>
+        <div>
+            <p>Result: </p>
+            <p id="interval"></p>
+        </div>
+    </div>
+
+    <div class="column">
+        <div>
+            <h1>Task 7:</h1>
+            Поиск подъезда/этажа по номеру квартиры
+        </div>
+        <div>
+            <form autocomplete="off" onsubmit="return false">
+                <label>
+                    <input type="text" name="numberRoom" placeholder="Номер квартиры">
+                    <input type="text" name="stages" placeholder="Этажей в доме">
+                    <input type="text" name="entrance" placeholder="Подъездов в доме">
+                    <input type="text" name="roomsInStage" placeholder="Квартир на этаже">
+                    <button onclick="findRoom(numberRoom, stages, entrance, roomsInStage)">Посчитать</button>
+                </label>
+            </form>
+        </div>
+        <div>
+            <p>Result: </p>
+            <p id="room"></p>
         </div>
     </div>
 </div>

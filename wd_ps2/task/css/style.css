@@ -17,10 +17,39 @@
     padding-top: 10px;
     padding-left: 10px;
     height: 250px;
-    background-color: #2980b9;
+    background-color: slateblue;
     overflow: scroll;
 }
 
 input {
     width: 30%;
 }
+
+::-webkit-input-placeholder {color:black;}
+::-moz-placeholder          {color:black;}/* Firefox 19+ */
+:-moz-placeholder           {color:black;}/* Firefox 18- */
+:-ms-input-placeholder      {color:black;}
+
+input, button {
+    display: flex;
+    flex-direction: column;
+    margin: 6px;
+    border-radius: 5%;
+    padding: 4px;
+    border: solid #f1c40f 2px;
+    background-color: transparent;
+}
+
+button {
+    border: solid white 2px;
+    background-color: rgb(0,100,100,0.5);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+h1 {
+color: white;
+}
+

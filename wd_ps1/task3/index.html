@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="html" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,29 +11,29 @@
 
 <!------------------------ HEADER --------------------------->
 <header class="header">
-    <a href="index.html" class="header__logo">
+    <a href="index.html" class="header__logo header_hover">
         <div class="header__logo_letter">
             N
         </div>
         <div class="header__logo_plus">
-            ++
+                ++
         </div>
     </a>
-    <div class="header_links">
-            <a href="#products">PRODUCTS</a>
-            <a href="#about">ABOUT US</a>
-            <a href="#contacts">CONTACT US</a>
+    <div class="header__link">
+        <a class="header__link_item header_hover" href="#products">PRODUCTS</a>
+        <a class="header__link_item header_hover" href="#about">ABOUT US</a>
+        <a class="header__link_item header_hover" href="#contacts">CONTACT US</a>
     </div>
 </header>
 
 <!------------------------ CONTENT -------------------------->
 <div class="content" id="products">
-    <div class="content_image">
+    <div class="content__image">
         <img src="images/phone.png">
     </div>
-    <div class="content_text">
-        <p class="content__text_title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, in?</p>
-        <p class="content__text_block">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    <div class="content__block">
+        <p class="content__block_title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, in?</p>
+        <p class="content__block_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
             Ad assumenda autem culpa dicta dignissimos dolorum earum expedita
             harum hic ipsa ipsam, iusto laborum quidem sequi soluta ut veritatis vero
             voluptatum.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -47,9 +47,9 @@
             harum hic ipsa ipsam, iusto laborum quidem sequi soluta ut veritatis vero
             voluptatum.
         </p>
-        <div class="content__button">
+        <div class="footer__contacts_button">
             <button>
-                    Buy now!
+                Buy now!
             </button>
         </div>
     </div>
@@ -58,12 +58,11 @@
 <div class="menu" id="about">
     <!-- first element-->
     <div class="menu__item">
-        <a href="#" class="menu__img">
+        <a href="#" class="menu__item_img">
             <img src="css/fonts/micro.png">
         </a>
-        <p class="menu__title">Web Developer
-        </p>
-        <p class="text">
+        <p class="menu__item_title">Web Developer</p>
+        <p class="menu__item_text">
             Cum sociis natoque penatibus et magnis dis parturient montes,
             nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
             pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
@@ -72,27 +71,27 @@
     </div>
     <!-- second element-->
     <div class="menu__item">
-            <a href="#" class="menu__img">
-                <img src="css/fonts/wrench.svg">
-            </a>
-        <p class="menu__title">
+        <a href="#" class="menu__item_img">
+            <img src="css/fonts/wrench.svg">
+        </a>
+        <p class="menu__item_title">
             Repairman Developer
         </p>
-        <p class="text">
+        <p class="menu__item_text">
             Cum sociis natoque penatibus et magnis dis parturient montes,
             nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
             pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
-            fringilla vel, aliquet nec, vulputate</p>
+            fringilla vel, aliquet nec, vulputate
+        </p>
     </div>
-
     <!-- third element-->
     <div class="menu__item">
-        <a href="#" class="menu__img">
+        <a href="#" class="menu__item_img">
             <img src="css/fonts/trash-alt.svg">
         </a>
-        <p class="menu__title">
+        <p class="menu__item_title">
             Resource</p>
-        <p class="menu__text">
+        <p class="menu__item_text">
             Cum sociis natoque penatibus et magnis dis parturient montes,
             nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
             pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
@@ -104,33 +103,32 @@
 <!----------------------------------- FOOTER --------------------------->
 <footer class="footer" id="contacts">
     <div class="footer__contacts">
-        <h1 class="footer__title">
+        <h1 class="footer__contacts_title">
             Contact us!
         </h1>
-        <div class="footer__form">
+        <div class="footer__contacts_form">
             <form action="#">
                 <input type="text" placeholder="Type here your name, please">
                 <input type="email" placeholder="Type here your email, please">
                 <input type="tel" placeholder="Type here your phone, please">
-                <textarea class="text__area" placeholder="Ask your question"></textarea>
-                <div class="content__button">
+                <textarea class="footer__contacts_textArea" placeholder="Ask your question"></textarea>
+                <div class="footer__contacts_button">
                     <button>
-                            Send email!
+                        Send email!
                     </button>
                 </div>
             </form>
         </div>
     </div>
-
     <div class="footer__contacts">
-        <h1 class="footer__title">
+        <h1 class="footer__contacts_title">
             Sign in!
         </h1>
-        <div class="footer__form">
+        <div class="footer__contacts_form">
             <form action="#">
                 <input type="text" placeholder="Type here your login, please">
                 <input type="password" placeholder="Type here your password, please">
-                <div class="content__button">
+                <div class="footer__contacts_button">
                     <button formaction="">
                         Login
                     </button>
@@ -138,12 +136,11 @@
             </form>
         </div>
     </div>
-
     <div class="footer__contacts">
-        <h1 class="footer__title">
+        <h1 class="footer__contacts_title">
             Registration!
         </h1>
-        <div class="footer__form">
+        <div class="footer__contacts_form">
             <form action="#">
                 <input type="text" placeholder="Type here your login, please">
                 <input type="email" placeholder="Type here your email, please">
@@ -151,15 +148,14 @@
                 <input type="password" placeholder="Confirm here your password, please">
                 <input type="date" placeholder="Type here your birthday">
                 <input type="url" placeholder="Type here your website, please">
-                <div class="content__button">
+                <div class="footer__contacts_button">
                     <button formaction="">
-                            Register
+                        Register
                     </button>
                 </div>
             </form>
         </div>
     </div>
 </footer>
-
 </body>
 </html>
