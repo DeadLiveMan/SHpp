@@ -6,7 +6,7 @@ body {
 	box-sizing: border-box;
 }
    
-.column {
+.content__column {
 	font-size: 4rem;
 	color: white;
 	font-weight: bold;
@@ -15,31 +15,31 @@ body {
 	padding: 1rem;
 }
    
-.floats .column{
+.floats .content__column{
 	float: left;
 	width: 33.333%;
 	background-color: #2ecc71;
 }
 
-.floats .column:first-child {
+.floats .content__column:first-child {
 	background-color: #1abc9c;
 }
 
-.floats .column:last-child {
+.floats .content__column:last-child {
 	background-color: #3498db;
 }
 
-.inline-blocks .column{
+.inline-blocks .content__column{
 	display: inline-block;
 	width: 33.333%;
 	background-color: #d35400;
 }
 
-.inline-blocks .column:first-child {
+.inline-blocks .content__column:first-child {
 	background-color: #f39c12;
 }
 
-.inline-blocks .column:last-child {
+.inline-blocks .content__column:last-child {
 	background-color: #c0392b;
 }
 
@@ -48,16 +48,16 @@ body {
 	flex-direction: row;
 }
 
-.flex-box .column {
+.flex-box .content__column {
 	flex-grow: 1;
 	background-color: #27ae60;
 }
 
-.flex-box .column:first-child {
+.flex-box .content__column:first-child {
 	background-color: #16a085;
 }
 
-.flex-box .column:last-child {
+.flex-box .content__column:last-child {
 	background-color: #2980b9;
 }
 
@@ -66,14 +66,14 @@ body {
 	grid-template-columns: auto auto auto;
 }
 
-.grid .column {
+.grid .content__column {
 	background-color: #e67e22;
 }
 
-.grid .column:first-child {
+.grid .content__column:first-child {
 	background-color: #f1c40f;
 }
 
-.grid .column:last-child {
+.grid .content__column:last-child {
 	background-color: #e74c3c;
 }

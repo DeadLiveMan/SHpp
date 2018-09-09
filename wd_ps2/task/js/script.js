@@ -13,16 +13,15 @@ function sumFirstTask() {
         document.getElementById("sum_1").style.color = "darkOrange";
         return;
     }
-
+    // convert to number
     sum1 = Number(sum1);
     sum2 = Number(sum2);
-
+    // validate
     if (sum1 < minValue || sum2 > maxValue || sum1 > sum2) {
         element.innerHTML = "Index can be -1000 to 1000 <br> and start index <= end index <br>";
         element.style.color = "darkOrange";
         return;
     }
-
     for (let i = sum1; i <= sum2; i++) {
         sum += i;
     }
@@ -30,7 +29,7 @@ function sumFirstTask() {
     element.innerHTML = sum + "<br>";
 }
 
-function sum_2() {
+function sumWithFilter() {
     let sum = 0;
     let sum1 = document.getElementById("task_2_start").value;
     let sum2 = document.getElementById("task_2_end").value;

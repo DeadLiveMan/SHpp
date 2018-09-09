@@ -5,13 +5,13 @@
     background-color: white;
 }
 
-.column {
+.content__column {
     display: flex;
     flex-grow: 1;
     background-color: white;
 }
 
-.column div {
+.content__column div {
     width: 33.333%;
     flex-grow: 1;
     padding-top: 10px;
