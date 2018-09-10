@@ -18,9 +18,9 @@
         <div>
             <form autocomplete="off" onsubmit="return false">
                 <label>
-                    от: <input id="task_1_start" type="text" value="-1000">
-                    до: <input id="task_1_end" type="text" value="1000">
-                    <button onclick="sumFirstTask()">Посчитать</button>
+                    от: <input type="text" name="first_value" value="-1000">
+                    до: <input type="text" name="second_value" value="1000">
+                    <button onclick="sumFirstTask(first_value, second_value)">Посчитать</button>
                 </label>
             </form>
         </div>
@@ -38,12 +38,12 @@
             <form autocomplete="off" onsubmit="return false">
                 <label>
                     Начальное значение:
-                    <input id="task_2_start" type="text" value="-1000">
+                    <input id="task_2_start" type="text" name="first_value" value="-1000">
                     Конечное значение:
-                    <input id="task_2_end" type="text" value="1000">
+                    <input id="task_2_end" type="text" name="second_value" value="1000">
                     Фильтр по последней цифре (вводить через запятую):
-                    <input id="positions" type="text" value="2,3,7">
-                    <button onclick="sumWithFilter()">Посчитать</button>
+                    <input id="positions" type="text" name="positions" value="2,3,7">
+                    <button onclick="sumWithFilter(first_value, second_value, positions)">Посчитать</button>
                 </label>
             </form>
         </div>
@@ -60,8 +60,8 @@
         <div>
             <form autocomplete="off" onsubmit="return false">
                 <label>
-                    <input id="task_3_stars" type="text" value="50">
-                    <button onclick="printStars()">Вывести</button>
+                    <input type="text" name="countStars" value="50">
+                    <button onclick="printStars(countStars)">Вывести</button>
                 </label>
             </form>
         </div>
