@@ -6,7 +6,7 @@ body {
 	box-sizing: border-box;
 }
    
-.content__column {
+.column {
 	font-size: 4rem;
 	color: white;
 	font-weight: bold;
@@ -15,31 +15,31 @@ body {
 	padding: 1rem;
 }
    
-.floats .content__column{
+.floats .column{
 	float: left;
 	width: 33.333%;
 	background-color: #2ecc71;
 }
 
-.floats .content__column:first-child {
+.floats .column:first-child {
 	background-color: #1abc9c;
 }
 
-.floats .content__column:last-child {
+.floats .column:last-child {
 	background-color: #3498db;
 }
 
-.inline-blocks .content__column{
+.inline-blocks .column {
 	display: inline-block;
 	width: 33.333%;
 	background-color: #d35400;
 }
 
-.inline-blocks .content__column:first-child {
+.inline-blocks .column:first-child {
 	background-color: #f39c12;
 }
 
-.inline-blocks .content__column:last-child {
+.inline-blocks .column:last-child {
 	background-color: #c0392b;
 }
 
@@ -48,16 +48,16 @@ body {
 	flex-direction: row;
 }
 
-.flex-box .content__column {
+.flex-box .column {
 	flex-grow: 1;
 	background-color: #27ae60;
 }
 
-.flex-box .content__column:first-child {
+.flex-box .column:first-child {
 	background-color: #16a085;
 }
 
-.flex-box .content__column:last-child {
+.flex-box .column:last-child {
 	background-color: #2980b9;
 }
 
@@ -66,14 +66,14 @@ body {
 	grid-template-columns: auto auto auto;
 }
 
-.grid .content__column {
+.grid .column {
 	background-color: #e67e22;
 }
 
-.grid .content__column:first-child {
+.grid .column:first-child {
 	background-color: #f1c40f;
 }
 
-.grid .content__column:last-child {
+.grid .column:last-child {
 	background-color: #e74c3c;
 }
