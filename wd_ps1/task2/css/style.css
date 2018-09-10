@@ -10,7 +10,6 @@
 	padding: 10px;
 	width: 50%;
 	background-color: black;
-	box-sizing: border-box;
 	font-size: 100%;
 }
 
@@ -23,14 +22,11 @@
 .three-column-text {
 	border: 4px solid yellow;
 	padding: 10px;
-	box-sizing: border-box;
 	display: flex;
 	width: 33.3%;
 }
 
 .content {
-	display: flex;
-	flex-direction: column;
 	flex-grow: 1;
 }
 
@@ -48,4 +44,10 @@ footer {
 body {
 	display: flex;
 	flex-direction: column;
+	height: 100%;
+    margin: 0;
+}
+
+html {
+	height: 100%;
 }
