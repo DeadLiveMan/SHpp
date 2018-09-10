@@ -27,10 +27,11 @@ a {
     font-family: Arial, serif;
     font-size: 85px;
     font-weight: bold;
+    color: #16a085;
 }
 
-.header__logo_plus {
-    color: #16a085;
+.header__logo_letter::first-letter {
+    color: blue;
 }
 
 .header__link {
@@ -79,29 +80,6 @@ a {
 .content__block_text {
     margin-top: 10px;
     font-size: 20px;
-}
-
-.footer__contacts_button {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.footer__contacts_button button:not(hover){
-    transition: 2s;
-    font-family: Calibri, serif;
-    border-radius: 5px;
-    color: tan;
-    font-size: 30px;
-    background-color: transparent;
-    border: solid tan;
-}
-
-.footer__contacts_button button:hover{
-    transition: 2s;
-    background-color: #2980b9;
-    border-color: tan;
-    color: #f1c40f;
-    cursor: pointer;
 }
 
 /*************MENU***************************/
@@ -182,7 +160,6 @@ a {
 }
 
 .footer__contacts_form form{
-    /*flex-grow: 1;*/
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -193,6 +170,29 @@ a {
 
 .footer__contacts_textArea {
     height: 100px;
+}
+
+.footer__contacts_button {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.footer__contacts_button button:not(hover){
+    transition: 2s;
+    font-family: Calibri, serif;
+    border-radius: 5px;
+    color: tan;
+    font-size: 30px;
+    background-color: transparent;
+    border: solid tan;
+}
+
+.footer__contacts_button button:hover{
+    transition: 2s;
+    background-color: #2980b9;
+    border-color: tan;
+    color: #f1c40f;
+    cursor: pointer;
 }
 
 input, textarea {
