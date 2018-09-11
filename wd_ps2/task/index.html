@@ -115,8 +115,8 @@
         <div>
             <form autocomplete="off" onsubmit="return false">
                 <label>
-                    <input type="text" value="October 13, 2014 11:13:00" name="startDate">
-                    <input type="text" value="October 15, 2014 11:13:00" name="endDate">
+                    <input type="text" value="September 13, 2014 11:13:00" name="startDate">
+                    <input type="text" value="September 13, 2014 11:13:01" name="endDate">
                     <button onclick="intervalDate(startDate, endDate)">Расчитать интервал</button>
                 </label>
             </form>
@@ -143,6 +143,25 @@
         <div>
             <p>Result: </p>
             <p id="zodiac"></p>
+        </div>
+    </div>
+
+    <div class="content__column">
+        <div>
+            <h1>Task 8:</h1>
+            Шахматная доска
+        </div>
+        <div>
+            <form autocomplete="off" onsubmit="return false">
+                <label>
+                    <input type="text" name="length" placeholder="Дата">
+                    <button onclick="chessBoard(length)">Посчитать</button>
+                </label>
+            </form>
+        </div>
+        <div>
+            <p>Result: </p>
+            <p id="chess"></p>
         </div>
     </div>
 

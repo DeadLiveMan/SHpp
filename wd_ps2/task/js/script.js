@@ -175,25 +175,56 @@ function intervalDate(firstData, secondData) {
     firstData = firstData.split(" ");
     secondData = secondData.split(" ");
     let startTime = firstData[3].split(":");
-    let endTime = firstData[3].split(":");
+    let endTime = secondData[3].split(":");
 
     // get date
-    let startMount = mounts.indexOf(firstData[0].toLowerCase()) + 1;
-    let endMount = mounts.indexOf(secondData[0]) + 1;
+    let startMount = mounts.indexOf(firstData[0].toLowerCase());    //  0-11
+    let endMount = mounts.indexOf(secondData[0].toLowerCase());                   //  0-11
     let startDay = Number(firstData[1]);
     let endDay = Number(secondData[1]);
     let startYear = Number(firstData[2]);
     let endYear = Number(secondData[2]);
-    let startHour = Number(startTime[0]);
-    let startMin = Number(startTime[0]);
-    let startSec = Number(startTime[0]);
-    let endHour = Number(startTime[0]);
-    let endMin = Number(startTime[0]);
-    let endSec = Number(startTime[0]);
 
+    let startHour = Number(startTime[0]);
+    let startMin = Number(startTime[1]);
+    let startSec = Number(startTime[2]);
+    let endHour = Number(endTime[0]);
+    let endMin = Number(endTime[1]);
+    let endSec = Number(endTime[2]);
+
+    let startDate = new Date(startYear, startMount, startDay, startHour, startMin, startSec);
+    let endDate = new Date(endYear, endMount, endDay, endHour, endMin, endSec);
+
+    let date_1970 = new Date(0);
+
+    let oneYear = +new Date(2003,0,1) - +new Date(2002,0,1);
+
+    endDate = new Date(1000);
+
+    alert(oneYear + " " + date_1970 + " " + (Number(oneYear) + date_1970));
+
+
+
+
+
+
+
+
+
+    let startYearPoint = 0;
+    while (startYear % 4 !== 0) {
+        startYear++;
+        startYearPoint++;
+    }
+    endYear = endYear + startYearPoint - startYear + startYearPoint;
+    startYear = startYearPoint;
     let passedYear = endYear - startYear;
 
-    alert(startTime + " -- " + startYear);
+
+
+
+
+
 
     firstData = firstData.value;
     secondData = secondData.value;
@@ -208,7 +239,7 @@ function zodiac(date) {
     alert(date.value);
 }
 
-function task_8(chessBoardLength) {
+function chessBoard(chessBoardLength) {
     
 }
 
