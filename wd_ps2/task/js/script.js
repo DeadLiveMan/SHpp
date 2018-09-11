@@ -105,7 +105,6 @@ function getDateTime(second) {
     const decimal = 10;
     let element = document.getElementById("full_time");
     second = second.value;
-
     if (!isNumericPositive(second)) {
         element.innerHTML = "Wrong input <br>";
         element.style.color = "darkOrange";
@@ -152,6 +151,7 @@ function printAge(years) {
     element.innerHTML = (years + " " + fraze);
 }
 
+/** Task 6 */
 function intervalDate(firstData, secondData) {
 
     let mounts = [  "january",  "february", "march",        "april",    "may",      "june",
@@ -174,6 +174,8 @@ function intervalDate(firstData, secondData) {
     // create massive
     firstData = firstData.split(" ");
     secondData = secondData.split(" ");
+    let startTime = firstData[3].split(":");
+    let endTime = firstData[3].split(":");
 
     // get date
     let startMount = mounts.indexOf(firstData[0].toLowerCase()) + 1;
@@ -182,21 +184,28 @@ function intervalDate(firstData, secondData) {
     let endDay = Number(secondData[1]);
     let startYear = Number(firstData[2]);
     let endYear = Number(secondData[2]);
+    let startHour = Number(startTime[0]);
+    let startMin = Number(startTime[0]);
+    let startSec = Number(startTime[0]);
+    let endHour = Number(startTime[0]);
+    let endMin = Number(startTime[0]);
+    let endSec = Number(startTime[0]);
 
     let passedYear = endYear - startYear;
 
-    alert(passedYear + " -- " + startYear);
+    alert(startTime + " -- " + startYear);
 
     firstData = firstData.value;
     secondData = secondData.value;
     let element = document.getElementById("interval");
     let intervalDate;
 
+    element.style.color = "black";
     element.innerHTML = (intervalDate);
 }
 
-function task_7(data) {
-    
+function zodiac(date) {
+    alert(date.value);
 }
 
 function task_8(chessBoardLength) {
