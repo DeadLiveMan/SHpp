@@ -112,8 +112,8 @@ button:hover {
     flex-grow: 1;
 }
 
-.board-red {
-    background-color: red;
+.board-light {
+    background-color: #d2b93d;
     flex-grow: 1;
 }
 

@@ -214,24 +214,67 @@ function chessBoard(size) {
         for (let j = 0; j < xBoard; j++) {
             if(i % 2 === 0)
                 if (j % 2 === 0)
-                    result += "<div class='board-red'></div>"
+                    result += "<div class='board-light'></div>"
                 else
                     result += "<div class='board-black'></div>"
             else
                 if (j % 2 === 0)
                     result += "<div class='board-black'></div>"
                 else
-                    result += "<div class='board-red'></div>"
+                    result += "<div class='board-light'></div>"
         }
         result += "</div>";
     }
-
-    result += "</div>"
-
+    result += "</div>";
     print(result);
-
 }
 
+function findRoom(roomNumber, stages, entrance, roomsInStage) {
+    roomNumber = roomNumber.value;
+    stages = stages.value;
+    entrance = entrance.value;
+    roomsInStage = roomsInStage.value;
+
+    if (!isNumericPositive(roomNumber) || !isNumericPositive(stages) ||
+        !isNumericPositive(entrance) || !isNumericPositive(roomsInStage)) {
+        printError("Incorrect input");
+        return;
+    }
+
+    roomNumber = Number(roomNumber) - 1;
+    stages = Number(stages);
+    entrance = Number(entrance);
+    roomsInStage = Number(roomsInStage);
+
+    if (roomNumber < 0 || stages < 1 || entrance < 1 || roomsInStage < 1) {
+        printError("Incorrect input");
+        return;
+    }
+
+    let roomsInEntrance = stages * roomsInStage;
+
+    let currentEntrance = Math.floor(roomNumber / roomsInEntrance);
+    roomNumber -= roomsInEntrance * currentEntrance;
+    let currentStage = Math.floor(roomNumber / roomsInStage);
+    currentEntrance += 1;
+    currentStage += 1;
+
+    if (currentEntrance > entrance) {
+        print("Квартира с таким номером не существует в этом доме");
+        return;
+    }
+
+    print(currentEntrance + " Подъезд " + currentStage + " этаж");
+}
+
+function sumNumber(number) {
+    number = number.value;
+    
+    let result = 0;
+    for (let i = 0; i < number.length; i++)
+        result += Number(number[i]);
+    print(result);
+}
 
 
 
