@@ -1,191 +1,148 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>WD_PS2</title>
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/scripts.js"></script>
+    <title>Test</title>
 </head>
-<body>
-<div class="content">
-    <div class="content__column">
-        <div>
-            <h1>Task 1:</h1>
-            Сумма чисел
-        </div>
-        <div>
-            <form autocomplete="off" onsubmit="return false">
-                <label>
-                    от: <input type="text" name="first_value" value="-1000">
-                    до: <input type="text" name="second_value" value="1000">
-                    <button onclick="sumFirstTask(first_value, second_value)">Посчитать</button>
-                </label>
-            </form>
-        </div>
-        <div class="task1">
-            Result:
-            <p id="sum_1"></p>
-        </div>
-    </div>
-    <div class="content__column">
-        <div>
-            <h1>Task 2:</h1>
-            <p>Сумма чисел по фильтру</p>
-        </div>
-        <div>
-            <form autocomplete="off" onsubmit="return false">
-                <label>
-                    Начальное значение:
-                    <input id="task_2_start" type="text" name="first_value" value="-1000">
-                    Конечное значение:
-                    <input id="task_2_end" type="text" name="second_value" value="1000">
-                    Фильтр по последней цифре (вводить через запятую):
-                    <input id="positions" type="text" name="positions" value="2,3,7">
-                    <button onclick="sumWithFilter(first_value, second_value, positions)">Посчитать</button>
-                </label>
-            </form>
-        </div>
-        <div>
-            <p>Result:</p>
-            <p id="sum_2"></p>
-        </div>
-    </div>
-    <div class="content__column">
-        <div>
-            <h1>Task 3:</h1>
-            <p>Вывод треугольника</p>
-        </div>
-        <div>
-            <form autocomplete="off" onsubmit="return false">
-                <label>
-                    <input type="text" name="countStars" value="50">
-                    <button onclick="printStars(countStars)">Вывести</button>
-                </label>
-            </form>
-        </div>
-        <div>
-            <p>Result:</p>
-            <p id="stars_50"></p>
-        </div>
-    </div>
-    <div class="content__column">
-        <div>
-            <h1>Task 4:</h1>
-            Подсчет времени
-        </div>
-        <div>
-            <form autocomplete="off" onsubmit="return false">
-                <label>
-                    Введите время в секундах: <input type="text" name="seconds">
-                    <button onclick="getDateTime(seconds)">Посчитать время</button>
-                </label>
-            </form>
-        </div>
-        <div>
-            <p>Result: </p>
-            <p id="full_time"></p>
-        </div>
-    </div>
-    <div class="content__column">
-        <div>
-            <h1>Task 5:</h1>
-            Вывод возраста
-        </div>
-        <div>
-            <form autocomplete="off" onsubmit="return false">
-                <label>
-                    Введите возраст: <input type="text" name="inputAge">
-                    <button onclick="printAge(inputAge)">Вывести возраст</button>
-                </label>
-            </form>
-        </div>
-        <div>
-            <p>Result: </p>
-            <p id="age"></p>
-        </div>
-    </div>
-    <!-- fixme pls =========================================================================-->
-    <div class="content__column">
-        <div>
-            <h1>Task 6:</h1>
-            Расчет интервала даты/времени
-        </div>
-        <div>
-            <form autocomplete="off" onsubmit="return false">
-                <label>
-                    <input type="text" value="September 13, 2014 11:13:00" name="startDate">
-                    <input type="text" value="September 13, 2014 11:13:01" name="endDate">
-                    <button onclick="intervalDate(startDate, endDate)">Расчитать интервал</button>
-                </label>
-            </form>
-        </div>
-        <div>
-            <p>Result: </p>
-            <p id="interval"></p>
-        </div>
-    </div>
+    <body>
+        <header class="header">
+            <div class="header__logo">
+                JavaScript
+            </div>
+            <nav class="header__links">
+                <a href="">Link one</a>
+                <a href="">Link two</a>
+                <a href="">Link three</a>
+                <a href="">Link four</a>
+            </nav>
+        </header>
+        <div class="content">
+            <div class="content__tasks">
+                <h4>Tasks:</h4>
 
-    <div class="content__column">
-        <div>
-            <h1>Task 7:</h1>
-            Знак зодиака
-        </div>
-        <div>
-            <form autocomplete="off" onsubmit="return false">
-                <label>
-                    <input type="text" name="date" placeholder="Дата">
-                    <button onclick="zodiac(date)">Посчитать</button>
-                </label>
-            </form>
-        </div>
-        <div>
-            <p>Result: </p>
-            <p id="zodiac"></p>
-        </div>
-    </div>
+                <div class="content__tasks_box">
+                    <b>Task 1:</b>
+                    <span class="tasks_box-text">Посчитать сумму чисел от -1000 до 1000</span>
+                    <form onsubmit="return false" autocomplete="off">
+                        <label>
+                            <input type="text" name="minValue" placeholder="min value" value="-1000"><br>
+                            <input type="text" name="maxValue" placeholder="max value" value="1000"><br>
+                        </label>
+                        <button onclick="sumFirst(minValue, maxValue)">Посчитать</button>
+                    </form>
+                </div>
 
-    <div class="content__column">
-        <div>
-            <h1>Task 8:</h1>
-            Шахматная доска
-        </div>
-        <div>
-            <form autocomplete="off" onsubmit="return false">
-                <label>
-                    <input type="text" name="length" placeholder="Дата">
-                    <button onclick="chessBoard(length)">Посчитать</button>
-                </label>
-            </form>
-        </div>
-        <div>
-            <p>Result: </p>
-            <p id="chess"></p>
-        </div>
-    </div>
+                <div class="content__tasks_box">
+                    <b>Task 2:</b>
+                    <span class="tasks_box-text">Посчитать сумму чисел от -1000 до 1000 по фильтру</span>
+                    <form onsubmit="return false" autocomplete="off">
+                        <label>
+                            <input type="text" name="minValue" placeholder="min value" value="-1000"><br>
+                            <input type="text" name="maxValue" placeholder="max value" value="1000"><br>
+                            <input type="text" name="positions" placeholder="positions" value="2,3,7"><br>
+                        </label>
+                        <button onclick="sumSecond(minValue, maxValue, positions)">Посчитать</button>
+                    </form>
+                </div>
 
-    <div class="content__column">
-        <div>
-            <h1>Task 9:</h1>
-            Поиск подъезда/этажа по номеру квартиры
+                <div class="content__tasks_box">
+                    <b>Task 3:</b>
+                    <span class="tasks_box-text">Вывести на страницу список из 50 элементов</span>
+                    <form onsubmit="return false" autocomplete="off">
+                        <label>
+                            <input type="text" name="countSymbols" placeholder="height of triangle" value="50"><br>
+                            <input type="text" name="symbol" placeholder="element" value="*"><br>
+                        </label>
+                        <button onclick="printElements(countSymbols, symbol)">Вывести</button>
+                    </form>
+                </div>
+
+                <div class="content__tasks_box">
+                    <b>Task 4:</b>
+                    <span class="tasks_box-text">Пользователь вводит время в секундах. Вывести в формате: hh:mm:ss (01:05:20)</span>
+                    <form onsubmit="return false" autocomplete="off">
+                        <label>
+                            <input type="text" name="seconds" placeholder="time in seconds" value="100"><br>
+                        </label>
+                        <button onclick="countTime(seconds)">Расчитать</button>
+                    </form>
+                </div>
+
+                <div class="content__tasks_box">
+                    <b>Task 5:</b>
+                    <span class="tasks_box-text">Для указанного возраста студента вывести фразу вида "22 года" ( 1 год, 20 лет....)</span>
+                    <form onsubmit="return false" autocomplete="off">
+                        <label>
+                            <input type="text" name="years" placeholder="count years" value="100"><br>
+                        </label>
+                        <button onclick="countYear(years)">Вывести</button>
+                    </form>
+                </div>
+
+                <div class="content__tasks_box">
+                    <b>Task 6:</b>
+                    <span class="tasks_box-text">Вычислить промежуток времени<br>
+                        Пользователь вводит две даты (в формате "October 13, 2014 11:13:00").<br>
+                        Вычислить промежуток времени прошедший между датами и получить массив,<br>
+                        в котором будут года (365 дней), месяца (30 дней), дни, часы, минуты, секунды.<br>
+                        Вывести пользователю (например): между датами прошло 2 года, 1 месяц, 3 дня, 5 часов, 10 минут, 15 секунд
+                    </span>
+                    <form onsubmit="return false" autocomplete="off">
+                        <label>
+                            <input type="text" name="startDate" placeholder="count years" value="October 13, 2014 11:13:00"><br>
+                            <input type="text" name="endDate" placeholder="count years" value="October 13, 2014 11:13:00"><br>
+                        </label>
+                        <button onclick="dateInterval(startDate, endDate)">Расчитать</button>
+                    </form>
+                </div>
+
+                <div class="content__tasks_box">
+                    <b>Task 7:</b>
+                    <span class="tasks_box-text">
+                        Знаки зодиака
+                        Пользователь вводит дату в формате 2014-12-31,
+                        а получает знак зодиака в этот день (с картинкой).
+                    </span>
+                    <form onsubmit="return false" autocomplete="off">
+                        <label>
+                            <input type="text" name="date" placeholder="date" value="2014-12-31"><br>
+                        </label>
+                        <button onclick="zodiac(date)">Вывести</button>
+                    </form>
+                </div>
+
+                <div class="content__tasks_box">
+                    <b>Task 8:</b>
+                    <span class="tasks_box-text">
+                        Шахматная доска
+                        Пользователь вводит габариты доски (в формате ‘8x8’). Вывести шахматную доску.
+                    </span>
+                    <form onsubmit="return false" autocomplete="off">
+                        <label>
+                            <input type="text" name="size" placeholder="date" value="8x8"><br>
+                        </label>
+                        <button onclick="chessBoard(size)">Нарисовать</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="content__result">
+                <div>
+                    <h4>Results:</h4>
+                    <hr>
+                </div>
+                <div class="content__result_area">
+
+                </div>
+            </div>
         </div>
-        <div>
-            <form autocomplete="off" onsubmit="return false">
-                <label>
-                    <input type="text" name="numberRoom" placeholder="Номер квартиры">
-                    <input type="text" name="stages" placeholder="Этажей в доме">
-                    <input type="text" name="entrance" placeholder="Подъездов в доме">
-                    <input type="text" name="roomsInStage" placeholder="Квартир на этаже">
-                    <button onclick="findRoom(numberRoom, stages, entrance, roomsInStage)">Посчитать</button>
-                </label>
-            </form>
-        </div>
-        <div>
-            <p>Result: </p>
-            <p id="room"></p>
-        </div>
-    </div>
-</div>
-</body>
+        <footer>
+            FOOTER
+        </footer>
+    </body>
 </html>
