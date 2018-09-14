@@ -263,20 +263,38 @@ function findRoom(roomNumber, stages, entrance, roomsInStage) {
         print("Квартира с таким номером не существует в этом доме");
         return;
     }
-
     print(currentEntrance + " Подъезд " + currentStage + " этаж");
 }
 
 function sumNumber(number) {
     number = number.value;
-    
+
+    if (!isNumericPositive(number)) {
+        printError("Incorrect input");
+        return;
+    }
+
     let result = 0;
     for (let i = 0; i < number.length; i++)
         result += Number(number[i]);
     print(result);
 }
 
+function linkParser(links) {
+    links = links.value;
 
+    links = links.replace("http://","");
+    links = links.replace("https://","");
+    links = links.split(",");
+
+    let result;
+
+    for (let i = 0; i < links.length; i++) {
+        if (i !== links.length - 1)
+            result += links[i] + "<br>";
+    }
+    print(result);
+}
 
 
 

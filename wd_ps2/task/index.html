@@ -160,6 +160,20 @@
                     </form>
                 </div>
 
+                <div class="content__tasks_box">
+                    <b>Task 11:</b>
+                    <span class="tasks_box-text">
+                        Дан некий textarea, в который пользователь вводит ссылки через запятую.
+                        Когда textarea станет неактивным удалить http:// и https:// из ссылок
+                        и вывести их отсортированным по алфавиту списком ссылок.
+                    </span>
+                    <form onsubmit="return false" autocomplete="off">
+                        <label>
+                            <textarea class="text-area" onfocusout="linkParser(links)" type="text" name="links" placeholder="Список ссылок" ></textarea><br>
+                        </label>
+                    </form>
+                </div>
+
             </div>
 
             <div class="content__result">
