@@ -127,13 +127,7 @@
             <form action="#">
                 <input type="text" placeholder="Type here your login, please">
                 <input type="password" placeholder="Type here your password, please">
-                <input type="submit" value="This is Submit">
-                <label>
-                    <input type="radio" name="gender" value="male" checked>Мужской<br>
-                    <input type="radio" name="gender" value="female">Женский<br>
-                    <input type="radio" name="gender" value="other"> Инопланетный<br>
-                    <input type="checkbox" name="vehicle1" value="rules">Я доволен
-                </label>
+                <input type="submit" value="Проверить">
                 <input type="reset">
                 <div class="footer__contacts_button">
                     <button formaction="">
@@ -155,11 +149,16 @@
                 <input type="password" placeholder="Confirm here your password, please">
                 <input type="date" placeholder="Type here your birthday">
                 <input type="url" placeholder="Type here your website, please">
-                <div>Мой цвет:<input type="color" name="my-color" title="color"></div>
+                <div>
+                    <label><input type="radio" name="gender" value="male" checked>Мужской</label>
+                    <label><input type="radio" name="gender" value="female">Женский</label>
+                    <label><input type="radio" name="gender" value="other"> Инопланетный</label>
+                    <label><input type="checkbox" name="rules" value="rules">Я на все согласен</label>
+                    <div>Мой любимый цвет:<input type="color" name="my-color" title="color" value="#FFFF00"></div>
+                </div>
+
                 <input type="file" name="my-photo">
-                <!--<div class="footer__contacts_button">-->
-                    <input class="footer__contacts_button" type="button" value="Register">
-                <!--</div>-->
+                <input class="footer__contacts_button" type="button" value="Зарегистрироваться">
             </form>
         </div>
     </div>

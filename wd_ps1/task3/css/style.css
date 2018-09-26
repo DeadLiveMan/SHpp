@@ -3,6 +3,7 @@ a {
     text-decoration: none;
 }
 
+
 .header_hover:hover {
     text-shadow:  0 0 1em red;
 }
@@ -167,9 +168,27 @@ a {
     align-self: center;
 }
 
+.footer__contacts_form div{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__contacts_form div label{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+
+.footer__contacts_form div div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
 .footer__contacts_form form div{
     display: flex;
-    align-items: center;
+    /*align-items: center;*/
     justify-content: space-between;
     padding-right: 14px;
 }
@@ -182,6 +201,7 @@ a {
     margin-top: 20px;
     margin-bottom: 20px;
     align-self: center;
+    cursor: pointer;
 }
 
 .footer__contacts_button button:not(hover){
