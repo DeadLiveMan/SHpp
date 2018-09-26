@@ -167,6 +167,13 @@ a {
     align-self: center;
 }
 
+.footer__contacts_form form div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 14px;
+}
+
 .footer__contacts_textArea {
     height: 100px;
 }
@@ -174,6 +181,7 @@ a {
 .footer__contacts_button {
     margin-top: 20px;
     margin-bottom: 20px;
+    align-self: center;
 }
 
 .footer__contacts_button button:not(hover){
