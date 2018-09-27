@@ -13,15 +13,15 @@
 
 <!------------------------ HEADER --------------------------->
 <header class="header">
-    <a href="index.html" class="header__logo header_hover">
+    <a href="index.html" class="header__logo link_hover">
         <div class="header__logo_letter">
             N++
         </div>
     </a>
     <nav class="header__link">
-        <a class="header__link_item header_hover" href="#products">PRODUCTS</a>
-        <a class="header__link_item header_hover" href="#about">ABOUT US</a>
-        <a class="header__link_item header_hover" href="#contacts">CONTACT US</a>
+        <a class="header__link_item link_hover" href="#products">PRODUCTS</a>
+        <a class="header__link_item link_hover" href="#about">ABOUT US</a>
+        <a class="header__link_item link_hover" href="#contacts">CONTACT US</a>
     </nav>
 </header>
 
@@ -46,11 +46,7 @@
             harum hic ipsa ipsam, iusto laborum quidem sequi soluta ut veritatis vero
             voluptatum.
         </p>
-        <div class="footer__contacts_button">
-            <button>
-                Buy now!
-            </button>
-        </div>
+        <input class="footer__contacts_button" type="button" name="content-button" value="Buy now!">
     </div>
 </div>
 
@@ -111,11 +107,7 @@
                 <input type="email" placeholder="Type here your email, please">
                 <input type="tel" placeholder="Type here your phone, please">
                 <textarea class="footer__contacts_textArea" placeholder="Ask your question"></textarea>
-                <div class="footer__contacts_button">
-                    <button>
-                        Send email!
-                    </button>
-                </div>
+                <input class="footer__contacts_button" type="button" name="email-button" value="Send email!">
             </form>
         </div>
     </div>
@@ -129,11 +121,7 @@
                 <input type="password" placeholder="Type here your password, please">
                 <input type="submit" value="Проверить">
                 <input type="reset">
-                <div class="footer__contacts_button">
-                    <button formaction="">
-                        Login
-                    </button>
-                </div>
+                <input class="footer__contacts_button" type="button" name="login-button" value="Login">
             </form>
         </div>
     </div>
@@ -156,9 +144,8 @@
                     <label><input type="checkbox" name="rules" value="rules">Я на все согласен</label>
                     <div>Мой любимый цвет:<input type="color" name="my-color" title="color" value="#FFFF00"></div>
                 </div>
-
                 <input type="file" name="my-photo">
-                <input class="footer__contacts_button" type="button" value="Зарегистрироваться">
+                <input class="footer__contacts_button" type="button" name="register-button" value="Registration">
             </form>
         </div>
     </div>

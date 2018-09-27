@@ -3,11 +3,6 @@ a {
     text-decoration: none;
 }
 
-
-.header_hover:hover {
-    text-shadow:  0 0 1em red;
-}
-
 .body {
     display: flex;
     flex-direction: column;
@@ -18,7 +13,7 @@ a {
     width: 960px;
 }
 
-/* -------------------------------------FOOTER--------------------------------- */
+/* -------------------------------------HEADER--------------------------------- */
 .header {
     display: flex;
     justify-content: center;
@@ -46,6 +41,10 @@ a {
 
 .header__link_item {
     margin-left: 5%;
+}
+
+.link_hover:hover {
+    text-shadow:  0 0 1em red;
 }
 
 /* -----------------------------------CONTENT--------------------------------------------*/
@@ -188,7 +187,6 @@ a {
 
 .footer__contacts_form form div{
     display: flex;
-    /*align-items: center;*/
     justify-content: space-between;
     padding-right: 14px;
 }
@@ -198,28 +196,27 @@ a {
 }
 
 .footer__contacts_button {
+    font-family: Calibri, serif;
+    font-size: 30px;
+    border: solid;
+    border-radius: 5px;
     margin-top: 20px;
     margin-bottom: 20px;
     align-self: center;
     cursor: pointer;
 }
 
-.footer__contacts_button button:not(hover){
+.footer__contacts_button:not(hover){
     transition: 2s;
-    font-family: Calibri, serif;
-    border-radius: 5px;
     color: tan;
-    font-size: 30px;
     background-color: transparent;
-    border: solid tan;
 }
 
-.footer__contacts_button button:hover{
+.footer__contacts_button:hover{
     transition: 2s;
     background-color: #2980b9;
     border-color: tan;
     color: #f1c40f;
-    cursor: pointer;
 }
 
 input, textarea {
