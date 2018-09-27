@@ -92,13 +92,15 @@ button:hover {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    height: 95%;
     max-width: 70%;
 }
 
 .content__result_area {
-    flex-grow: 1;
     text-align: left;
+    flex-grow: 1;
     margin-left: 10px;
+    overflow-y: scroll;
     overflow-x: scroll;
 }
 
@@ -107,23 +109,23 @@ button:hover {
     margin: 10px;
     display: flex;
     flex-direction: column;
-    width: 70%;
-    height: 70%;
+    box-sizing: content-box;
 }
 
 .board-column {
     display: flex;
     flex-direction: row;
-    flex-grow: 1;
 }
 
 .board-light {
     background-color: #d2b93d;
-    flex-grow: 1;
+    width: 20px;
+    height: 20px;
 }
 
 .board-black {
     background-color: black;
-    flex-grow: 1;
+    width: 20px;
+    height: 20px;
 }
 /*---- end chess board -----*/

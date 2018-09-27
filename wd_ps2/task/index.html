@@ -167,11 +167,7 @@
                         Когда textarea станет неактивным удалить http:// и https:// из ссылок
                         и вывести их отсортированным по алфавиту списком ссылок.
                     </span>
-                    <form onsubmit="return false" autocomplete="off">
-                        <label>
-                            <textarea class="text-area" onfocusout="linkParser(links)" type="text" name="links" placeholder="Список ссылок" ></textarea><br>
-                        </label>
-                    </form>
+                    <textarea class="text-area" type="text" name="links" onblur="parseLinks()" placeholder="Список ссылок">http://www.google.com,http://www.agoogle.com,http://www.bgoogle.com</textarea>
                 </div>
 
             </div>

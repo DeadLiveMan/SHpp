@@ -75,7 +75,7 @@ function printElements(countSymbols, symbol) {
 
     let result = "";
     countSymbols = Number(countSymbols);
-    for (let i = 0; i <= countSymbols; i++) {
+    for (let i = 1; i <= countSymbols; i++) {
         for (let j = 0; j < i; j++) {
             result += symbol;
         }
@@ -102,7 +102,7 @@ function countTime(seconds) {
     let minute = Math.floor(seconds / secondsInMinute);
     seconds -= minute * secondsInMinute;
 
-    //maybe not need
+    //maybe not need (only time 0 - 23 hour)
     if (hour >= hoursInDay)
         hour = hour % hoursInDay;
 
@@ -188,7 +188,58 @@ function dateInterval(startDate, endDate) {
 }
 
 function zodiac(date) {
+    date = date.value;
+    date = date.split("-");
 
+    const zodiacArray = [
+        ["водолей", [12,19],"aquarius.png"],        //  1-2
+        ["рыбы",    [20,20],"pisces.png"],          //  2-3
+        ["овен",    [21,20],"aries.png"],           //  3-4
+        ["телец",   [21,21],"taurus.png"],
+        ["близнецы",[22,21],"gemini.png"],
+        ["рак",     [22,22],"cancer.png"],
+        ["лев",     [23,21],"leo.png"],
+        ["дева",    [22,23],"virgo.png"],
+        ["весы",    [24,23],"libra.png"],
+        ["скорпион",[24,22],"scorpio.png"],
+        ["стрелец", [23,22],"sagittarius.png"],
+        ["козерог", [23,20],"capricorn.png"],
+
+        ["змееносец",[0,0],"ophiuchus.png"]
+    ];
+    const maxMonth = 12;
+    const maxDay = 31;
+
+    if (date.length < 3) {
+        printError("Incorrect input");
+        return;
+    }
+
+    let posArray = 0;
+    let month = date[1];
+    let day = date[2];
+
+    if (!isNumericPositive(month) || !isNumericPositive(day) || month > maxMonth || day > maxDay) {
+        printError("Incorrect input");
+        return;
+    }
+
+    month = Number(month) - 1;
+    day = Number(day);
+
+    if (month < 0 || day < 1) {
+        printError("Incorrect input");
+        return;
+    }
+
+    if (day >= zodiacArray[month][1][0])
+        posArray = month;
+    else
+        posArray = month - 1;
+    if (posArray < 0)
+        posArray = maxMonth - 1;
+
+    print(zodiacArray[posArray][0].toUpperCase() + "<br><img src='image/zodiac/" + zodiacArray[posArray][2] + "'>");
 }
 
 function chessBoard(size) {
@@ -214,14 +265,14 @@ function chessBoard(size) {
         for (let j = 0; j < xBoard; j++) {
             if(i % 2 === 0)
                 if (j % 2 === 0)
-                    result += "<div class='board-light'></div>"
+                    result += "<div class='board-light'></div>";
                 else
-                    result += "<div class='board-black'></div>"
+                    result += "<div class='board-black'></div>";
             else
                 if (j % 2 === 0)
-                    result += "<div class='board-black'></div>"
+                    result += "<div class='board-black'></div>";
                 else
-                    result += "<div class='board-light'></div>"
+                    result += "<div class='board-light'></div>";
         }
         result += "</div>";
     }
@@ -280,18 +331,26 @@ function sumNumber(number) {
     print(result);
 }
 
-function linkParser(links) {
-    links = links.value;
+function parseLinks() {
+    let links = document.getElementsByClassName("text-area")[0].value;
 
-    links = links.replace("http://","");
-    links = links.replace("https://","");
+    if (links === "")
+        return;
+
+    links = links.replace(/\s/g,"");
     links = links.split(",");
+    links.sort();
 
-    let result;
+    let result = "";
+    let linkName = "";
 
     for (let i = 0; i < links.length; i++) {
-        if (i !== links.length - 1)
-            result += links[i] + "<br>";
+        linkName = links[i].replace(/http:\/\//g,"");
+        if (isLink(links[i])) {
+            result += '<a href="' + links[i] + '">' + linkName + '</a>';
+            if (i !== links.length - 1)
+                result += "<br>";
+        }
     }
     print(result);
 }
@@ -302,23 +361,24 @@ function linkParser(links) {
 
 
 
-
-
+const resultArea = document.getElementsByClassName("content__result_area");
 
 function print(data) {
-    let element = document.getElementsByClassName("content__result_area");
-    element[0].style.color = "black";
-    element[0].innerHTML = data;
+    resultArea[0].style.color = "black";
+    resultArea[0].innerHTML = data;
 }
 
 function printError(data) {
-    let element = document.getElementsByClassName("content__result_area");
-    element[0].style.color = "orange";
-    element[0].innerHTML = data;
+    resultArea[0].style.color = "orange";
+    resultArea[0].innerHTML = data;
 }
 
 function isNumeric(value) {
     return value.match(/^[-]?[0-9]+$/);
+}
+
+function isLink(value) {
+    return value.match(/^\w+.*[\w\/]$/);
 }
 
 function isNumericPositive(value) {
