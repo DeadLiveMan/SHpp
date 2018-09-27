@@ -9,12 +9,12 @@ a {
     align-items: center;
 }
 
-.header, .menu, .content, .footer {
-    width: 960px;
-}
+
 
 /* -------------------------------------HEADER--------------------------------- */
+
 .header {
+    width: 960px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,6 +49,7 @@ a {
 
 /* -----------------------------------CONTENT--------------------------------------------*/
 .content {
+    width: 960px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,6 +85,7 @@ a {
 
 /*************MENU***************************/
 .menu {
+    width: 960px;
     padding-top: 20px;
     padding-bottom: 20px;
     display: flex;
@@ -134,6 +136,7 @@ a {
 
 /*********************FOOTER**********************/
 .footer {
+    width: 960px;
     text-align: center;
     display: flex;
     flex-direction: row;
