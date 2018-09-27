@@ -137,6 +137,7 @@ function countYear(years) {
     print(years + " " + word);
 }
 
+//todo fixme please!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function dateInterval(startDate, endDate) {
     startDate = startDate.value;
     endDate = endDate.value;
