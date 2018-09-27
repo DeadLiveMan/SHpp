@@ -157,8 +157,14 @@ function dateInterval(startDate, endDate) {
         ];
     startDate = new Date(startDate);
     endDate = new Date(endDate);
-    let date = endDate - startDate;
-    alert(new Date(date));
+    let date = new Date();
+
+    date.setSeconds(endDate.getSeconds() - startDate.getSeconds());
+    date.setMinutes(endDate.getMinutes() - startDate.getMinutes());
+    date.setHours(endDate.getHours() - startDate.getHours());
+    date.setDate(endDate.getDate() - startDate.getDate());
+    date.setMonth(endDate.getMonth() - startDate.getMonth())
+    print(date.getMonth());
 
     // startDate = startDate.replace(","," ");
     // startDate = startDate.replace(/\s+/g," ");
@@ -185,7 +191,6 @@ function dateInterval(startDate, endDate) {
     // let endMinute = endTime[1];
     // let endSecond = endTime[2];
 
-    print(startDate + " " + endDate);
 }
 
 function zodiac(date) {
