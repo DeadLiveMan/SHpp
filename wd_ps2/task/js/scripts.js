@@ -126,9 +126,16 @@ function countYear(years) {
 
 //fixme
 function dateInterval(startDate, endDate) {
+
     startDate =  new Date(startDate.value);
     endDate = new Date(endDate.value);
 
+    if (startDate > endDate) {
+        const tempDate = new Date(startDate);
+        startDate = new Date(endDate);
+        endDate = new Date(tempDate);
+    }
+    
     let resultDate = new Date(0);
     resultDate.setFullYear((endDate.getFullYear() - startDate.getFullYear() + startDate.getFullYear()));
     resultDate.setMonth((endDate.getMonth() - startDate.getMonth() + startDate.getMonth()));
