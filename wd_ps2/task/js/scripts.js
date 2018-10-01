@@ -48,14 +48,14 @@ function sumSecond(minValue, maxValue, positions) {
     const min = -1000;
     const max = 1000;
     const decimal = 10;
+    const filter = positions.split(",");
+
     minValue = Number(minValue);
     maxValue = Number(maxValue);
     if (minValue < min || maxValue > max || minValue > maxValue) {
         printError("Incorrect input: out of bounds");
         return;
     }
-
-    let filter = positions.split(",");
 
     let result = 0;
     for (let i = minValue; i <= maxValue; i++) {
@@ -95,7 +95,6 @@ function countTime(seconds) {
 
     const secondsInHour = 3600;
     const secondsInMinute = 60;
-    const decimal = 10;
     const hoursInDay = 24;
 
     let hour = Math.floor(seconds / secondsInHour);
@@ -108,34 +107,21 @@ function countTime(seconds) {
         hour = hour % hoursInDay;
 
     // formatting for 2 decimal
-    if (seconds < decimal)
-        seconds = "0" + seconds;
-    if (minute < decimal)
-        minute = "0" + minute;
-    if (hour < decimal)
-        hour = "0" + hour;
+    seconds = formatNumber(seconds);
+    minute = formatNumber(minute);
+    hour = formatNumber(hour);
 
     print(hour + ":" + minute + ":" + seconds);
 }
 
 function countYear(years) {
     years = years.value;
-    let word = "лет";
     if (!isNumericPositive(years)) {
         printError("Incorrect input");
         return;
     }
-    years = Number(years);
-    if (years % 10 === 1)
-        word = "год";
-    if ((years % 10 > 1) && (years % 10 < 5))
-        word = "года";
-    if (years % 100 > 10 && years % 100 < 15)
-        word = "лет";
-    if (years > 110)
-        word += ": сомнительно";
-
-    print(years + " " + word);
+    years = addDecline(years ,"лет", "год", "года");
+    print(years);
 }
 
 //fixme
@@ -160,13 +146,12 @@ function dateInterval(startDate, endDate) {
     let minutes = resultDate.getMinutes();
     let second = resultDate.getSeconds();
 
-
-    year = correction(year, "лет", "год", "года");
-    month = correction(month, "месяцев", "месяц", "месяца");
-    day = correction(day, "дней", "день", "дня");
-    hours = correction(hours, "часов", "час", "часа");
-    minutes = correction(minutes, "минут", "минута", "минуты");
-    second = correction(second, "секунд", "секунда", "секунды");
+    year = addDecline(year, "лет", "год", "года");
+    month = addDecline(month, "месяцев", "месяц", "месяца");
+    day = addDecline(day, "дней", "день", "дня");
+    hours = addDecline(hours, "часов", "час", "часа");
+    minutes = addDecline(minutes, "минут", "минута", "минуты");
+    second = addDecline(second, "секунд", "секунда", "секунды");
 
     print(  year + "<br>" +
             month + "<br>" +
@@ -174,18 +159,6 @@ function dateInterval(startDate, endDate) {
             hours + "<br>" +
             minutes + "<br>" +
             second + "");
-
-    function correction(value, param1, param2, param3) {
-        let word = param1;
-        if (value % 10 === 1)
-            word = param2;
-        if ((value % 10 > 1) && (value % 10 < 5))
-            word = param3;
-        if (value % 100 > 10 && value % 100 < 15)
-            word = param1;
-
-        return value + " " + word;
-    }
 }
 
 function zodiac(date) {
@@ -358,6 +331,24 @@ function parseLinks() {
 
 
 const resultArea = document.getElementsByClassName("content__result_area");
+
+function formatNumber(number) {
+    const decimal = 10;
+    if (number < decimal)
+        number = "0" + number;
+    return number;
+}
+
+function addDecline(value, param1, param2, param3) {
+    let word = param1;
+    if (value % 10 === 1)
+        word = param2;
+    if ((value % 10 > 1) && (value % 10 < 5))
+        word = param3;
+    if (value % 100 > 10 && value % 100 < 15)
+        word = param1;
+    return value + " " + word;
+}
 
 function print(data) {
     resultArea[0].style.color = "black";
