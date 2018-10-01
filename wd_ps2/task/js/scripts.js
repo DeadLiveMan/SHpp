@@ -124,7 +124,6 @@ function countYear(years) {
     print(years);
 }
 
-//fixme
 function dateInterval(startDate, endDate) {
 
     startDate =  new Date(startDate.value);
@@ -175,6 +174,10 @@ function dateInterval(startDate, endDate) {
 
 function zodiac(date) {
     date = date.value;
+    if (!date.match(/^\d{4}-\d{1,2}-\d{1,2}$/)) {
+        printError("Incorrect input");
+        return;
+    }
     date = date.split("-");
 
     const zodiacArray = [
