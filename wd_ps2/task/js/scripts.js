@@ -47,6 +47,7 @@ function sumSecond(minValue, maxValue, positions) {
 
     const min = -1000;
     const max = 1000;
+    const decimal = 10;
     minValue = Number(minValue);
     maxValue = Number(maxValue);
     if (minValue < min || maxValue > max || minValue > maxValue) {
@@ -58,8 +59,8 @@ function sumSecond(minValue, maxValue, positions) {
 
     let result = 0;
     for (let i = minValue; i <= maxValue; i++) {
-        if (contains(i % 10,filter))
-            result += i;
+        if (filter.includes((i % decimal) + ""))
+             result += i;
     }
     print(result);
 }
@@ -137,60 +138,54 @@ function countYear(years) {
     print(years + " " + word);
 }
 
-//todo fixme please!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//fixme
 function dateInterval(startDate, endDate) {
-    startDate = startDate.value;
-    endDate = endDate.value;
-    let mounthsArray = [
-        "january",  31,
-        "february", 28,
-        "march",    31,
-        "april",    30,
-        "may",      31,
-        "june",     30,
-        "july",     31,
-        "august",   31,
-        "september",30,
-        "october",  31,
-        "november", 30,
-        "december", 31,
-        ];
-    startDate = new Date(startDate);
-    endDate = new Date(endDate);
-    let date = new Date();
+    startDate =  new Date(startDate.value);
+    endDate = new Date(endDate.value);
 
-    date.setSeconds(endDate.getSeconds() - startDate.getSeconds());
-    date.setMinutes(endDate.getMinutes() - startDate.getMinutes());
-    date.setHours(endDate.getHours() - startDate.getHours());
-    date.setDate(endDate.getDate() - startDate.getDate());
-    date.setMonth(endDate.getMonth() - startDate.getMonth())
-    print(date.getMonth());
+    let resultDate = new Date(0);
+    resultDate.setFullYear((endDate.getFullYear() - startDate.getFullYear() + startDate.getFullYear()));
+    resultDate.setMonth((endDate.getMonth() - startDate.getMonth() + startDate.getMonth()));
+    resultDate.setDate((endDate.getDate() - startDate.getDate()) + 1);
+    resultDate.setHours((endDate.getHours() - startDate.getHours()));
+    resultDate.setMinutes((endDate.getMinutes() - startDate.getMinutes()));
+    resultDate.setSeconds((endDate.getSeconds() - startDate.getSeconds()));
 
-    // startDate = startDate.replace(","," ");
-    // startDate = startDate.replace(/\s+/g," ");
-    // startDate = startDate.split(" ");
-    // endDate = endDate.replace(","," ");
-    // endDate = endDate.replace(/\s+/g," ");
-    // endDate = endDate.split(" ");
-    //
-    // let starMonth = startDate[0];
-    // let startDay = startDate[1];
-    // let startYear = startDate[2];
-    // let startTime = startDate[3];
-    // startTime = startTime.split(":");
-    // let startHour = startTime[0];
-    // let startMinute = startTime[1];
-    // let startSecond = startTime[2];
-    //
-    // let endMonth = endDate[0];
-    // let endDay = endDate[1];
-    // let endYear = endDate[2];
-    // let endTime = endDate[3];
-    // endTime = endTime.split(":");
-    // let endHour = endTime[0];
-    // let endMinute = endTime[1];
-    // let endSecond = endTime[2];
 
+    resultDate.setMonth((resultDate.getMonth() - startDate.getMonth()));
+    let year = resultDate.getFullYear() - startDate.getFullYear();
+    let month = resultDate.getMonth();
+    let day = resultDate.getDate() - 1;
+    let hours = resultDate.getHours();
+    let minutes = resultDate.getMinutes();
+    let second = resultDate.getSeconds();
+
+
+    year = correction(year, "лет", "год", "года");
+    month = correction(month, "месяцев", "месяц", "месяца");
+    day = correction(day, "дней", "день", "дня");
+    hours = correction(hours, "часов", "час", "часа");
+    minutes = correction(minutes, "минут", "минута", "минуты");
+    second = correction(second, "секунд", "секунда", "секунды");
+
+    print(  year + "<br>" +
+            month + "<br>" +
+            day + "<br>" +
+            hours + "<br>" +
+            minutes + "<br>" +
+            second + "");
+
+    function correction(value, param1, param2, param3) {
+        let word = param1;
+        if (value % 10 === 1)
+            word = param2;
+        if ((value % 10 > 1) && (value % 10 < 5))
+            word = param3;
+        if (value % 100 > 10 && value % 100 < 15)
+            word = param1;
+
+        return value + " " + word;
+    }
 }
 
 function zodiac(date) {
@@ -351,7 +346,7 @@ function parseLinks() {
     let linkName = "";
 
     for (let i = 0; i < links.length; i++) {
-        linkName = links[i].replace(/http:\/\//g,"");
+        linkName = links[i].replace(/https?:\/\//g,"");
         if (isLink(links[i])) {
             result += '<a href="' + links[i] + '">' + linkName + '</a>';
             if (i !== links.length - 1)
@@ -360,11 +355,6 @@ function parseLinks() {
     }
     print(result);
 }
-
-
-
-
-
 
 
 const resultArea = document.getElementsByClassName("content__result_area");
@@ -393,12 +383,4 @@ function isNumericPositive(value) {
 
 function isCommaParser(value) {
     return value.match(/(^[0-9]([,][0-9])*$)/);
-}
-
-function contains(value, array) {
-    for (let i = 0; i < array.length; i++) {
-        if (Number(array[i]) === value)
-            return true;
-    }
-    return false;
 }

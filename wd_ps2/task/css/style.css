@@ -109,12 +109,13 @@ button:hover {
     margin: 10px;
     display: flex;
     flex-direction: column;
-    box-sizing: content-box;
+    /*box-sizing: content-box;*/
 }
 
 .board-column {
     display: flex;
     flex-direction: row;
+    width: fit-content;
 }
 
 .board-light {
