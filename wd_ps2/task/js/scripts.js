@@ -229,25 +229,18 @@ function chessBoard(size) {
 
     size = size.split("x");
 
-    let xBoard = size[0];
-    let yBoard = size[1];
+    const xBoard = size[0];
+    const yBoard = size[1];
 
     let result = "<div class='board-container'>";
 
     for (let i = 0; i < yBoard; i++) {
         result += "<div class='board-column'>";
-        for (let j = 0; j < xBoard; j++) {
+        for (let j = 0; j < xBoard; j++)
             if(i % 2 === 0)
-                if (j % 2 === 0)
-                    result += "<div class='board-light'></div>";
-                else
-                    result += "<div class='board-black'></div>";
+                (j % 2 === 0)?result += "<div class='board-light'></div>":result += "<div class='board-black'></div>";
             else
-                if (j % 2 === 0)
-                    result += "<div class='board-black'></div>";
-                else
-                    result += "<div class='board-light'></div>";
-        }
+                (j % 2 === 0)?result += "<div class='board-black'></div>":result += "<div class='board-light'></div>";
         result += "</div>";
     }
     result += "</div>";
@@ -276,7 +269,7 @@ function findRoom(roomNumber, stages, entrance, roomsInStage) {
         return;
     }
 
-    let roomsInEntrance = stages * roomsInStage;
+    const roomsInEntrance = stages * roomsInStage;
 
     let currentEntrance = Math.floor(roomNumber / roomsInEntrance);
     roomNumber -= roomsInEntrance * currentEntrance;
