@@ -59,8 +59,8 @@ function sumSecond(firstElement, secondElement, thirdElement) {
 
     let result = 0;
     for (let i = minValue; i <= maxValue; i++) {
-        if (filter.includes((i % decimal) + ""))
-             result += i;
+        if (filter.includes(Math.abs(i % decimal) + ""))
+            result += i;
     }
     print(result);
 }
