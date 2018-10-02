@@ -95,16 +95,11 @@ function countTime(element) {
 
     const secondsInHour = 3600;
     const secondsInMinute = 60;
-    const hoursInDay = 24;
 
     let hour = Math.floor(seconds / secondsInHour);
     seconds -= hour * secondsInHour;
     let minute = Math.floor(seconds / secondsInMinute);
     seconds -= minute * secondsInMinute;
-
-    //maybe not need (only time 0 - 23 hour)
-    if (hour >= hoursInDay)
-        hour = hour % hoursInDay;
 
     // formatting for 2 decimal
     seconds = formatNumber(seconds);
