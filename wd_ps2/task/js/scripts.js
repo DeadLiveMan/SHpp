@@ -11,7 +11,7 @@ function sumFirst(firstElement, secondElement) {
     const min = -1000;
     const max = 1000;
 
-    if (!isNumeric(firstNumber) || !isNumeric(secondNumber)) {
+    if (isNaN(Number(firstNumber)) || isNaN(Number(secondNumber))) {
         printError("Incorrect input");
         return;
     }
@@ -31,11 +31,11 @@ function sumFirst(firstElement, secondElement) {
 }
 
 function sumSecond(firstElement, secondElement, thirdElement) {
-    let minValue = firstElement.value;
-    let maxValue = secondElement.value;
+    let firstNumber = firstElement.value;
+    let secondNumber = secondElement.value;
     let filter = thirdElement.value;
 
-    if (!isNumeric(minValue) || !isNumeric(maxValue)) {
+    if (isNaN(Number(firstNumber)) || isNaN(Number(secondNumber))) {
         printError("Incorrect input");
         return;
     }
@@ -50,15 +50,15 @@ function sumSecond(firstElement, secondElement, thirdElement) {
     const decimal = 10;
 
     filter = filter.split(",");
-    minValue = Number(minValue);
-    maxValue = Number(maxValue);
-    if (minValue < min || maxValue > max || minValue > maxValue) {
+    firstNumber = Number(firstNumber);
+    secondNumber = Number(secondNumber);
+    if (firstNumber < min || secondNumber > max || firstNumber > secondNumber) {
         printError("Incorrect input: out of bounds");
         return;
     }
 
     let result = 0;
-    for (let i = minValue; i <= maxValue; i++) {
+    for (let i = firstNumber; i <= secondNumber; i++) {
         if (filter.includes(Math.abs(i % decimal) + ""))
             result += i;
     }
@@ -322,6 +322,7 @@ function sumNumber(element) {
     let result = 0;
     for (let i = 0; i < number.length; i++)
         result += Number(number[i]);
+
     print(result);
 }
 
@@ -383,12 +384,8 @@ function printError(data) {
     resultArea[0].innerHTML = data;
 }
 
-function isNumeric(value) {
-    return value.match(/^[-]?[0-9]+$/);
-}
-
 function isLink(value) {
-    return value.match(/^\w+.*[\w\/]$/);
+    return value.match(/^\w+.*[\w]\/?$/);
 }
 
 function isNumericPositive(value) {
