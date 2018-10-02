@@ -121,19 +121,28 @@ function countYear(element) {
 
 function dateInterval(firstElement, secondElement) {
 
-    let startDate =  new Date(firstElement.value);
-    let endDate = new Date(secondElement.value);
-
-    if(isNaN(startDate.getMilliseconds()) || isNaN(endDate.getMilliseconds())){
-        printError("Incorrect input");
+    const reg = /^[a-zA-Z]+\s\d{1,2},\s?\d{4}\s(\d{2}:){2}\d{2}$/;
+    if (!firstElement.value.match(reg) || !secondElement.value.match(reg)) {
+        printError("Incorrect input: invalid format date");
         return;
     }
 
-    if (startDate > endDate) {
-        const tempDate = new Date(startDate);
-        startDate = new Date(endDate);
-        endDate = new Date(tempDate);
+    const firstDate = firstElement.value;
+    const secondDate = secondElement.value;
+
+    let startDate =  new Date(firstDate);
+    let endDate = new Date(secondDate);
+
+    const firstDateDay = firstDate.substr(firstDate.indexOf(" ") + 1, firstDate.indexOf(",") - firstDate.indexOf(" ") - 1);
+    const secondDateDay = secondDate.substr(secondDate.indexOf(" ") + 1, secondDate.indexOf(",") - secondDate.indexOf(" ") - 1);
+
+    if (Number(firstDateDay) !== startDate.getDate() || Number(secondDateDay) !== endDate.getDate()) {
+        printError("Incorrect input: wrong date");
+        return;
     }
+
+    if (startDate > endDate)
+        [startDate,endDate] = [endDate, startDate];
 
     let resultDate = new Date(0);
     resultDate.setFullYear((endDate.getFullYear() - startDate.getFullYear() + startDate.getFullYear()));
