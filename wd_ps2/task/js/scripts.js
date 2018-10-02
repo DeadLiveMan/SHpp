@@ -5,42 +5,42 @@
  *                                          *
  ********************************************/
 
-function sumFirst(minValue, maxValue) {
-    minValue = minValue.value;
-    maxValue = maxValue.value;
+function sumFirst(firstElement, secondElement) {
+    let firstNumber = firstElement.value;
+    let secondNumber = secondElement.value;
     const min = -1000;
     const max = 1000;
 
-    if (!isNumeric(minValue) || !isNumeric(maxValue)) {
+    if (!isNumeric(firstNumber) || !isNumeric(secondNumber)) {
         printError("Incorrect input");
         return;
     }
 
-    minValue = Number(minValue);
-    maxValue = Number(maxValue);
-    if (minValue < min || maxValue > max || minValue > maxValue) {
+    firstNumber = Number(firstNumber);
+    secondNumber = Number(secondNumber);
+    if (firstNumber < min || secondNumber > max || firstNumber > secondNumber) {
         printError("Incorrect input");
         return;
     }
 
     let result = 0;
-    for (let i = minValue; i <= maxValue; i++) {
+    for (let i = firstNumber; i <= secondNumber; i++) {
         result += i;
     }
     print(result);
 }
 
-function sumSecond(minValue, maxValue, positions) {
-    minValue = minValue.value;
-    maxValue = maxValue.value;
-    positions = positions.value;
+function sumSecond(firstElement, secondElement, thirdElement) {
+    let minValue = firstElement.value;
+    let maxValue = secondElement.value;
+    let filter = thirdElement.value;
 
     if (!isNumeric(minValue) || !isNumeric(maxValue)) {
         printError("Incorrect input");
         return;
     }
 
-    if (!isCommaParser(positions)) {
+    if (!isCommaParser(filter)) {
         printError("Incorrect input: Wrong filter");
         return;
     }
@@ -48,8 +48,8 @@ function sumSecond(minValue, maxValue, positions) {
     const min = -1000;
     const max = 1000;
     const decimal = 10;
-    const filter = positions.split(",");
 
+    filter = filter.split(",");
     minValue = Number(minValue);
     maxValue = Number(maxValue);
     if (minValue < min || maxValue > max || minValue > maxValue) {
@@ -65,9 +65,9 @@ function sumSecond(minValue, maxValue, positions) {
     print(result);
 }
 
-function printElements(countSymbols, symbol) {
-    countSymbols = countSymbols.value;
-    symbol = symbol.value;
+function printElements(firstElement, secondElement) {
+    let countSymbols = firstElement.value;
+    let symbol = secondElement.value;
 
     if (!isNumericPositive(countSymbols) || symbol.length !== 1) {
         printError("Incorrect input");
@@ -85,8 +85,8 @@ function printElements(countSymbols, symbol) {
     print(result);
 }
 
-function countTime(seconds) {
-    seconds = seconds.value;
+function countTime(element) {
+    let seconds = element.value;
 
     if (!isNumericPositive(seconds)) {
         printError("Incorrect input");
@@ -114,8 +114,8 @@ function countTime(seconds) {
     print(hour + ":" + minute + ":" + seconds);
 }
 
-function countYear(years) {
-    years = years.value;
+function countYear(element) {
+    let years = element.value;
     if (!isNumericPositive(years)) {
         printError("Incorrect input");
         return;
@@ -124,10 +124,10 @@ function countYear(years) {
     print(years);
 }
 
-function dateInterval(startDate, endDate) {
+function dateInterval(firstElement, secondElement) {
 
-    startDate =  new Date(startDate.value);
-    endDate = new Date(endDate.value);
+    let startDate =  new Date(firstElement.value);
+    let endDate = new Date(secondElement.value);
 
     if(isNaN(startDate.getMilliseconds()) || isNaN(endDate.getMilliseconds())){
         printError("Incorrect input");
@@ -172,8 +172,8 @@ function dateInterval(startDate, endDate) {
             second + "");
 }
 
-function zodiac(date) {
-    date = date.value;
+function zodiac(element) {
+    let date = element.value;
     if (!date.match(/^\d{4}-\d{1,2}-\d{1,2}$/)) {
         printError("Incorrect input");
         return;
@@ -231,8 +231,8 @@ function zodiac(date) {
     print(zodiacArray[posArray][0].toUpperCase() + "<br><img src='image/zodiac/" + zodiacArray[posArray][2] + "'>");
 }
 
-function chessBoard(size) {
-    size = size.value;
+function chessBoard(element) {
+    let size = element.value;
 
     size = size.toLowerCase();
     size = size.replace("х","x");
@@ -262,11 +262,11 @@ function chessBoard(size) {
     print(result);
 }
 
-function findRoom(roomNumber, stages, entrance, roomsInStage) {
-    roomNumber = roomNumber.value;
-    stages = stages.value;
-    entrance = entrance.value;
-    roomsInStage = roomsInStage.value;
+function findRoom(firstElement, secondElement, thirdElement, fourthElement) {
+    let roomNumber = firstElement.value;
+    let stages = secondElement.value;
+    let entrance = thirdElement.value;
+    let roomsInStage = fourthElement.value;
 
     if (!isNumericPositive(roomNumber) || !isNumericPositive(stages) ||
         !isNumericPositive(entrance) || !isNumericPositive(roomsInStage)) {
@@ -299,8 +299,8 @@ function findRoom(roomNumber, stages, entrance, roomsInStage) {
     print(currentEntrance + " Подъезд " + currentStage + " этаж");
 }
 
-function sumNumber(number) {
-    number = number.value;
+function sumNumber(element) {
+    let number = element.value;
 
     if (!isNumericPositive(number)) {
         printError("Incorrect input");
