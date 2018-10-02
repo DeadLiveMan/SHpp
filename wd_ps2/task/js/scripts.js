@@ -175,10 +175,19 @@ function dateInterval(firstElement, secondElement) {
 function zodiac(element) {
     let date = element.value;
     if (!date.match(/^\d{4}-\d{1,2}-\d{1,2}$/)) {
-        printError("Incorrect input");
+        printError("Incorrect input: invalid format date");
         return;
     }
     date = date.split("-");
+    let checkDate = new Date(0);
+    checkDate.setFullYear(date[0]);
+    checkDate.setMonth(date[1] - 1);
+    checkDate.setDate(date[2]);
+
+    if (Number(date[2]) !== checkDate.getDate()) {
+        printError("Incorrect input: wrong date");
+        return;
+    }
 
     const zodiacArray = [
         ["водолей", [12,19],"aquarius.png"],        //  1-2
