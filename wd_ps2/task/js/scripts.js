@@ -99,12 +99,12 @@ function countTime(element) {
     let hour = Math.floor(seconds / secondsInHour);
     seconds -= hour * secondsInHour;
     let minute = Math.floor(seconds / secondsInMinute);
-    seconds -= minute * secondsInMinute;
+    seconds -= (minute * secondsInMinute);
 
     // formatting for 2 decimal
-    seconds = formatNumber(seconds);
-    minute = formatNumber(minute);
-    hour = formatNumber(hour);
+    seconds = seconds.toString().padStart(2,"0");
+    minute = minute.toString().padStart(2,"0");
+    hour = hour.toString().padStart(2,"0");
 
     print(hour + ":" + minute + ":" + seconds);
 }
@@ -355,13 +355,6 @@ function parseLinks() {
 
 
 const resultArea = document.getElementsByClassName("content__result_area");
-
-function formatNumber(number) {
-    const decimal = 10;
-    if (number < decimal)
-        number = "0" + number;
-    return number;
-}
 
 function addDecline(value, param1, param2, param3) {
     let word = param1;
