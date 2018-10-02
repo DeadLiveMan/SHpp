@@ -160,6 +160,7 @@ function dateInterval(firstElement, secondElement) {
     let hours = resultDate.getHours();
     let minutes = resultDate.getMinutes();
     let second = resultDate.getSeconds();
+    const date = [year, month, day, hours, minutes, second]; /// ???
 
     year = addDecline(year, "лет", "год", "года");
     month = addDecline(month, "месяцев", "месяц", "месяца");
@@ -168,12 +169,7 @@ function dateInterval(firstElement, secondElement) {
     minutes = addDecline(minutes, "минут", "минута", "минуты");
     second = addDecline(second, "секунд", "секунда", "секунды");
 
-    print(  year + "<br>" +
-            month + "<br>" +
-            day + "<br>" +
-            hours + "<br>" +
-            minutes + "<br>" +
-            second + "");
+    print(`${year}<br>${month}<br>${day}<br>${hours}<br>${minutes}<br>${second}`);
 }
 
 function zodiac(element) {
