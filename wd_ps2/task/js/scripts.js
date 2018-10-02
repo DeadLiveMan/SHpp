@@ -340,6 +340,9 @@ function parseLinks() {
 
     for (let i = 0; i < links.length; i++) {
         linkName = links[i].replace(/https?:\/\//g,"");
+        if (linkName === links[i])
+            links[i] = "http://" + links[i];
+
         if (isLink(links[i])) {
             result += '<a href="' + links[i] + '">' + linkName + '</a>';
             if (i !== links.length - 1)
