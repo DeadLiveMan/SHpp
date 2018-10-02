@@ -311,6 +311,9 @@ function findRoom(firstElement, secondElement, thirdElement, fourthElement) {
 function sumNumber(element) {
     let number = element.value;
 
+    number = number.replace(/[\-]/,"");
+    number = number.replace(/[.]/,"");
+
     if (!isNumericPositive(number)) {
         printError("Incorrect input");
         return;
