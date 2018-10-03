@@ -181,20 +181,20 @@ function zodiac(element) {
     }
 
     const zodiacArray = [
-        ["водолей", [12,19],"aquarius.png"],        //  1-2
-        ["рыбы",    [20,20],"pisces.png"],          //  2-3
-        ["овен",    [21,20],"aries.png"],           //  3-4
-        ["телец",   [21,21],"taurus.png"],
-        ["близнецы",[22,21],"gemini.png"],
-        ["рак",     [22,22],"cancer.png"],
-        ["лев",     [23,21],"leo.png"],
-        ["дева",    [22,23],"virgo.png"],
-        ["весы",    [24,23],"libra.png"],
-        ["скорпион",[24,22],"scorpio.png"],
-        ["стрелец", [23,22],"sagittarius.png"],
-        ["козерог", [23,20],"capricorn.png"],
+        ["водолей", 12,"aquarius.png"],        //  1-2
+        ["рыбы",    20,"pisces.png"],          //  2-3
+        ["овен",    21,"aries.png"],           //  3-4
+        ["телец",   21,"taurus.png"],
+        ["близнецы",22,"gemini.png"],
+        ["рак",     22,"cancer.png"],
+        ["лев",     23,"leo.png"],
+        ["дева",    22,"virgo.png"],
+        ["весы",    24,"libra.png"],
+        ["скорпион",24,"scorpio.png"],
+        ["стрелец", 23,"sagittarius.png"],
+        ["козерог", 23,"capricorn.png"],
 
-        ["змееносец",[0,0],"ophiuchus.png"]
+        ["змееносец", 0,"ophiuchus.png"]
     ];
 
     if (date.length < 3) {
@@ -203,23 +203,20 @@ function zodiac(element) {
     }
 
     let posArray = 0;
-    let month = date[1];
-    let day = date[2];
+    let month = Number(date[1]);
+    let day = Number(date[2]);
 
     if (!isNumericPositive(month) || !isNumericPositive(day) || month > maxMonth || day > maxDay) {
         printError("Incorrect input");
         return;
     }
-
-    month = Number(month) - 1;
-    day = Number(day);
-
+    month = month - 1;
     if (month < 0 || day < 1) {
         printError("Incorrect input");
         return;
     }
 
-    if (day >= zodiacArray[month][1][0])
+    if (day >= zodiacArray[month][1])
         posArray = month;
     else
         posArray = month - 1;
