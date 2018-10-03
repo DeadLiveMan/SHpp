@@ -56,8 +56,9 @@ function sumSecond(firstElement, secondElement, thirdElement) {
 
     let result = 0;
     for (let i = firstNumber; i <= secondNumber; i++) {
-        if (filter.includes(Math.abs(i % decimalNumber) + ""))
+        if (filter.includes(Math.abs(i % decimalNumber) + "")) {
             result += i;
+        }
     }
     print(result);
 }
@@ -131,8 +132,9 @@ function dateInterval(firstElement, secondElement) {
         return;
     }
 
-    if (startDate > endDate)
-        [startDate,endDate] = [endDate, startDate];
+    if (startDate > endDate) {
+        [startDate, endDate] = [endDate, startDate];
+    }
 
     let resultDate = new Date(0);
     resultDate.setFullYear((endDate.getFullYear() - startDate.getFullYear() + startDate.getFullYear()));
@@ -141,15 +143,14 @@ function dateInterval(firstElement, secondElement) {
     resultDate.setHours((endDate.getHours() - startDate.getHours()));
     resultDate.setMinutes((endDate.getMinutes() - startDate.getMinutes()));
     resultDate.setSeconds((endDate.getSeconds() - startDate.getSeconds()));
-
     resultDate.setMonth((resultDate.getMonth() - startDate.getMonth()));
+
     let year = resultDate.getFullYear() - startDate.getFullYear();
     let month = resultDate.getMonth();
     let day = resultDate.getDate() - 1;
     let hours = resultDate.getHours();
     let minutes = resultDate.getMinutes();
     let second = resultDate.getSeconds();
-    const date = [year, month, day, hours, minutes, second]; /// ???
 
     year = addDecline(year, "лет", "год", "года");
     month = addDecline(month, "месяцев", "месяц", "месяца");
@@ -369,3 +370,4 @@ function isNumericPositive(value) {
 function isCommaParser(value) {
     return value.match(/(^[0-9]([,][0-9])*$)/);
 }
+
