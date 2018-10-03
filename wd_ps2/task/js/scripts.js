@@ -181,18 +181,18 @@ function zodiac(element) {
     }
 
     const zodiacArray = [
-        ["водолей", 12,"aquarius.png"],        //  1-2
-        ["рыбы",    20,"pisces.png"],          //  2-3
-        ["овен",    21,"aries.png"],           //  3-4
-        ["телец",   21,"taurus.png"],
-        ["близнецы",22,"gemini.png"],
-        ["рак",     22,"cancer.png"],
-        ["лев",     23,"leo.png"],
-        ["дева",    22,"virgo.png"],
-        ["весы",    24,"libra.png"],
-        ["скорпион",24,"scorpio.png"],
-        ["стрелец", 23,"sagittarius.png"],
-        ["козерог", 23,"capricorn.png"],
+        ["водолей", 12,"aquarius.png"],         //  1-2
+        ["рыбы",    20,"pisces.png"],           //  2-3
+        ["овен",    21,"aries.png"],            //  3-4
+        ["телец",   21,"taurus.png"],           //  4-5
+        ["близнецы",22,"gemini.png"],           //  5-6
+        ["рак",     22,"cancer.png"],           //  6-7
+        ["лев",     23,"leo.png"],              //  7-8
+        ["дева",    22,"virgo.png"],            //  8-9
+        ["весы",    24,"libra.png"],            //  9-10
+        ["скорпион",24,"scorpio.png"],          //  10-11
+        ["стрелец", 23,"sagittarius.png"],      //  11-12
+        ["козерог", 23,"capricorn.png"],        //  12-1
 
         ["змееносец", 0,"ophiuchus.png"]
     ];
@@ -303,7 +303,6 @@ function sumNumber(element) {
     let result = 0;
     for (let i = 0; i < number.length; i++)
         result += Number(number[i]);
-
     print(result);
 }
 
