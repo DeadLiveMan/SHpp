@@ -223,7 +223,7 @@ function zodiac(element) {
     if (posArray < 0)
         posArray = maxMonth - 1;
 
-    print(zodiacArray[posArray][0].toUpperCase() + "<br><img src='image/zodiac/" + zodiacArray[posArray][2] + "'>");
+    print(zodiacArray[posArray][0].toUpperCase() + "<br><img src='images-zodiac/" + zodiacArray[posArray][2] + "'>");
 }
 
 /** Task 8 */
