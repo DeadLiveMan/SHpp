@@ -236,7 +236,7 @@ function chessBoard(element) {
     sizeBoard = sizeBoard.toLowerCase();
     sizeBoard = sizeBoard.replace("х", "x");
 
-    if (!sizeBoard.match(/^[0-9]+[x][0-9]+$/)) {
+    if (!(/^[0-9]+[x][0-9]+$/).test(sizeBoard)) {
         print(incorrectInput, "orange");
         return;
     }
