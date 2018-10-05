@@ -13,21 +13,28 @@ const secondsInMinute = 60;
 const maxMonth = 12;
 const maxDay = 31;
 const maxSizeBoard = 100;
+const incorrectInput = "Incorrect input";
+const incorrectInputFilter = "Incorrect input: Wrong filter";
+const incorrectInputDateFormat = "Incorrect input: invalid format date";
+const incorrectInputDateWrong = "Incorrect input: wrong date";
+const incorrectSizeLarge = "Very large size";
 
-const regFormatDateFull = /^[a-zA-Z]+\s\d{1,2},\s?\d{1,4}\s(\d{2}:){2}\d{2}$/;
+const regFormatDateFull = /^[a-zA-Z]{3,9}\s\d{1,2},\s?\d{1,4}\s(\d{2}:){2}\d{2}$/;
 const resultArea = document.getElementsByClassName("content__result_area");
 
 /** Task 1*/
 function sumFirst(firstElement, secondElement) {
-    let firstNumber = firstElement.value;
-    let secondNumber = secondElement.value;
+    let firstNumber = Number(firstElement.value);
+    let secondNumber = Number(secondElement.value);
 
-    firstNumber = Number(firstNumber);
-    secondNumber = Number(secondNumber);
     if (isNaN(firstNumber) || isNaN(secondNumber) ||
-            firstNumber < minNumber || secondNumber > maxNumber || firstNumber > secondNumber) {
-        printError("Incorrect input");
+            firstNumber < minNumber || secondNumber > maxNumber) {
+        printError(incorrectInput);
         return;
+    }
+
+    if (firstNumber > secondNumber) {
+        [firstNumber, secondNumber] = [secondNumber, firstNumber];
     }
 
     let result = 0;
@@ -44,14 +51,17 @@ function sumSecond(firstElement, secondElement, thirdElement) {
     let filter = thirdElement.value;
 
     if (!isCommaParser(filter)) {
-        printError("Incorrect input: Wrong filter");
+        printError(incorrectInputFilter);
         return;
     }
     filter = filter.split(",");
-    if (isNaN(firstNumber) || isNaN(secondNumber) ||
-            firstNumber < minNumber || secondNumber > maxNumber || firstNumber > secondNumber) {
-        printError("Incorrect input");
+    if (isNaN(firstNumber) || isNaN(secondNumber) || firstNumber < minNumber || secondNumber > maxNumber) {
+        printError(incorrectInput);
         return;
+    }
+
+    if (firstNumber > secondNumber) {
+        [firstNumber, secondNumber] = [secondNumber, firstNumber];
     }
 
     let result = 0;
@@ -69,16 +79,13 @@ function printElements(firstElement, secondElement) {
     const symbol = secondElement.value;
 
     if (!isNumericPositive(countSymbols) || symbol.length !== 1) {
-        printError("Incorrect input");
+        printError(incorrectInput);
         return;
     }
 
     let result = "";
     for (let i = 1; i <= countSymbols; i++) {
-        for (let j = 0; j < i; j++) {
-            result += symbol;
-        }
-        result += "<br>";
+            result += "".padStart(i,symbol) + "<br>";
     }
     print(result);
 }
@@ -87,7 +94,7 @@ function countTime(element) {
     let seconds = Number(element.value);
 
     if (!isNumericPositive(seconds)) {
-        printError("Incorrect input");
+        printError(incorrectInput);
         return;
     }
 
@@ -103,23 +110,23 @@ function countTime(element) {
 function countYear(element) {
     let years = Number(element.value);
     if (!isNumericPositive(years)) {
-        printError("Incorrect input");
+        printError(incorrectInput);
         return;
     }
-    years = addDecline(years ,"лет", "год", "года");
+    years = addDecline(years ,["лет", "год", "года"]);
     print(years);
 }
 
 /** Task 6 */
 function dateInterval(firstElement, secondElement) {
 
-    if (!firstElement.value.match(regFormatDateFull) || !secondElement.value.match(regFormatDateFull)) {
-        printError("Incorrect input: invalid format date");
-        return;
-    }
-
     const firstDate = firstElement.value;
     const secondDate = secondElement.value;
+
+    if (!regFormatDateFull.test(firstDate) || !regFormatDateFull.test(secondDate)) {
+        printError(incorrectInputDateFormat);
+        return;
+    }
 
     let startDate =  new Date(firstDate);
     let endDate = new Date(secondDate);
@@ -128,7 +135,7 @@ function dateInterval(firstElement, secondElement) {
     const secondDateDay = secondDate.substr(secondDate.indexOf(" ") + 1, secondDate.indexOf(",") - secondDate.indexOf(" ") - 1);
 
     if (Number(firstDateDay) !== startDate.getDate() || Number(secondDateDay) !== endDate.getDate()) {
-        printError("Incorrect input: wrong date");
+        printError(incorrectInputDateWrong);
         return;
     }
 
@@ -152,12 +159,12 @@ function dateInterval(firstElement, secondElement) {
     let minutes = resultDate.getMinutes();
     let second = resultDate.getSeconds();
 
-    year = addDecline(year, "лет", "год", "года");
-    month = addDecline(month, "месяцев", "месяц", "месяца");
-    day = addDecline(day, "дней", "день", "дня");
-    hours = addDecline(hours, "часов", "час", "часа");
-    minutes = addDecline(minutes, "минут", "минута", "минуты");
-    second = addDecline(second, "секунд", "секунда", "секунды");
+    year = addDecline(year, ["лет", "год", "года"]);
+    month = addDecline(month, ["месяцев", "месяц", "месяца"]);
+    day = addDecline(day, ["дней", "день", "дня"]);
+    hours = addDecline(hours, ["часов", "час", "часа"]);
+    minutes = addDecline(minutes, ["минут", "минута", "минуты"]);
+    second = addDecline(second, ["секунд", "секунда", "секунды"]);
 
     print(`${year}<br>${month}<br>${day}<br>${hours}<br>${minutes}<br>${second}`);
 }
@@ -165,18 +172,20 @@ function dateInterval(firstElement, secondElement) {
 /** Task 7 */
 function zodiac(element) {
     let date = element.value;
-    if (!date.match(/^\d{4}-\d{1,2}-\d{1,2}$/)) {
-        printError("Incorrect input: invalid format date");
+    if (!(/^\d{4}-\d{1,2}-\d{1,2}$/).test(date)) {
+        printError(incorrectInputDateFormat);
         return;
     }
+    let checkDate = new Date(date);
     date = date.split("-");
-    let checkDate = new Date(0);
-    checkDate.setFullYear(date[0]);
-    checkDate.setMonth(date[1] - 1);
-    checkDate.setDate(date[2]);
+
+    if (date.length < 3) {
+        printError(incorrectInput);
+        return;
+    }
 
     if (Number(date[2]) !== checkDate.getDate()) {
-        printError("Incorrect input: wrong date");
+        printError(incorrectInputDateWrong);
         return;
     }
 
@@ -197,31 +206,22 @@ function zodiac(element) {
         ["змееносец", 0,"ophiuchus.png"]
     ];
 
-    if (date.length < 3) {
-        printError("Incorrect input");
-        return;
-    }
-
     let posArray = 0;
     let month = Number(date[1]);
     let day = Number(date[2]);
 
     if (!isNumericPositive(month) || !isNumericPositive(day) || month > maxMonth || day > maxDay) {
-        printError("Incorrect input");
+        printError(incorrectInput);
         return;
     }
     month = month - 1;
     if (month < 0 || day < 1) {
-        printError("Incorrect input");
+        printError(incorrectInput);
         return;
     }
 
-    if (day >= zodiacArray[month][1])
-        posArray = month;
-    else
-        posArray = month - 1;
-    if (posArray < 0)
-        posArray = maxMonth - 1;
+    (day >= zodiacArray[month][1])?posArray = month:posArray = month - 1;
+    if (posArray < 0) posArray = maxMonth - 1;
 
     print(zodiacArray[posArray][0].toUpperCase() + "<br><img src='images-zodiac/" + zodiacArray[posArray][2] + "'>");
 }
@@ -234,7 +234,7 @@ function chessBoard(element) {
     sizeBoard = sizeBoard.replace("х","x");
 
     if (!sizeBoard.match(/^[0-9]+[x][0-9]+$/)) {
-        printError("Incorrect input");
+        printError(incorrectInput);
         return;
     }
     sizeBoard = sizeBoard.split("x");
@@ -242,7 +242,7 @@ function chessBoard(element) {
     const yBoard = sizeBoard[1];
 
     if ([xBoard, yBoard].some(value => value > maxSizeBoard)) {
-        printError("Very large size");
+        printError(incorrectSizeLarge);
         return;
     }
 
@@ -263,15 +263,17 @@ function chessBoard(element) {
 
 /** Task 9 */
 function findRoom(firstElement, secondElement, thirdElement, fourthElement) {
-    let roomNumber = Number(firstElement.value) - 1;
+    let roomNumber = Number(firstElement.value);
     let stages = Number(secondElement.value);
     let entrance = Number(thirdElement.value);
     let roomsInStage = Number(fourthElement.value);
 
-    if ([roomNumber, stages - 1, entrance - 1, roomsInStage - 1].some(value => !isNumericPositive(value))) {
-        printError("Incorrect input: value need be > 0");
+    if ([roomNumber, stages, entrance, roomsInStage].some(value => !isNumericPositive(value - 1))) {
+        printError(incorrectInput);
         return;
     }
+
+    roomNumber--;
 
     const roomsInEntrance = stages * roomsInStage;
 
@@ -292,11 +294,10 @@ function findRoom(firstElement, secondElement, thirdElement, fourthElement) {
 function sumNumber(element) {
     let number = element.value;
 
-    number = number.replace(/[\-]/,"");
-    number = number.replace(/[.]/,"");
+    number = number.replace(/[\-.]/g,"");
 
     if (!isNumericPositive(Number(number))) {
-        printError("Incorrect input");
+        printError(incorrectInput);
         return;
     }
 
@@ -317,31 +318,35 @@ function parseLinks() {
     links = links.split(",");
     links.sort();
 
-    let result = "";
     let linkName = "";
+
+    let elementUl = document.createElement('div');
+    elementUl.setAttribute("class", "content__result_links");
 
     for (let i = 0; i < links.length; i++) {
         linkName = links[i].replace(/https?:\/\//g,"");
-        if (linkName === links[i])
+        if (linkName === links[i]) {
             links[i] = "http://" + links[i];
-
-        if (isLink(links[i])) {
-            result += '<a href="' + links[i] + '">' + linkName + '</a>';
-            if (i !== links.length - 1)
-                result += "<br>";
+        }
+        if (isLink(linkName)) {
+            let elementLink = document.createElement("a");
+            elementLink.setAttribute("href", links[i]);
+            elementLink.insertAdjacentText("afterbegin", linkName);
+            elementUl.appendChild(elementLink);
         }
     }
-    print(result);
+
+    resultArea[0].appendChild(elementUl);
 }
 
-function addDecline(value, param1, param2, param3) {
-    let word = param1;
+function addDecline(value, arrayDeclines) {
+    let word = arrayDeclines[0];
     if (value % 10 === 1)
-        word = param2;
+        word = arrayDeclines[1];
     if ((value % 10 > 1) && (value % 10 < 5))
-        word = param3;
+        word = arrayDeclines[2];
     if (value % 100 > 10 && value % 100 < 15)
-        word = param1;
+        word = arrayDeclines[0];
     return value + " " + word;
 }
 
@@ -356,11 +361,11 @@ function printError(data) {
 }
 
 function isLink(value) {
-    return value.match(/^\w+.*[\w]\/?$/);
+    return (/^\w+(((\.)|(\/))\w+)+\/?$/).test(value);
 }
 
 function isNumericPositive(value) {
-    return (!isNaN(value) && (value === Math.abs(value)));
+    return !isNaN(value) && value > 0;
 }
 
 function isCommaParser(value) {

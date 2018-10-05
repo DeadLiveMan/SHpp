@@ -84,10 +84,6 @@ button:hover {
     height: 200px;
 }
 
-.tasks_box-text {
-
-}
-
 .content__result {
     display: flex;
     flex-direction: column;
@@ -102,6 +98,15 @@ button:hover {
     margin-left: 10px;
     overflow-y: scroll;
     overflow-x: scroll;
+}
+
+.content__result_links {
+    display: flex;
+    flex-direction: column;
+}
+
+.content__result_links a {
+    width: fit-content;
 }
 
 /*---- for chess board ----*/
