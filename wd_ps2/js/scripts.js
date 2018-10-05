@@ -19,6 +19,7 @@ const incorrectInputFilter = "Incorrect input: Wrong filter";
 const incorrectInputDateFormat = "Incorrect input: invalid format date";
 const incorrectInputDateWrong = "Incorrect input: wrong date";
 const incorrectSizeLarge = "Very large size";
+const errorColor = "orange";
 
 const regFormatDateFull = /^[a-zA-Z]{3,9}\s\d{1,2},\s?\d{1,4}\s(\d{2}:){2}\d{2}$/;
 const resultArea = document.getElementsByClassName("content__result_area");
@@ -30,7 +31,7 @@ function sumFirst(firstElement, secondElement) {
 
     if (isNaN(firstNumber) || isNaN(secondNumber) ||
             firstNumber < minNumber || secondNumber > maxNumber) {
-        print(incorrectInput, "orange");
+        print(incorrectInput, errorColor);
         return;
     }
 
@@ -52,12 +53,12 @@ function sumSecond(firstElement, secondElement, thirdElement) {
     let filter = thirdElement.value;
 
     if (!isCommaParser(filter)) {
-        print(incorrectInputFilter, "orange");
+        print(incorrectInputFilter, errorColor);
         return;
     }
     filter = filter.split(",");
     if (isNaN(firstNumber) || isNaN(secondNumber) || firstNumber < minNumber || secondNumber > maxNumber) {
-        print(incorrectInput, "orange");
+        print(incorrectInput, errorColor);
         return;
     }
 
@@ -80,7 +81,7 @@ function printElements(firstElement, secondElement) {
     const symbol = secondElement.value;
 
     if (!isNumericPositive(countSymbols) || symbol.length !== 1) {
-        print(incorrectInput, "orange");
+        print(incorrectInput, errorColor);
         return;
     }
 
@@ -95,7 +96,7 @@ function countTime(element) {
     let seconds = Number(element.value);
 
     if (!isNumericPositive(seconds)) {
-        print(incorrectInput, "orange");
+        print(incorrectInput, errorColor);
         return;
     }
 
@@ -111,7 +112,7 @@ function countTime(element) {
 function countYear(element) {
     let years = Number(element.value);
     if (!isNumericPositive(years)) {
-        print(incorrectInput, "orange");
+        print(incorrectInput, errorColor);
         return;
     }
     years = addDecline(years ,["лет", "год", "года"]);
@@ -125,7 +126,7 @@ function dateInterval(firstElement, secondElement) {
     const secondDate = secondElement.value;
 
     if (!regFormatDateFull.test(firstDate) || !regFormatDateFull.test(secondDate)) {
-        print(incorrectInputDateFormat, "orange");
+        print(incorrectInputDateFormat, errorColor);
         return;
     }
 
@@ -136,7 +137,7 @@ function dateInterval(firstElement, secondElement) {
     const secondDateDay = secondDate.substr(secondDate.indexOf(" ") + 1, secondDate.indexOf(",") - secondDate.indexOf(" ") - 1);
 
     if (Number(firstDateDay) !== startDate.getDate() || Number(secondDateDay) !== endDate.getDate()) {
-        print(incorrectInputDateWrong, "orange");
+        print(incorrectInputDateWrong, errorColor);
         return;
     }
 
@@ -174,19 +175,19 @@ function dateInterval(firstElement, secondElement) {
 function zodiac(element) {
     let date = element.value;
     if (!(/^\d{4}-\d{1,2}-\d{1,2}$/).test(date)) {
-        print(incorrectInputDateFormat, "orange");
+        print(incorrectInputDateFormat, errorColor);
         return;
     }
     let checkDate = new Date(date);
     date = date.split("-");
 
     if (date.length < 3) {
-        print(incorrectInput, "orange");
+        print(incorrectInput, errorColor);
         return;
     }
 
     if (Number(date[2]) !== checkDate.getDate()) {
-        print(incorrectInputDateWrong, "orange");
+        print(incorrectInputDateWrong, errorColor);
         return;
     }
 
@@ -212,12 +213,12 @@ function zodiac(element) {
     let day = Number(date[2]);
 
     if (!isNumericPositive(month) || !isNumericPositive(day) || month > maxMonth || day > maxDay) {
-        print(incorrectInput, "orange");
+        print(incorrectInput, errorColor);
         return;
     }
     month = month - 1;
     if (month < 0 || day < 1) {
-        print(incorrectInput, "orange");
+        print(incorrectInput, errorColor);
         return;
     }
 
@@ -237,7 +238,7 @@ function chessBoard(element) {
     sizeBoard = sizeBoard.replace("х", "x");
 
     if (!(/^[0-9]+[x][0-9]+$/).test(sizeBoard)) {
-        print(incorrectInput, "orange");
+        print(incorrectInput, errorColor);
         return;
     }
     sizeBoard = sizeBoard.split("x");
@@ -245,7 +246,7 @@ function chessBoard(element) {
     const yBoard = sizeBoard[1];
 
     if ([xBoard, yBoard].some(value => value > maxSizeBoard)) {
-        print(incorrectSizeLarge, "orange");
+        print(incorrectSizeLarge, errorColor);
         return;
     }
 
@@ -277,7 +278,7 @@ function findRoom(firstElement, secondElement, thirdElement, fourthElement) {
     let roomsInStage = Number(fourthElement.value);
 
     if ([roomNumber, stages, entrance, roomsInStage].some(value => !isNumericPositive(value - 1))) {
-        print(incorrectInput, "orange");
+        print(incorrectInput, errorColor);
         return;
     }
 
@@ -305,7 +306,7 @@ function sumNumber(element) {
     number = number.replace(/[\-.]/g,"");
 
     if (!isNumericPositive(Number(number))) {
-        print(incorrectInput, "orange");
+        print(incorrectInput, errorColor);
         return;
     }
 
