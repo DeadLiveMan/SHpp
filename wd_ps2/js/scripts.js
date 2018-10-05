@@ -378,5 +378,5 @@ function isNumericPositive(value) {
 }
 
 function isCommaParser(value) {
-    return value.match(/(^[0-9]([,][0-9])*$)/);
+    return (/(^[0-9]([,][0-9])*$)/).test(value);
 }
