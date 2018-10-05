@@ -231,7 +231,7 @@ function chessBoard(element) {
     let sizeBoard = element.value;
 
     sizeBoard = sizeBoard.toLowerCase();
-    sizeBoard = sizeBoard.replace("х","x");
+    sizeBoard = sizeBoard.replace("х", "x");
 
     if (!sizeBoard.match(/^[0-9]+[x][0-9]+$/)) {
         printError(incorrectInput);
@@ -246,19 +246,25 @@ function chessBoard(element) {
         return;
     }
 
-    let result = "<div class='board-container'>";
+    let elementDivContainer = document.createElement('div');
+    elementDivContainer.setAttribute('class', 'board-container');
 
     for (let i = 0; i < yBoard; i++) {
-        result += "<div class='board-column'>";
-        for (let j = 0; j < xBoard; j++)
-            if(i % 2 === 0)
-                (j % 2 === 0)?result += "<div class='board-light'></div>":result += "<div class='board-black'></div>";
-            else
-                (j % 2 === 0)?result += "<div class='board-black'></div>":result += "<div class='board-light'></div>";
-        result += "</div>";
+        //result += "<div class='board-column'>";
+        let elementDivBoardColumn = document.createElement('div');
+        elementDivBoardColumn.setAttribute('class', 'board-column');
+        for (let j = 0; j < xBoard; j++) {
+            let elementDivRect = document.createElement('div');
+            if (i % 2 === 0) {
+                (j % 2 === 0) ? elementDivRect.setAttribute('class', 'board-light') : elementDivRect.setAttribute('class', 'board-black');
+            } else {
+                (j % 2 === 0) ? elementDivRect.setAttribute('class', 'board-black') : elementDivRect.setAttribute('class', 'board-light');
+            }
+            elementDivBoardColumn.insertAdjacentElement("afterbegin", elementDivRect);
+        }
+        elementDivContainer.insertAdjacentElement("afterbegin", elementDivBoardColumn);
     }
-    result += "</div>";
-    print(result);
+    print(elementDivContainer.innerHTML);
 }
 
 /** Task 9 */
@@ -320,8 +326,10 @@ function parseLinks() {
 
     let linkName = "";
 
-    let elementUl = document.createElement('div');
-    elementUl.setAttribute("class", "content__result_links");
+    let elementResultDiv = document.createElement('div');
+    let elementDiv = document.createElement('div');
+    elementResultDiv.appendChild(elementDiv);
+    elementDiv.setAttribute("class", "content__result_links");
 
     for (let i = 0; i < links.length; i++) {
         linkName = links[i].replace(/https?:\/\//g,"");
@@ -332,11 +340,10 @@ function parseLinks() {
             let elementLink = document.createElement("a");
             elementLink.setAttribute("href", links[i]);
             elementLink.insertAdjacentText("afterbegin", linkName);
-            elementUl.appendChild(elementLink);
+            elementDiv.appendChild(elementLink);
         }
     }
-
-    resultArea[0].appendChild(elementUl);
+    print(elementResultDiv.innerHTML);
 }
 
 function addDecline(value, arrayDeclines) {
