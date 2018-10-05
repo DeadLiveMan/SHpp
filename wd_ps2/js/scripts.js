@@ -8,6 +8,7 @@
 const minNumber = -1000;
 const maxNumber = 1000;
 const decimalNumber = 10;
+const hundred = 100;
 const secondsInHour = 3600;
 const secondsInMinute = 60;
 const maxMonth = 12;
@@ -29,7 +30,7 @@ function sumFirst(firstElement, secondElement) {
 
     if (isNaN(firstNumber) || isNaN(secondNumber) ||
             firstNumber < minNumber || secondNumber > maxNumber) {
-        printError(incorrectInput);
+        print(incorrectInput, "orange");
         return;
     }
 
@@ -51,12 +52,12 @@ function sumSecond(firstElement, secondElement, thirdElement) {
     let filter = thirdElement.value;
 
     if (!isCommaParser(filter)) {
-        printError(incorrectInputFilter);
+        print(incorrectInputFilter, "orange");
         return;
     }
     filter = filter.split(",");
     if (isNaN(firstNumber) || isNaN(secondNumber) || firstNumber < minNumber || secondNumber > maxNumber) {
-        printError(incorrectInput);
+        print(incorrectInput, "orange");
         return;
     }
 
@@ -79,7 +80,7 @@ function printElements(firstElement, secondElement) {
     const symbol = secondElement.value;
 
     if (!isNumericPositive(countSymbols) || symbol.length !== 1) {
-        printError(incorrectInput);
+        print(incorrectInput, "orange");
         return;
     }
 
@@ -94,7 +95,7 @@ function countTime(element) {
     let seconds = Number(element.value);
 
     if (!isNumericPositive(seconds)) {
-        printError(incorrectInput);
+        print(incorrectInput, "orange");
         return;
     }
 
@@ -110,7 +111,7 @@ function countTime(element) {
 function countYear(element) {
     let years = Number(element.value);
     if (!isNumericPositive(years)) {
-        printError(incorrectInput);
+        print(incorrectInput, "orange");
         return;
     }
     years = addDecline(years ,["лет", "год", "года"]);
@@ -124,7 +125,7 @@ function dateInterval(firstElement, secondElement) {
     const secondDate = secondElement.value;
 
     if (!regFormatDateFull.test(firstDate) || !regFormatDateFull.test(secondDate)) {
-        printError(incorrectInputDateFormat);
+        print(incorrectInputDateFormat, "orange");
         return;
     }
 
@@ -135,7 +136,7 @@ function dateInterval(firstElement, secondElement) {
     const secondDateDay = secondDate.substr(secondDate.indexOf(" ") + 1, secondDate.indexOf(",") - secondDate.indexOf(" ") - 1);
 
     if (Number(firstDateDay) !== startDate.getDate() || Number(secondDateDay) !== endDate.getDate()) {
-        printError(incorrectInputDateWrong);
+        print(incorrectInputDateWrong, "orange");
         return;
     }
 
@@ -173,19 +174,19 @@ function dateInterval(firstElement, secondElement) {
 function zodiac(element) {
     let date = element.value;
     if (!(/^\d{4}-\d{1,2}-\d{1,2}$/).test(date)) {
-        printError(incorrectInputDateFormat);
+        print(incorrectInputDateFormat, "orange");
         return;
     }
     let checkDate = new Date(date);
     date = date.split("-");
 
     if (date.length < 3) {
-        printError(incorrectInput);
+        print(incorrectInput, "orange");
         return;
     }
 
     if (Number(date[2]) !== checkDate.getDate()) {
-        printError(incorrectInputDateWrong);
+        print(incorrectInputDateWrong, "orange");
         return;
     }
 
@@ -211,17 +212,19 @@ function zodiac(element) {
     let day = Number(date[2]);
 
     if (!isNumericPositive(month) || !isNumericPositive(day) || month > maxMonth || day > maxDay) {
-        printError(incorrectInput);
+        print(incorrectInput, "orange");
         return;
     }
     month = month - 1;
     if (month < 0 || day < 1) {
-        printError(incorrectInput);
+        print(incorrectInput, "orange");
         return;
     }
 
     (day >= zodiacArray[month][1])?posArray = month:posArray = month - 1;
-    if (posArray < 0) posArray = maxMonth - 1;
+    if (posArray < 0) {
+        posArray = maxMonth - 1;
+    }
 
     print(zodiacArray[posArray][0].toUpperCase() + "<br><img src='images-zodiac/" + zodiacArray[posArray][2] + "'>");
 }
@@ -234,7 +237,7 @@ function chessBoard(element) {
     sizeBoard = sizeBoard.replace("х", "x");
 
     if (!sizeBoard.match(/^[0-9]+[x][0-9]+$/)) {
-        printError(incorrectInput);
+        print(incorrectInput, "orange");
         return;
     }
     sizeBoard = sizeBoard.split("x");
@@ -242,7 +245,7 @@ function chessBoard(element) {
     const yBoard = sizeBoard[1];
 
     if ([xBoard, yBoard].some(value => value > maxSizeBoard)) {
-        printError(incorrectSizeLarge);
+        print(incorrectSizeLarge, "orange");
         return;
     }
 
@@ -250,7 +253,6 @@ function chessBoard(element) {
     elementDivContainer.setAttribute('class', 'board-container');
 
     for (let i = 0; i < yBoard; i++) {
-        //result += "<div class='board-column'>";
         let elementDivBoardColumn = document.createElement('div');
         elementDivBoardColumn.setAttribute('class', 'board-column');
         for (let j = 0; j < xBoard; j++) {
@@ -275,7 +277,7 @@ function findRoom(firstElement, secondElement, thirdElement, fourthElement) {
     let roomsInStage = Number(fourthElement.value);
 
     if ([roomNumber, stages, entrance, roomsInStage].some(value => !isNumericPositive(value - 1))) {
-        printError(incorrectInput);
+        print(incorrectInput, "orange");
         return;
     }
 
@@ -303,7 +305,7 @@ function sumNumber(element) {
     number = number.replace(/[\-.]/g,"");
 
     if (!isNumericPositive(Number(number))) {
-        printError(incorrectInput);
+        print(incorrectInput, "orange");
         return;
     }
 
@@ -317,8 +319,9 @@ function sumNumber(element) {
 function parseLinks() {
     let links = document.getElementsByClassName("text-area")[0].value;
 
-    if (links === "")
+    if (links === "") {
         return;
+    }
 
     links = links.replace(/\s/g,"");
     links = links.split(",");
@@ -348,22 +351,21 @@ function parseLinks() {
 
 function addDecline(value, arrayDeclines) {
     let word = arrayDeclines[0];
-    if (value % 10 === 1)
+    const lastNum = value % decimalNumber;
+    const last2Num = value % hundred;
+    const elevenToFourteen = last2Num > 10 && last2Num < 15;
+
+    if (lastNum === 1 && !elevenToFourteen) {
         word = arrayDeclines[1];
-    if ((value % 10 > 1) && (value % 10 < 5))
+    }
+    if (lastNum > 1 && lastNum < 5  && !elevenToFourteen) {
         word = arrayDeclines[2];
-    if (value % 100 > 10 && value % 100 < 15)
-        word = arrayDeclines[0];
+    }
     return value + " " + word;
 }
 
-function print(data) {
-    resultArea[0].style.color = "black";
-    resultArea[0].innerHTML = data;
-}
-
-function printError(data) {
-    resultArea[0].style.color = "orange";
+function print(data, color) {
+    resultArea[0].style.color = color;
     resultArea[0].innerHTML = data;
 }
 
@@ -378,4 +380,3 @@ function isNumericPositive(value) {
 function isCommaParser(value) {
     return value.match(/(^[0-9]([,][0-9])*$)/);
 }
-
