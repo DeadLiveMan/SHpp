@@ -21,7 +21,7 @@ const incorrectInputDateWrong = "Incorrect input: wrong date";
 const incorrectSizeLarge = "Very large size";
 const errorColor = "orange";
 
-const regFormatDateFull = /^[a-zA-Z]{3,9}\s\d{1,2},\s?\d{1,4}\s(\d{2}:){2}\d{2}$/;
+const regFormatDateFull = /^[a-zA-Z]{3,9}\s\d{1,2},\s?\d{1,4}\s(\d{2}:){2}[0-5]\d$/;
 const resultArea = document.getElementsByClassName("content__result_area");
 
 /** Task 1*/
