@@ -29,14 +29,14 @@ function sumFirst(firstElement, secondElement) {
     let firstNumber = Number(firstElement.value);
     let secondNumber = Number(secondElement.value);
 
+    if (firstNumber > secondNumber) {
+        [firstNumber, secondNumber] = [secondNumber, firstNumber];
+    }
+
     if (isNaN(firstNumber) || isNaN(secondNumber) ||
             firstNumber < minNumber || secondNumber > maxNumber) {
         print(incorrectInput, errorColor);
         return;
-    }
-
-    if (firstNumber > secondNumber) {
-        [firstNumber, secondNumber] = [secondNumber, firstNumber];
     }
 
     let result = 0;
@@ -48,22 +48,23 @@ function sumFirst(firstElement, secondElement) {
 
 /** Task 2*/
 function sumSecond(firstElement, secondElement, thirdElement) {
-    const firstNumber = Number(firstElement.value);
-    const secondNumber = Number(secondElement.value);
+    let firstNumber = Number(firstElement.value);
+    let secondNumber = Number(secondElement.value);
     let filter = thirdElement.value;
 
     if (!isCommaParser(filter)) {
         print(incorrectInputFilter, errorColor);
         return;
     }
+    if (firstNumber > secondNumber) {
+        [firstNumber, secondNumber] = [secondNumber, firstNumber];
+    }
+
     filter = filter.split(",");
+    alert(firstNumber + " " + secondNumber);
     if (isNaN(firstNumber) || isNaN(secondNumber) || firstNumber < minNumber || secondNumber > maxNumber) {
         print(incorrectInput, errorColor);
         return;
-    }
-
-    if (firstNumber > secondNumber) {
-        [firstNumber, secondNumber] = [secondNumber, firstNumber];
     }
 
     let result = 0;
