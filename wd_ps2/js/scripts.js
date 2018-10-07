@@ -48,8 +48,8 @@ function sumFirst(firstElement, secondElement) {
 
 /** Task 2*/
 function sumSecond(firstElement, secondElement, thirdElement) {
-    let firstNumber = Number(firstElement.value);
-    let secondNumber = Number(secondElement.value);
+    const firstNumber = Number(firstElement.value);
+    const secondNumber = Number(secondElement.value);
     let filter = thirdElement.value;
 
     if (!isCommaParser(filter)) {
@@ -121,7 +121,6 @@ function countYear(element) {
 
 /** Task 6 */
 function dateInterval(firstElement, secondElement) {
-
     const firstDate = firstElement.value;
     const secondDate = secondElement.value;
 
@@ -154,21 +153,14 @@ function dateInterval(firstElement, secondElement) {
     resultDate.setSeconds((endDate.getSeconds() - startDate.getSeconds()));
     resultDate.setMonth((resultDate.getMonth() - startDate.getMonth()));
 
-    let year = resultDate.getFullYear() - startDate.getFullYear();
-    let month = resultDate.getMonth();
-    let day = resultDate.getDate() - 1;
-    let hours = resultDate.getHours();
-    let minutes = resultDate.getMinutes();
-    let second = resultDate.getSeconds();
-
-    year = addDecline(year, ["лет", "год", "года"]);
-    month = addDecline(month, ["месяцев", "месяц", "месяца"]);
-    day = addDecline(day, ["дней", "день", "дня"]);
-    hours = addDecline(hours, ["часов", "час", "часа"]);
-    minutes = addDecline(minutes, ["минут", "минута", "минуты"]);
-    second = addDecline(second, ["секунд", "секунда", "секунды"]);
-
-    print(`${year}<br>${month}<br>${day}<br>${hours}<br>${minutes}<br>${second}`);
+    const interval = new DateInterval(resultDate.getFullYear() - startDate.getFullYear(),
+                                    resultDate.getMonth(),
+                                    resultDate.getDate() - 1,
+                                    resultDate.getHours(),
+                                    resultDate.getMinutes(),
+                                    resultDate.getSeconds()
+    );
+    print(interval.toString());
 }
 
 /** Task 7 */
@@ -205,7 +197,7 @@ function zodiac(element) {
         ["стрелец", 23,"sagittarius.png"],      //  11-12
         ["козерог", 23,"capricorn.png"],        //  12-1
 
-        ["змееносец", 0,"ophiuchus.png"]
+        ["змееносец", 0,"ophiuchus.png"]        // coming soon
     ];
 
     let posArray = 0;
@@ -257,12 +249,8 @@ function chessBoard(element) {
         let elementDivBoardColumn = document.createElement('div');
         elementDivBoardColumn.setAttribute('class', 'board-column');
         for (let j = 0; j < xBoard; j++) {
-            let elementDivRect = document.createElement('div');
-            if (i % 2 === 0) {
-                (j % 2 === 0) ? elementDivRect.setAttribute('class', 'board-light') : elementDivRect.setAttribute('class', 'board-black');
-            } else {
-                (j % 2 === 0) ? elementDivRect.setAttribute('class', 'board-black') : elementDivRect.setAttribute('class', 'board-light');
-            }
+            const elementDivRect = document.createElement('div');
+            ((i + j) % 2 === 0)?elementDivRect.setAttribute('class', 'board-light') : elementDivRect.setAttribute('class', 'board-black');
             elementDivBoardColumn.insertAdjacentElement("afterbegin", elementDivRect);
         }
         elementDivContainer.insertAdjacentElement("afterbegin", elementDivBoardColumn);
@@ -366,6 +354,7 @@ function addDecline(value, arrayDeclines) {
 }
 
 function print(data, color) {
+    color = color || "black";
     resultArea[0].style.color = color;
     resultArea[0].innerHTML = data;
 }
@@ -380,4 +369,22 @@ function isNumericPositive(value) {
 
 function isCommaParser(value) {
     return (/(^[0-9]([,][0-9])*$)/).test(value);
+}
+
+class DateInterval {
+    constructor(year, month, day, hour, minute, seconds) {
+        this.date = [   addDecline(year, ["лет", "год", "года"]),
+                        addDecline(month, ["месяцев", "месяц", "месяца"]),
+                        addDecline(day, ["дней", "день", "дня"]),
+                        addDecline(hour, ["часов", "час", "часа"]),
+                        addDecline(minute, ["минут", "минута", "минуты"]),
+                        addDecline(seconds, ["секунд", "секунда", "секунды"])
+        ];
+    }
+
+    toString() {
+        const br = "<br>";
+        const reducer = (accumulator, value) => accumulator + br + value;
+        return this.date.reduce(reducer);
+    }
 }
