@@ -22,7 +22,7 @@ const incorrectSizeLarge = "Very large size";
 const errorColor = "orange";
 
 const regFormatDateFull = /^[a-zA-Z]{3,9}\s\d{1,2},\s?\d{1,4}\s(\d{2}:){2}[0-5]\d$/;
-const resultArea = document.getElementsByClassName("content__result_area");
+const resultArea = document.getElementsByClassName("content__result_area")[0];
 
 /** Task 1*/
 function sumFirst(firstElement, secondElement) {
@@ -38,7 +38,6 @@ function sumFirst(firstElement, secondElement) {
         print(incorrectInput, errorColor);
         return;
     }
-
     let result = 0;
     for (let i = firstNumber; i <= secondNumber; i++) {
         result += i;
@@ -61,7 +60,6 @@ function sumSecond(firstElement, secondElement, thirdElement) {
     }
 
     filter = filter.split(",");
-    alert(firstNumber + " " + secondNumber);
     if (isNaN(firstNumber) || isNaN(secondNumber) || firstNumber < minNumber || secondNumber > maxNumber) {
         print(incorrectInput, errorColor);
         return;
@@ -104,7 +102,7 @@ function countTime(element) {
     let hour = Math.floor(seconds / secondsInHour);
     seconds -= hour * secondsInHour;
     let minute = Math.floor(seconds / secondsInMinute);
-    seconds -= (minute * secondsInMinute);
+    seconds -= minute * secondsInMinute;
 
     print(hour.toString().padStart(2,"0") + ":" + minute.toString().padStart(2,"0") + ":" + seconds.toString().padStart(2,"0"));
 }
@@ -174,11 +172,6 @@ function zodiac(element) {
     let checkDate = new Date(date);
     date = date.split("-");
 
-    if (date.length < 3) {
-        print(incorrectInput, errorColor);
-        return;
-    }
-
     if (Number(date[2]) !== checkDate.getDate()) {
         print(incorrectInputDateWrong, errorColor);
         return;
@@ -196,12 +189,10 @@ function zodiac(element) {
         ["весы",    24,"libra.png"],            //  9-10
         ["скорпион",24,"scorpio.png"],          //  10-11
         ["стрелец", 23,"sagittarius.png"],      //  11-12
-        ["козерог", 23,"capricorn.png"],        //  12-1
-
-        ["змееносец", 0,"ophiuchus.png"]        // coming soon
+        ["козерог", 23,"capricorn.png"]         //  12-1
+        //["змееносец", 0,"ophiuchus.png"]        // coming soon
     ];
 
-    let posArray = 0;
     let month = Number(date[1]);
     let day = Number(date[2]);
 
@@ -209,13 +200,13 @@ function zodiac(element) {
         print(incorrectInput, errorColor);
         return;
     }
-    month = month - 1;
+    month--;
     if (month < 0 || day < 1) {
         print(incorrectInput, errorColor);
         return;
     }
 
-    (day >= zodiacArray[month][1])?posArray = month:posArray = month - 1;
+    let posArray = (day >= zodiacArray[month][1])? month: month - 1;
     if (posArray < 0) {
         posArray = maxMonth - 1;
     }
@@ -251,7 +242,8 @@ function chessBoard(element) {
         elementDivBoardColumn.setAttribute('class', 'board-column');
         for (let j = 0; j < xBoard; j++) {
             const elementDivRect = document.createElement('div');
-            ((i + j) % 2 === 0)?elementDivRect.setAttribute('class', 'board-light') : elementDivRect.setAttribute('class', 'board-black');
+            const classDivRect = ((i + j) % 2 === 0)? 'board-light' : 'board-black';
+            elementDivRect.setAttribute('class', classDivRect);
             elementDivBoardColumn.insertAdjacentElement("afterbegin", elementDivRect);
         }
         elementDivContainer.insertAdjacentElement("afterbegin", elementDivBoardColumn);
@@ -270,9 +262,7 @@ function findRoom(firstElement, secondElement, thirdElement, fourthElement) {
         print(incorrectInput, errorColor);
         return;
     }
-
     roomNumber--;
-
     const roomsInEntrance = stages * roomsInStage;
 
     let currentEntrance = Math.floor(roomNumber / roomsInEntrance);
@@ -339,11 +329,12 @@ function parseLinks() {
     print(elementResultDiv.innerHTML);
 }
 
+/**---------------------------------------------------------------------------------------------------------------**/
 function addDecline(value, arrayDeclines) {
     let word = arrayDeclines[0];
     const lastNum = value % decimalNumber;
     const last2Num = value % hundred;
-    const elevenToFourteen = last2Num > 10 && last2Num < 15;
+    const elevenToFourteen = last2Num > decimalNumber && last2Num < 15;
 
     if (lastNum === 1 && !elevenToFourteen) {
         word = arrayDeclines[1];
@@ -354,10 +345,9 @@ function addDecline(value, arrayDeclines) {
     return value + " " + word;
 }
 
-function print(data, color) {
-    color = color || "black";
-    resultArea[0].style.color = color;
-    resultArea[0].innerHTML = data;
+function print(data, color = "black") {
+    resultArea.style.color = color;
+    resultArea.innerHTML = data;
 }
 
 function isLink(value) {
