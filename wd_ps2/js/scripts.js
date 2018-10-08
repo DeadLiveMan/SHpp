@@ -374,8 +374,7 @@ class DateInterval {
     }
 
     toString() {
-        const br = "<br>";
-        const reducer = (accumulator, value) => accumulator + br + value;
+        const reducer = (accumulator, value) => accumulator + "<br>" + value;
         return this.date.reduce(reducer);
     }
 }
