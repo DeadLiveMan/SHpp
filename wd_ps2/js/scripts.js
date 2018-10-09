@@ -79,7 +79,7 @@ function printElements(firstElement, secondElement) {
     let countSymbols = Number(firstElement.value);
     const symbol = secondElement.value;
 
-    if (!isNumericPositive(countSymbols) || symbol.length !== 1) {
+    if (!isNumericPositive(countSymbols) || symbol.length !== 1 || countSymbols > 100) {
         print(incorrectInput, errorColor);
         return;
     }
@@ -258,7 +258,7 @@ function findRoom(firstElement, secondElement, thirdElement, fourthElement) {
     let entrance = Number(thirdElement.value);
     let roomsInStage = Number(fourthElement.value);
 
-    if ([roomNumber, stages, entrance, roomsInStage].some(value => !isNumericPositive(value - 1))) {
+    if ([roomNumber, stages, entrance, roomsInStage].some(value => !isNumericPositive(value))) {
         print(incorrectInput, errorColor);
         return;
     }
@@ -299,7 +299,7 @@ function sumNumber(element) {
 function parseLinks() {
     let links = document.getElementsByClassName("text-area")[0].value;
 
-    if (links === "") {
+    if (!links) {
         return;
     }
 

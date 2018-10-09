@@ -1,0 +1,255 @@
+
+a {
+    text-decoration: none;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+/* -------------------------------------HEADER--------------------------------- */
+
+.header {
+    width: 960px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__logo {
+    display: flex;
+    font-family: Arial, serif;
+    font-size: 85px;
+    font-weight: bold;
+    color: #16a085;
+}
+
+.header__logo_letter::first-letter {
+    color: blue;
+}
+
+.header__link {
+    width: 100%;
+    font-size: 23px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.header__link_item {
+    margin-left: 5%;
+    cursor: pointer;
+}
+
+.link_hover:hover {
+    text-shadow:  0 0 1em red;
+}
+
+/* -----------------------------------CONTENT--------------------------------------------*/
+.content {
+    width: 960px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #16a085;
+}
+
+.content__image {
+    width: 25%;
+}
+
+.content__image img {
+    width: 100%;
+}
+
+.content__block {
+    width: 66%;
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: space-between;
+}
+
+.content__block_title {
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.content__block_text {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+/*************MENU***************************/
+.menu {
+    width: 960px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu-item a {
+    background-color: #c0392b;
+}
+
+.menu__item_title {
+    margin-top: 16px;
+}
+
+.menu__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 30%;
+}
+
+.menu__item_img {
+    display: flex;
+    margin: 20px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background: #3498db;
+}
+
+.menu__item_img img {
+    width: 50px;
+    height: 50px;
+}
+
+.menu__item_img:hover {
+    transition: 1s;
+    transform: rotate(180deg);
+    background: #1abc9c;
+}
+
+.menu__item_img:not(hover) {
+    transition: 0.5s;
+    transform: rotate(0deg);
+}
+
+/*********************FOOTER**********************/
+.footer {
+    width: 960px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    background-color: #16a085;
+}
+
+.footer__contacts {
+    flex-grow: 1;
+}
+
+.footer__contacts_title {
+    margin-top: 10px;
+    color: wheat;
+    font-size: 25px;
+    padding-top: 20px;
+}
+
+.footer__contacts_form {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.footer__contacts_form form{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 80%;
+    align-self: center;
+}
+
+.footer__contacts_form div{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__contacts_form div label{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+
+.footer__contacts_form div div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.footer__contacts_form form div{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 14px;
+}
+
+.footer__contacts_textArea {
+    height: 100px;
+}
+
+.footer__contacts_button {
+    font-family: Calibri, serif;
+    font-size: 30px;
+    border: solid;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-self: center;
+    cursor: pointer;
+}
+
+.footer__contacts_button:not(hover){
+    transition: 2s;
+    color: tan;
+    background-color: transparent;
+}
+
+.footer__contacts_button:hover{
+    transition: 2s;
+    background-color: #2980b9;
+    border-color: tan;
+    color: #f1c40f;
+}
+
+input, textarea {
+    margin: 5px;
+    max-width: 250px;
+    outline: none;
+    border: solid 1px;
+    border-radius: 2%;
+    padding: 5px;
+}
+
+.scroll-button {
+    display: flex;
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+    border: 1px #000 solid;
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+}
+
+.scroll-button h2 {
+    align-self: center;
+}
+
+.scroll-button:hover {
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: #2980b9;
+
+}

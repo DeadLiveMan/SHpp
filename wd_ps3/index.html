@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>N++</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="body">
+
+
+<!------------------------ HEADER --------------------------->
+<header class="header">
+    <a href="index.html" class="header__logo link_hover">
+        <div class="header__logo_letter">
+            N++
+        </div>
+    </a>
+    <nav class="header__link">
+        <a class="header__link_item link_hover">PRODUCTS</a>
+        <a class="header__link_item link_hover">ABOUT US</a>
+        <a class="header__link_item link_hover">CONTACT US</a>
+    </nav>
+</header>
+
+<!------------------------ CONTENT -------------------------->
+<div class="content" id="products">
+    <div class="content__image">
+        <img src="images/phone.png">
+    </div>
+    <div class="content__block">
+        <p class="content__block_title">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, in?</p>
+        <p class="content__block_text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Ad assumenda autem culpa dicta dignissimos dolorum earum expedita
+            harum hic ipsa ipsam, iusto laborum quidem sequi soluta ut veritatis vero
+            voluptatum.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Ad assumenda autem culpa dicta dignissimos dolorum earum expedita
+            harum hic ipsa ipsam, iusto laborum quidem sequi soluta ut veritatis vero
+            voluptatum.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Ad assumenda autem culpa dicta dignissimos dolorum earum expedita
+            harum hic ipsa ipsam, iusto laborum quidem sequi soluta ut veritatis vero
+            voluptatum.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Ad assumenda autem culpa dicta dignissimos dolorum earum expedita
+            harum hic ipsa ipsam, iusto laborum quidem sequi soluta ut veritatis vero
+            voluptatum.
+        </p>
+        <input class="footer__contacts_button" type="button" name="content-button" value="Buy now!">
+    </div>
+</div>
+
+<div class="menu" id="about">
+    <!-- first element-->
+    <div class="menu__item">
+        <a href="#" class="menu__item_img">
+            <img src="css/fonts/file-alt.svg">
+        </a>
+        <p class="menu__item_title">Web Developer</p>
+        <p class="menu__item_text">
+            Cum sociis natoque penatibus et magnis dis parturient montes,
+            nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+            pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+            fringilla vel, aliquet nec, vulputate
+        </p>
+    </div>
+    <!-- second element-->
+    <div class="menu__item">
+        <a href="#" class="menu__item_img">
+            <img src="css/fonts/wrench.svg">
+        </a>
+        <p class="menu__item_title">
+            Repairman Developer
+        </p>
+        <p class="menu__item_text">
+            Cum sociis natoque penatibus et magnis dis parturient montes,
+            nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+            pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+            fringilla vel, aliquet nec, vulputate
+        </p>
+    </div>
+    <!-- third element-->
+    <div class="menu__item">
+        <a href="#" class="menu__item_img">
+            <img src="css/fonts/trash-alt.svg">
+        </a>
+        <p class="menu__item_title">
+            Resource</p>
+        <p class="menu__item_text">
+            Cum sociis natoque penatibus et magnis dis parturient montes,
+            nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+            pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo,
+            fringilla vel, aliquet nec, vulputate
+        </p>
+    </div>
+</div>
+
+<!----------------------------------- FOOTER --------------------------->
+<footer class="footer" id="contacts">
+    <div class="footer__contacts">
+        <h1 class="footer__contacts_title">
+            Contact us!
+        </h1>
+        <div class="footer__contacts_form">
+            <form action="#">
+                <input type="text" placeholder="Type here your name, please">
+                <input type="email" placeholder="Type here your email, please">
+                <input type="tel" placeholder="Type here your phone, please">
+                <textarea class="footer__contacts_textArea" placeholder="Ask your question"></textarea>
+                <input class="footer__contacts_button" type="button" name="email-button" value="Send email!">
+            </form>
+        </div>
+    </div>
+    <div class="footer__contacts">
+        <h1 class="footer__contacts_title">
+            Sign in!
+        </h1>
+        <div class="footer__contacts_form">
+            <form action="#">
+                <input type="text" placeholder="Type here your login, please">
+                <input type="password" placeholder="Type here your password, please">
+                <input type="submit" value="Проверить">
+                <input type="reset">
+                <input class="footer__contacts_button" type="button" name="login-button" value="Login">
+            </form>
+        </div>
+    </div>
+    <div class="footer__contacts">
+        <h1 class="footer__contacts_title">
+            Registration!
+        </h1>
+        <div class="footer__contacts_form">
+            <form action="#">
+                <input type="text" placeholder="Type here your login, please">
+                <input type="email" placeholder="Type here your email, please">
+                <input type="password" placeholder="Type here your password, please">
+                <input type="password" placeholder="Confirm here your password, please">
+                <input type="date" placeholder="Type here your birthday">
+                <input type="url" placeholder="Type here your website, please">
+                <div>
+                    <label><input type="radio" name="gender" value="male" checked>Мужской</label>
+                    <label><input type="radio" name="gender" value="female">Женский</label>
+                    <label><input type="radio" name="gender" value="other"> Инопланетный</label>
+                    <label><input type="checkbox" name="rules" value="rules">Я на все согласен</label>
+                    <div>Мой любимый цвет:<input type="color" name="my-color" title="color" value="#FFFF00"></div>
+                </div>
+                <input type="file" name="my-photo">
+                <input class="footer__contacts_button" type="button" name="register-button" value="Registration">
+            </form>
+        </div>
+    </div>
+</footer>
+<div class="scroll-button" style="display: none">
+    <h2>
+        &#9650;
+    </h2>
+</div>
+</body>
+<script src="js/jquery-3.3.1.js"></script>
+<script src="js/script.js"></script>
+</html>
