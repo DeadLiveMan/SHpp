@@ -8,14 +8,10 @@ $(".header__link_item").click(function() {
             scrollTop: $(element[$(this).index()]).offset().top + $(element[$(this).index()]).height() / 2 - $(window).height() / 2
         }, 500);
     });
-
 });
 
 $($scrollButton).click(function () {
-    $('html, body').animate( {
-        scrollTop: 0
-    }, 800);
-   //console.log($(window).scrollTop());
+    $('html, body').animate( {scrollTop: 0}, 800);
 });
 
 let $isAnimated = false;

@@ -1,0 +1,44 @@
+.content {
+}
+
+.drop-down {
+    display: flex;
+    flex-direction: column;
+    border: 2px black inset;
+    border-radius: 10px;
+    min-width: 15%;
+    width: fit-content;
+    min-height: 30px;
+    cursor: pointer;
+}
+
+.drop-down-element, .drop-down-element-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+}
+
+.drop-down-logo {
+    width: 20%;
+}
+
+.drop-down-name {
+    width: 70%;
+}
+
+.drop-down-arrow {
+    width: 10%;
+    padding-right: 5px;
+}
+
+.drop-down-element img {
+    width: 25px;
+    height: 25px;
+}
+
+.drop-down-element:hover {
+    transition: 500ms;
+    background-color: lightblue;
+    border-radius: 10px;
+}
