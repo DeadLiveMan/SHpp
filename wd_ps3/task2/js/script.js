@@ -1,5 +1,5 @@
 
-const names = ['Poper', 'Noger', 'Ruker', 'Golover', 'Glazer'];
+const names = ['Poper', 'Noger', 'Ruker', 'Golover', 'Glazer', 'Noger', 'Ruker', 'Golover', 'Glazer'];
 
 let animate = false;
 
