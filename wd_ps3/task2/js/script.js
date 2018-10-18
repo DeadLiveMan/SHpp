@@ -1,49 +1,44 @@
 
-const names = ['Poper', 'Noger', 'Ruker', 'Golover', 'Glazer', 'Noger', 'Ruker', 'Golover', 'Glazer'];
+const names = {
+                Poper : "1.svg",
+                Noger:  "2.svg",
+                Ruker: "3.svg",
+                Golover: "4.svg",
+                Glazer: "5.svg"
+};
 
 let animate = false;
 
-$('.drop-down .drop-down-arrow').click(function () {
-    if (!animate) {
-        animate = true;
-        $('.drop-down-element').toggle(200, function () {
-            animate = false;
-        });
-    }
+const dropDown = $('.drop-down');
+$.each(names, function (key) {
+    const dropDownElement = $('<div class="drop-down-element" style="display: none">');
+    const dropDownLogo = $('<div class="drop-down-logo">').append($(`<img src="css/font/people/${names[key]}">`));
+    const dropDownName = $('<div class="drop-down-name">');
+    dropDownName.text(key);
+    dropDownElement.append(dropDownLogo);
+    dropDownElement.append(dropDownName);
+    dropDown.append(dropDownElement);
 });
-for (name of names) {
-    let elementsDOM = document.createElement('div');
-    elementsDOM.setAttribute('class', 'drop-down-element');
-//elementsDOM.setAttribute('class', 'drop-down-element');
 
-    let elementLogo = document.createElement('div');
-    elementLogo.setAttribute('class', 'drop-down-logo');
+$('*').click(function (e) {
+    e.stopPropagation();
+    console.log(this);
+});
 
+$('.drop-down-element').click(function (e) {
+    e.stopPropagation();
+    //console.log(this);
+    $('.drop-down-element-main .drop-down-name').text(this.lastChild.textContent);
+    $('.drop-down-element-main .drop-down-logo').html(`<img src="${this.firstChild.firstChild.src}">`);
+});
 
-    let elementName = document.createElement('div');
-    elementName.setAttribute('class', 'drop-down-name');
-    elementName.append(name);
-
-    elementsDOM.append(elementLogo);
-    elementsDOM.append(elementName);
-
-    elementsDOM.setAttribute('style', 'display: none');
-
-    $('.drop-down-element-main').after(elementsDOM);
-}
-/*
-<div class="drop-down-element">
-                <div class="drop-down-logo"><img src=""></div>
-                <div class="drop-down-name">Friend 2</div>
-                <div class="drop-down-arrow"></div>
-            </div>
-
-
-
-            <div class="drop-down-element">
-                <div class="drop-down-logo"><img src=""></div>
-                <div class="drop-down-name">Friend 2</div>
-                <div class="drop-down-arrow"></div>
-            </div>
-* */
+dropDown.click(function () {
+    //console.log(this);
+   if (!animate) {
+       animate = true;
+       $('.drop-down-element').toggle(200, function () {
+           animate = false;
+       });
+   }
+});
 
