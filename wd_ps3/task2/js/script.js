@@ -20,16 +20,22 @@ $.each(names, function (key) {
     dropDown.append(dropDownElement);
 });
 
-$('*').click(function (e) {
-    e.stopPropagation();
-    console.log(this);
-});
+// $('*').click(function (e) {
+//     e.stopPropagation();
+//     console.log(this);
+// });
 
 $('.drop-down-element').click(function (e) {
     e.stopPropagation();
     //console.log(this);
     $('.drop-down-element-main .drop-down-name').text(this.lastChild.textContent);
     $('.drop-down-element-main .drop-down-logo').html(`<img src="${this.firstChild.firstChild.src}">`);
+    if (!animate) {
+        animate = true;
+        $('.drop-down-element').toggle(200, function () {
+            animate = false;
+        });
+    }
 });
 
 dropDown.click(function () {

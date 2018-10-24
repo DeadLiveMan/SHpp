@@ -178,7 +178,7 @@ function zodiac(element) {
     }
 
     const zodiacArray = [
-        ["водолей", 12,"aquarius.png"],         //  1-2
+        ["водолей", 19,"aquarius.png"],         //  1-2
         ["рыбы",    20,"pisces.png"],           //  2-3
         ["овен",    21,"aries.png"],            //  3-4
         ["телец",   21,"taurus.png"],           //  4-5
