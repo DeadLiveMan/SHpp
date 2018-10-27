@@ -28,7 +28,7 @@ $(".header__link_item").click(function() {
         }, 500);
 });
 
-// event for scroll button
+// event for click scroll button
 $scrollButton.click(function () {
     if(!isAnimatedDocument) {
         isAnimatedDocument = true;
@@ -36,7 +36,7 @@ $scrollButton.click(function () {
     }
 });
 
-
+// hide and show scroll button
 $(window).scroll(function () {
     if(($(window).scrollTop()) > scrollShowPosition && !isAnimated) {
         isAnimated = true;
