@@ -11,6 +11,7 @@
     width: fit-content;
     min-height: 30px;
     cursor: pointer;
+    user-select: none;
 }
 
 .drop-down-element, .drop-down-element-main {
