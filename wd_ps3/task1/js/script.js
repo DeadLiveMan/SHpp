@@ -23,9 +23,10 @@ $allDocument.on('mousewheel', function () {
 // event for click header links
 $(".header__link_item").click(function() {
     isAnimatedDocument = true;
+    const linkClass = element[$(this).index()];
     $allDocument.animate( {
-            scrollTop: $(element[$(this).index()]).offset().top + $(element[$(this).index()]).height() / 2 - $(window).height() / 2
-        }, 500);
+        scrollTop: $(linkClass).offset().top + $(linkClass).height() / 2 - $(window).height() / 2
+        }, 500, function () {isAnimatedDocument = false;});
 });
 
 // event for click scroll button
@@ -52,8 +53,3 @@ $(window).scroll(function () {
         });
     }
 });
-
-
-
-
-

@@ -1,10 +1,10 @@
 
 const names = {
-                Poper : "1.svg",
-                Noger:  "2.svg",
-                Ruker: "3.svg",
-                Golover: "4.svg",
-                Glazer: "5.svg",
+    Poper : "1.svg",
+    Noger:  "2.svg",
+    Ruker: "3.svg",
+    Golover: "4.svg",
+    Glazer: "5.svg"
 };
 
 let animate = false;
