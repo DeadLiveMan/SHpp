@@ -30,7 +30,6 @@
     $allDocument.on('click', function () {
         // hide when click on all document
         if (!$('.drop-down-element:animated').length && !$('.drop-down-element:hidden').length) {
-            console.log('hide');
             $dropDownElement.hide(animationTime);
         }
     });
@@ -44,7 +43,6 @@
     // toggle $dropDown on click him
     $dropDown.on('click', function () {
         if (!$('.drop-down-element:animated').length) {
-            console.log('toggle');
             $dropDownElement.toggle(animationTime);
         }
     });

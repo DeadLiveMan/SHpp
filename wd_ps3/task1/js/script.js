@@ -32,7 +32,6 @@
 // hide and show scroll button
     $(window).on('scroll', function () {
         const isAnimate = $('.scroll-button:animated').length;
-
         if (!isAnimate) {
             if (($(window).scrollTop()) > positionShowButton) {
                 $scrollButton.fadeIn(timeShowButton, function () {
