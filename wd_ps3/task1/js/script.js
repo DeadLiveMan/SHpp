@@ -1,4 +1,4 @@
-$(document).ready( function () {
+$(function () {
     const element = ['.content', '.menu', '.footer'];
     const $scrollButton = $('.scroll-button');
     const $allDocument = $('*');
@@ -19,7 +19,7 @@ $(document).ready( function () {
     });
 
 // event for click header links
-    $(".header__link_item").click(function () {
+    $(".header__link_item").on('click', function () {
         isAnimatedDocument = true;
         const linkClass = element[$(this).index()];
         $allDocument.animate({
@@ -30,7 +30,7 @@ $(document).ready( function () {
     });
 
 // event for click scroll button
-    $scrollButton.click(function () {
+    $scrollButton.on('click', function () {
         if (!isAnimatedDocument) {
             isAnimatedDocument = true;
             $allDocument.animate({scrollTop: 0}, 800);
@@ -38,7 +38,7 @@ $(document).ready( function () {
     });
 
 // hide and show scroll button
-    $(window).scroll(function () {
+    $(window).on('scroll', function () {
         if (($(window).scrollTop()) > positionShowButton && !isAnimatedButton) {
             isAnimatedButton = true;
             $scrollButton.fadeIn(timeShowButton, function () {
