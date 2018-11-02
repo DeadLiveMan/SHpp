@@ -1,7 +1,8 @@
-$(function () {
-    const element = ['.content', '.menu', '.footer'];
+(function ($) {
+    const element = ['#products', '#about', '#contacts'];
     const $scrollButton = $('.scroll-button');
-    const $allDocument = $('*');
+    const $allDocument = $('html, body');
+
 
     const positionShowButton = 200;
     const timeHideButton = 150;
@@ -19,7 +20,7 @@ $(function () {
     });
 
 // event for click header links
-    $(".header__link_item").on('click', function () {
+    $('.header__link_item').on('click', function () {
         isAnimatedDocument = true;
         const linkClass = element[$(this).index()];
         $allDocument.animate({
@@ -57,4 +58,4 @@ $(function () {
             });
         }
     });
-});
+})(jQuery);
