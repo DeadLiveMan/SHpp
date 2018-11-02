@@ -8,10 +8,9 @@
     const timeShowButton = 300;
 
 // stop animation after scroll wheel
-    $allDocument.on('mousewheel', function () {
+    $allDocument.on('mousewheel', function (e) {
         if ($allDocument.animate.length) {
             $allDocument.stop();
-            //isAnimatedDocument = false;
         }
     });
 
@@ -32,18 +31,22 @@
 
 // hide and show scroll button
     $(window).on('scroll', function () {
-        if (!$('.scroll-button:animated').length && ($(window).scrollTop()) > positionShowButton) {
-            $scrollButton.fadeIn(timeShowButton, function () {
-                if ($(window).scrollTop() < positionShowButton) {
-                    $scrollButton.fadeOut(timeHideButton);
-                }
-            });
-        } else if (!$('.scroll-button:animated').length) {
-            $scrollButton.fadeOut(timeHideButton, function () {
-                if ($(window).scrollTop() > positionShowButton) {
-                    $scrollButton.fadeIn(timeShowButton);
-                }
-            });
+        const isAnimate = $('.scroll-button:animated').length;
+
+        if (!isAnimate) {
+            if (($(window).scrollTop()) > positionShowButton) {
+                $scrollButton.fadeIn(timeShowButton, function () {
+                    if ($(window).scrollTop() < positionShowButton) {
+                        $scrollButton.fadeOut(timeHideButton);
+                    }
+                });
+            } else {
+                $scrollButton.fadeOut(timeHideButton, function () {
+                    if ($(window).scrollTop() > positionShowButton) {
+                        $scrollButton.fadeIn(timeShowButton);
+                    }
+                });
+            }
         }
     });
 })(jQuery);
