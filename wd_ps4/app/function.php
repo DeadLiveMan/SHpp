@@ -1,6 +1,4 @@
 <?php
-session_start();
-$task = $_POST['task'];
 
 function isEmpty($value) {
     for ($i = 0; $i < count($value); $i++ ) {
@@ -12,9 +10,7 @@ function isEmpty($value) {
 }
 
 // Task 1
-function task1() {
-    $firstNumber = $_POST['firstNumber'];
-    $secondNumber = $_POST['secondNumber'];
+function task1($firstNumber, $secondNumber) {
 
     if (!(isset($firstNumber) && isset($secondNumber))) {
         return 'something wrong in task1';
@@ -46,10 +42,7 @@ function task1() {
 }
 
 // Task 2
-function task2() {
-    $firstNumber = $_POST['firstNumber'];
-    $secondNumber = $_POST['secondNumber'];
-    $filter = $_POST['filter'];
+function task2($firstNumber, $secondNumber, $filter) {
 
     if (!(isset($firstNumber) && isset($secondNumber)) && isset($filter)) {
         return 'something wrong in task1';
@@ -84,7 +77,3 @@ function task2() {
     return $result;
 }
 
-
-
-$_SESSION['result'] = $task();
-header('location:public/index.php');
