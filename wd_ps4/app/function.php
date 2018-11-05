@@ -87,4 +87,4 @@ function task2() {
 
 
 $_SESSION['result'] = $task();
-header('location:index.php');
+header('location:public/index.php');

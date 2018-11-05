@@ -8,7 +8,7 @@
     const timeShowButton = 300;
 
 // stop animation after scroll wheel
-    $allDocument.on('mousewheel', function (e) {
+    $allDocument.on('mousewheel', function () {
         if ($allDocument.animate.length) {
             $allDocument.stop();
         }
@@ -29,10 +29,9 @@
         }
     });
 
-// hide and show scroll button
+// hide and show scroll button after scrolling
     $(window).on('scroll', function () {
-        const isAnimate = $('.scroll-button:animated').length;
-        if (!isAnimate) {
+        if (!$('.scroll-button:animated').length) {
             if (($(window).scrollTop()) > positionShowButton) {
                 $scrollButton.fadeIn(timeShowButton, function () {
                     if ($(window).scrollTop() < positionShowButton) {
@@ -49,3 +48,4 @@
         }
     });
 })(jQuery);
+

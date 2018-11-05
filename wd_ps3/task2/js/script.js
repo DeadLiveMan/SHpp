@@ -22,11 +22,8 @@
         $dropDown.append($dropDownElementBuilder);
     });
 
-
     // animation dropDown
-
     const $dropDownElement = $('.drop-down-element');
-
     $allDocument.on('click', function () {
         // hide when click on all document
         if (!$('.drop-down-element:animated').length && !$('.drop-down-element:hidden').length) {
