@@ -47,3 +47,27 @@ input[type='submit'] {
     width: fit-content;
     padding: 4px;
 }
+
+.board {
+    display: flex;
+    flex-direction: row;
+}
+
+.board-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.square-even, .square-odd {
+    width: 30px;
+    height: 30px;
+    display: flex;
+}
+
+.square-odd {
+    background-color: #d2b93d;
+}
+
+.square-even {
+    background-color: black;
+}

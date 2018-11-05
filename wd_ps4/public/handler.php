@@ -13,7 +13,16 @@ switch($task) {
         $_SESSION['result'] = task2($_POST['firstNumber'], $_POST['secondNumber'], $_POST['filter']);
         break;
     case 'task3':
-        $_SESSION['result'] = task3($_POST['firstNumber'], $_POST['secondNumber'], $_POST['filter']);
+        $_SESSION['result'] = task3($_POST['heightTriangles']);
+        break;
+    case 'task4':
+        $_SESSION['result'] = task4($_POST['sizeBoard']);
+        break;
+    case 'task5':
+        $_SESSION['result'] = task5($_POST['sizeBoard']);
+        break;
+    case 'task6':
+        $_SESSION['result'] = task6($_POST['firstNumber'], $_POST['secondNumber']);
         break;
 }
 
