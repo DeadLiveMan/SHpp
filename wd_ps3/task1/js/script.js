@@ -40,17 +40,9 @@
     $(window).on('scroll', function () {
         if (!$('.scroll-button:animated').length) {
             if (($(window).scrollTop()) > positionShowButton) {
-                $scrollButton.fadeIn(timeShowButton, function () {
-                    if ($(window).scrollTop() < positionShowButton) {
-                        $scrollButton.fadeOut(timeHideButton);
-                    }
-                });
+                $scrollButton.fadeIn(timeShowButton);
             } else if (($(window).scrollTop()) < positionHideButton){
-                $scrollButton.fadeOut(timeHideButton, function () {
-                    if ($(window).scrollTop() > positionShowButton) {
-                        $scrollButton.fadeIn(timeShowButton);
-                    }
-                });
+                $scrollButton.fadeOut(timeHideButton);
             }
         }
     });
