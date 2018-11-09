@@ -1,24 +1,31 @@
 (function ($) {
-    const element = ['#products', '#about', '#contacts'];
     const $scrollButton = $('.scroll-button');
     const $allDocument = $('html, body');
 
-    const positionShowButton = 200;
-    const timeHideButton = 150;
-    const timeShowButton = 300;
+    const positionShowButton = 300;
+    const timeShowButton = 100;
+
+    const positionHideButton = 100;
+    const timeHideButton = 50;
+
 
 // stop animation after scroll wheel
-    $allDocument.on('mousewheel', function () {
+    $allDocument.on('wheelwheel, DOMMouseScroll, mousewheel', function () {
         if ($allDocument.animate.length) {
             $allDocument.stop();
         }
     });
 
 // event for click header links
-    $('.header__link_item').on('click', function () {
-        const linkClass = element[$(this).index()];
+    $('nav a').on('click', function (e) {
+        e.preventDefault();
+        const targetElement = e.target.hash;
+        const targetElementOffset = $(targetElement).offset().top;
+        const targetElementCenter = $(targetElement).height() / 2;
+        const windowCenter = $(window).height() / 2;
+        const scrollPosition = targetElementOffset + targetElementCenter - windowCenter;
         $allDocument.animate({
-            scrollTop: $(linkClass).offset().top + $(linkClass).height() / 2 - $(window).height() / 2
+            scrollTop: scrollPosition
         }, 500);
     });
 
@@ -38,7 +45,7 @@
                         $scrollButton.fadeOut(timeHideButton);
                     }
                 });
-            } else {
+            } else if (($(window).scrollTop()) < positionHideButton){
                 $scrollButton.fadeOut(timeHideButton, function () {
                     if ($(window).scrollTop() > positionShowButton) {
                         $scrollButton.fadeIn(timeShowButton);
