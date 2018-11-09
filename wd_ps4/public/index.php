@@ -84,8 +84,8 @@ $handlerPath = 'handler.php';
                         6) Сгенерировать массив рандомных целых чисел от 1 до 10, длинна массива 100.
                         Убрать из массива повторы, отсортировать и ревертнуть.
                     </span>
-                    <input type="text" name="firstNumber" value="0">
-                    <input type="text" name="secondNumber" value="9">
+                    <input type="text" name="firstNumber" value="1">
+                    <input type="text" name="secondNumber" value="10">
                     <input type="hidden" name="task" value="task6">
                     <input type="submit" value="Вывести">
                 </label>
@@ -95,10 +95,9 @@ $handlerPath = 'handler.php';
     </div>
     <div class="result">
         <?php
-
-        if(isset($_SESSION['result'])) {
-            echo $_SESSION['result'];
-        }
+            if(isset($_SESSION['result'])) {
+                echo $_SESSION['result'];
+            }
         ?>
     </div>
 </div>

@@ -1,5 +1,7 @@
 <?php
 
+const REG_WHOLE_NUMBER = "/^[-]?[0-9]+$/";
+
 function isEmpty($value) {
     for ($i = 0; $i < count($value); $i++ ) {
         if ($value[$i] == '') {
@@ -9,9 +11,7 @@ function isEmpty($value) {
     return false;
 }
 
-// Task 1
 function task1($firstNumber, $secondNumber) {
-    $regWholeNumber = "/^[-]?[0-9]+$/";
 
     if (!(isset($firstNumber) && isset($secondNumber))) {
         return 'something wrong';
@@ -21,7 +21,7 @@ function task1($firstNumber, $secondNumber) {
         return 'inputs is empty';
     }
 
-    if(!preg_match($regWholeNumber, $firstNumber) || !preg_match($regWholeNumber,$secondNumber)) {
+    if(!preg_match(REG_WHOLE_NUMBER, $firstNumber) || !preg_match(REG_WHOLE_NUMBER,$secondNumber)) {
         return 'input only whole numbers';
     }
 
@@ -38,9 +38,7 @@ function task1($firstNumber, $secondNumber) {
     return $result;
 }
 
-// Task 2
 function task2($firstNumber, $secondNumber, $filter) {
-    $regWholeNumber = "/^[-]?[0-9]+$/";
     $regFilter = "/^[0-9](,[0-9])*$/";
 
     if (!(isset($firstNumber) && isset($secondNumber)) && isset($filter)) {
@@ -51,7 +49,7 @@ function task2($firstNumber, $secondNumber, $filter) {
         return 'inputs is empty';
     }
 
-    if(!preg_match($regWholeNumber, $firstNumber) || !preg_match($regWholeNumber,$secondNumber)) {
+    if(!preg_match(REG_WHOLE_NUMBER, $firstNumber) || !preg_match(REG_WHOLE_NUMBER,$secondNumber)) {
         return 'input only whole numbers';
     }
 
@@ -109,6 +107,21 @@ function task3($heightTriangle) {
 }
 
 function task4($sizeBoard) {
+
+    if (!isset($sizeBoard)) {
+        return 'something wrong';
+    }
+
+    if (isEmpty([$sizeBoard])) {
+        return 'inputs is empty';
+    }
+
+    $sizeBoard = mb_strtolower($sizeBoard);
+    $sizeBoard = str_replace('х', 'x', $sizeBoard);
+
+    if (!preg_match("/^[0-9]+x[0-9]+$/", $sizeBoard)) {
+        return 'wrong input';
+    }
 
     $result = '';
     $size = explode('x', $sizeBoard);
