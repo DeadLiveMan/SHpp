@@ -41,6 +41,9 @@ const ATM = {
             console.log("do authorization pls");
             return;
         }
+        if (amount < 0) {
+            console.log("incorrect value");
+        }
         if (amount > this.users[this.current_user].debet) {
             console.log("you have only " + this.users[this.current_user].debet + " babok");
             return;
@@ -57,6 +60,9 @@ const ATM = {
         if (!this.is_auth) {
             console.log("do authorization pls");
             return;
+        }
+        if (amount < 0) {
+            console.log("incorrect value");
         }
         this.cash += amount;
         this.users[this.current_user].debet += amount;
