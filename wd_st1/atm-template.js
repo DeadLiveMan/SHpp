@@ -2,6 +2,7 @@ const ATM = {
     is_auth: false, 
     current_user:false,
     current_type:false,
+    history:false,
      
     // all cash of ATM
     cash: 2000,
@@ -22,6 +23,7 @@ const ATM = {
                 this.current_user = i;
                 this.current_type = this.users[i].type;
                 console.log("authorization is ok ");
+                this.history = 'authorization ' + this.current_type + ': ' + this.users[i].number;
                 return;
             }
         }
@@ -54,6 +56,7 @@ const ATM = {
         }
         this.cash -= amount;
         this.users[this.current_user].debet -= amount;
+        this.history = 'get Cash ' + this.current_type + ': ' + this.users[this.current_user].number + ' get ' + amount;
     },
     // load cash - available for user only
     loadCash: function(amount){
@@ -66,6 +69,7 @@ const ATM = {
         }
         this.cash += amount;
         this.users[this.current_user].debet += amount;
+        this.history = 'load Cash ' + this.current_type + ': ' + this.users[this.current_user].number + ' load ' + amount;
     },
     // load cash to ATM - available for admin only - EXTENDED
     load_cash: function(addition) {
@@ -88,9 +92,13 @@ const ATM = {
             console.log("access denied");
         }
         console.log("cash: " + this.cash + "\n");
+        console.log(this.history);
     },
     // log out
     logout: function() {
+        this.history = 'logout ' + this.current_type + ': ' + this.users[this.current_user].number;
         this.is_auth = false;
-    }
+        this.current_user = false;
+        this.current_type= false;
+    },
 };
