@@ -87,6 +87,7 @@ const ATM = {
 
         if (isNaN(amount) || amount < 1) {
             console.log("incorrect input");
+            return;
         }
         this.cash += amount;
         // noinspection JSPrimitiveTypeWrapperUsage
@@ -102,12 +103,14 @@ const ATM = {
         }
         if (this.current_type !== 'admin') {
             console.log("access denied");
+            return;
         }
 
         addition = Number(addition);
 
         if (isNaN(addition) || addition < 1) {
             console.log("incorrect input");
+            return;
         }
 
         this.cash += addition;
