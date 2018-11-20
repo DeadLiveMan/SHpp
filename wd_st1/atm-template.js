@@ -125,6 +125,7 @@ const ATM = {
             return;
         }
         console.log("cash: " + this.cash + "\n" + this.history);
+        this.history = 'get Report ' + this.current_type + ': ' + this.current_user.number;
     },
     // log out
     logout: function() {
