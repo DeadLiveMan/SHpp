@@ -122,6 +122,7 @@ const ATM = {
         }
         if (this.current_type !== 'admin') {
             console.log("access denied");
+            return;
         }
         console.log("cash: " + this.cash + "\n" + this.history);
     },
