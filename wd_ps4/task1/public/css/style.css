@@ -5,6 +5,7 @@ body {
 span {
     padding: 10px;
 }
+
 .content {
     display: flex;
     flex-direction: row;
@@ -16,7 +17,6 @@ span {
     border: solid 2px;
     background-color: aliceblue;
     width: 20%;
-
 }
 
 .task {

@@ -1,9 +1,9 @@
 <?php
 session_start();
 session_destroy();
-$handlerPath = 'handler.php';
+const HANDLER_PATH = 'handler.php';
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@ $handlerPath = 'handler.php';
     <div class="tasks">
 
         <div class="task">
-            <form action="<?php echo $handlerPath ?>" method="post" autocomplete="off">
+            <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
                     <span>1) посчитать сумму чисел от -1000 до 1000</span>
                     <input type="text" name="firstNumber" value="-1000">
@@ -30,7 +30,7 @@ $handlerPath = 'handler.php';
         </div>
 
         <div class="task">
-            <form action="<?php echo $handlerPath ?>" method="post" autocomplete="off">
+            <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
                     <span>2) посчитать сумму чисел от -1000 до 1000, суммируя только числа которые заканчиваются на 2,3, и 7</span>
                     <input type="text" name="firstNumber" value="-1000">
@@ -43,7 +43,7 @@ $handlerPath = 'handler.php';
         </div>
 
         <div class="task">
-            <form action="<?php echo $handlerPath ?>" method="post" autocomplete="off">
+            <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
                     <span>
                         3) вывести на страницу список из 50 элементов вида:<br>*<br>* *<br>* * *<br>* * * *<br>…
@@ -56,7 +56,7 @@ $handlerPath = 'handler.php';
         </div>
 
         <div class="task">
-            <form action="<?php echo $handlerPath ?>" method="post" autocomplete="off">
+            <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
                     <span> 4) Шахматная доска</span>
                     <input type="text" name="sizeBoard" value="10x10">
@@ -67,10 +67,10 @@ $handlerPath = 'handler.php';
         </div>
 
         <div class="task">
-            <form action="<?php echo $handlerPath ?>" method="post" autocomplete="off">
+            <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
                     <span> 5) Найти сумму цифр введённого числа.</span>
-                    <input type="text" name="sizeBoard" value="123">
+                    <input type="text" name="number" value="123">
                     <input type="hidden" name="task" value="task5">
                     <input type="submit" value="Посчитать">
                 </label>
@@ -78,7 +78,7 @@ $handlerPath = 'handler.php';
         </div>
 
         <div class="task">
-            <form action="<?php echo $handlerPath ?>" method="post" autocomplete="off">
+            <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
                     <span>
                         6) Сгенерировать массив рандомных целых чисел от 1 до 10, длинна массива 100.

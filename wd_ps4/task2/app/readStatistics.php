@@ -15,10 +15,13 @@ function getStatistics() {
         fclose($fw);
     }
 
-    $fr = fopen($fileName, 'r');
-    $file = fread($fr, filesize($fileName));
-    $statistics = json_decode($file);
-    fclose($fr);
+    $statistics = false;
+    if (filesize($fileName)) {
+        $fr = fopen($fileName, 'r');
+        $file = fread($fr, filesize($fileName));
+        $statistics = json_decode($file);
+        fclose($fr);
+    }
 
     return $statistics;
 }

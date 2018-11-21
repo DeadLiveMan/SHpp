@@ -11,7 +11,7 @@ if (isset($_POST["vote"]) && array_key_exists($_POST["vote"], $statistics)) {
     $statistics -> $product++;
 
     $fw = fopen($fileName, 'w');
-    fwrite($fw, json_encode($statistics));
+    fwrite($fw, json_encode($statistics, JSON_PRETTY_PRINT));
     fclose($fw);
 }
 

@@ -13,7 +13,7 @@ function isEmpty($value) {
 
 function task1($firstNumber, $secondNumber) {
 
-    if (!(isset($firstNumber) && isset($secondNumber))) {
+    if (!isset($firstNumber,$secondNumber)) {
         return 'something wrong';
     }
 
@@ -41,7 +41,7 @@ function task1($firstNumber, $secondNumber) {
 function task2($firstNumber, $secondNumber, $filter) {
     $regFilter = "/^[0-9](,[0-9])*$/";
 
-    if (!(isset($firstNumber) && isset($secondNumber)) && isset($filter)) {
+    if (!isset($firstNumber, $secondNumber, $filter)) {
         return 'something wrong';
     }
 
@@ -49,7 +49,7 @@ function task2($firstNumber, $secondNumber, $filter) {
         return 'inputs is empty';
     }
 
-    if(!preg_match(REG_WHOLE_NUMBER, $firstNumber) || !preg_match(REG_WHOLE_NUMBER,$secondNumber)) {
+    if (!preg_match(REG_WHOLE_NUMBER, $firstNumber) || !preg_match(REG_WHOLE_NUMBER,$secondNumber)) {
         return 'input only whole numbers';
     }
 
@@ -89,11 +89,11 @@ function task3($heightTriangle) {
         return 'input only numbers';
     }
 
-    if(!preg_match($regWholeNumberPositive, $heightTriangle)) {
+    if (!preg_match($regWholeNumberPositive, $heightTriangle)) {
         return 'input only whole positive numbers';
     }
 
-    if($heightTriangle > 50) {
+    if ($heightTriangle > 50) {
         return 'input only 0 to 50 numbers';
     }
 
@@ -129,9 +129,9 @@ function task4($sizeBoard) {
     $height = $size[1];
 
     $result .= '<div class="board">';
-    for($i = 0; $i < $width; $i++) {
+    for ($i = 0; $i < $width; $i++) {
         $result .= '<div class="board-column">';
-        for($j = 0; $j < $height; $j++) {
+        for ($j = 0; $j < $height; $j++) {
             if (($i + $j) % 2 == 0) {
                 $result .= '<div class="square-odd"></div>';
             } else {
@@ -141,24 +141,34 @@ function task4($sizeBoard) {
         $result .= '</div>';
     }
     $result .= '</div>';
-
-
-
     return $result;
 }
 
 function task5($number) {
-
-
-    $result = 0;
-    $digits = str_split($number);
-    for ($i = 0; $i < count($digits); $i++) {
-        $result += $digits[$i];
+    if (!isset($number)) {
+        return 'something wrong';
     }
-    return $result;
+
+    if (isEmpty([$number])) {
+        return 'input is empty';
+    }
+
+    return array_sum(str_split($number));
 }
 
 function task6($firstNumber, $secondNumber) {
+
+    if (!isset($firstNumber, $secondNumber)) {
+        return 'something wrong';
+    }
+
+    if (isEmpty([$firstNumber, $secondNumber])) {
+        return 'input is empty';
+    }
+
+    if (!preg_match(REG_WHOLE_NUMBER, $firstNumber) || !preg_match(REG_WHOLE_NUMBER,$secondNumber)) {
+        return 'input only whole numbers';
+    }
 
     $massive = [];
     $result = '';

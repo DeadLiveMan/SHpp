@@ -2,12 +2,13 @@
 require '..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'readStatistics.php';
 
 function getJsonString() {
-    $result = "[['Graphic','Plants']";
-    foreach (getStatistics() as $key => $value) {
-        $result .= ",['$key',$value]";
-    }
-    $result .= "]";
-    return $result;
+//    $result = "[['Graphic','Plants']";
+//    foreach (getStatistics() as $key => $value) {
+//        $result .= ",['$key',$value]";
+//    }
+//    $result .= "]";
+
+    return json_decode(getStatistics());
 }
 ?>
 

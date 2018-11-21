@@ -19,7 +19,7 @@ switch($task) {
         $_SESSION['result'] = task4($_POST['sizeBoard']);
         break;
     case 'task5':
-        $_SESSION['result'] = task5($_POST['sizeBoard']);
+        $_SESSION['result'] = task5($_POST['number']);
         break;
     case 'task6':
         $_SESSION['result'] = task6($_POST['firstNumber'], $_POST['secondNumber']);
