@@ -1,5 +1,4 @@
 <?php
-const REG_WHOLE_NUMBER = "/^[-]?[0-9]+$/";
 
 function isEmpty($value) {
     for ($i = 0; $i < count($value); $i++ ) {
@@ -46,7 +45,7 @@ function task2($firstNumber, $secondNumber, $filter) {
         return 'inputs is empty';
     }
 
-    if (!preg_match(REG_WHOLE_NUMBER, $firstNumber) || !preg_match(REG_WHOLE_NUMBER,$secondNumber)) {
+    if(!is_numeric($firstNumber) || !is_numeric($secondNumber)) {
         return 'input only whole numbers';
     }
 
@@ -160,7 +159,7 @@ function task6($firstNumber, $secondNumber) {
         return 'input is empty';
     }
 
-    if (!preg_match(REG_WHOLE_NUMBER, $firstNumber) || !preg_match(REG_WHOLE_NUMBER,$secondNumber)) {
+    if(!is_numeric($firstNumber) || !is_numeric($secondNumber)) {
         return 'input only whole numbers';
     }
 
