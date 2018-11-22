@@ -1,8 +1,8 @@
 <?php
 
 function isEmpty($value) {
-    for ($i = 0; $i < count($value); $i++ ) {
-        if ($value[$i] == '') {
+    foreach ($value as $val) {
+        if ($val == '') {
             return true;
         }
     }
