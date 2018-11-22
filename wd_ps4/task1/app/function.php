@@ -20,11 +20,13 @@ function task1($firstNumber, $secondNumber) {
         return 'inputs is empty';
     }
 
-    if(!preg_match(REG_WHOLE_NUMBER, $firstNumber) || !preg_match(REG_WHOLE_NUMBER,$secondNumber)) {
+    if(!is_numeric($firstNumber) || !is_numeric($secondNumber)) {
         return 'input only whole numbers';
     }
 
-    [$firstNumber, $secondNumber] = [$secondNumber, $firstNumber];
+    if ($firstNumber > $secondNumber) {
+        [$firstNumber, $secondNumber] = [$secondNumber, $firstNumber];
+    }
 
     $result = 0;
     for ($i = $firstNumber; $i <= $secondNumber; $i++) {
@@ -54,7 +56,9 @@ function task2($firstNumber, $secondNumber, $filter) {
 
     $filter = explode(",", $filter);
 
-    [$firstNumber, $secondNumber] = [$secondNumber, $firstNumber];
+    if ($firstNumber > $secondNumber) {
+        [$firstNumber, $secondNumber] = [$secondNumber, $firstNumber];
+    }
 
     $result = 0;
     for ($i = $firstNumber; $i <= $secondNumber; $i++) {
