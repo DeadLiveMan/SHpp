@@ -15,7 +15,6 @@ const HANDLER_PATH = 'handler.php';
 <body>
 <div class="content">
     <div class="tasks">
-
         <div class="task">
             <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
@@ -27,7 +26,6 @@ const HANDLER_PATH = 'handler.php';
                 </label>
             </form>
         </div>
-
         <div class="task">
             <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
@@ -40,7 +38,6 @@ const HANDLER_PATH = 'handler.php';
                 </label>
             </form>
         </div>
-
         <div class="task">
             <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
@@ -53,7 +50,6 @@ const HANDLER_PATH = 'handler.php';
                 </label>
             </form>
         </div>
-
         <div class="task">
             <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
@@ -64,7 +60,6 @@ const HANDLER_PATH = 'handler.php';
                 </label>
             </form>
         </div>
-
         <div class="task">
             <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
@@ -75,7 +70,6 @@ const HANDLER_PATH = 'handler.php';
                 </label>
             </form>
         </div>
-
         <div class="task">
             <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
@@ -90,7 +84,6 @@ const HANDLER_PATH = 'handler.php';
                 </label>
             </form>
         </div>
-
     </div>
     <div class="result">
         <?php
@@ -101,6 +94,5 @@ const HANDLER_PATH = 'handler.php';
         ?>
     </div>
 </div>
-
 </body>
 </html>

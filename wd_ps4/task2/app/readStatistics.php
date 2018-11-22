@@ -1,5 +1,4 @@
 <?php
-
 function getStatistics() {
     $fileName = '..'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'statistics.json';
 
@@ -22,6 +21,5 @@ function getStatistics() {
         $statistics = json_decode($file);
         fclose($fr);
     }
-
     return $statistics;
 }

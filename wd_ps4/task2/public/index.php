@@ -1,9 +1,6 @@
 <?php
-
 require '..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'readStatistics.php';
-
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,7 +12,6 @@ require '..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'readStatistics.php';
     <title>WD_PS4 Voting</title>
 </head>
 <body>
-
     <div class="main">
         <div class="content">
                 <?php

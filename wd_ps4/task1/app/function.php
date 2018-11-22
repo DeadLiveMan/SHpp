@@ -1,5 +1,4 @@
 <?php
-
 const REG_WHOLE_NUMBER = "/^[-]?[0-9]+$/";
 
 function isEmpty($value) {
@@ -94,7 +93,6 @@ function task3($heightTriangle) {
     for ($i = 1; $i <= $heightTriangle; $i++) {
         $result .= str_repeat("*", $i).'<br>';
     }
-
     return $result;
 }
 
@@ -176,7 +174,6 @@ function task6($firstNumber, $secondNumber) {
     for ($i = 0; $i < count($massive); $i++){
         $result .= $massive[$i].'<br>';
     }
-
     return $result;
 }
 

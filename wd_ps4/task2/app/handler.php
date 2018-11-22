@@ -1,5 +1,4 @@
 <?php
-
 require '..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'readStatistics.php';
 
 $statistics = getStatistics();

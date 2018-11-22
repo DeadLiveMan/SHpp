@@ -2,7 +2,6 @@
 require dirname(__DIR__, 1).DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'function.php';
 session_start();
 
-
 $task = $_POST['task'];
 
 switch($task) {
@@ -25,7 +24,4 @@ switch($task) {
         $_SESSION['result'] = task6($_POST['firstNumber'], $_POST['secondNumber']);
         break;
 }
-
-
-
 header('location:index.php');
