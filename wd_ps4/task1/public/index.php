@@ -1,6 +1,5 @@
 <?php
 session_start();
-session_destroy();
 const HANDLER_PATH = 'handler.php';
 ?>
 <!DOCTYPE html>
@@ -98,6 +97,7 @@ const HANDLER_PATH = 'handler.php';
             if(isset($_SESSION['result'])) {
                 echo $_SESSION['result'];
             }
+            session_unset();
         ?>
     </div>
 </div>

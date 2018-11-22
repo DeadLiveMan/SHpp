@@ -25,11 +25,7 @@ function task1($firstNumber, $secondNumber) {
         return 'input only whole numbers';
     }
 
-    if ($firstNumber > $secondNumber) {
-        $tempNumber = $firstNumber;
-        $firstNumber = $secondNumber;
-        $secondNumber = $tempNumber;
-    }
+    [$firstNumber, $secondNumber] = [$secondNumber, $firstNumber];
 
     $result = 0;
     for ($i = $firstNumber; $i <= $secondNumber; $i++) {
@@ -59,11 +55,7 @@ function task2($firstNumber, $secondNumber, $filter) {
 
     $filter = explode(",", $filter);
 
-    if ($firstNumber > $secondNumber) {
-        $tempNumber = $firstNumber;
-        $firstNumber = $secondNumber;
-        $secondNumber = $tempNumber;
-    }
+    [$firstNumber, $secondNumber] = [$secondNumber, $firstNumber];
 
     $result = 0;
     for ($i = $firstNumber; $i <= $secondNumber; $i++) {

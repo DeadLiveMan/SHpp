@@ -2,13 +2,15 @@
 require '..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'readStatistics.php';
 
 function getJsonString() {
-//    $result = "[['Graphic','Plants']";
-//    foreach (getStatistics() as $key => $value) {
-//        $result .= ",['$key',$value]";
-//    }
-//    $result .= "]";
-
-    return json_decode(getStatistics());
+    $arr = [['Graphic','Plants']];
+    $statistics = getStatistics();
+    if (!$statistics) {
+        exit;
+    }
+    foreach ($statistics as $key => $value) {
+        $arr[] = [$key, $value];
+    }
+    return json_encode($arr);
 }
 ?>
 
@@ -21,7 +23,7 @@ function getJsonString() {
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            const data = google.visualization.arrayToDataTable(<?php echo getJsonString(); ?>);
+            const data = google.visualization.arrayToDataTable(<?= getJsonString(); ?>);
             const options = {
                 title: 'Your loved Plants'
             };

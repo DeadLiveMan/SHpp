@@ -21,19 +21,17 @@ require '..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'readStatistics.php';
                 <?php
                 $statistics = getStatistics();
                 if ($statistics) {
-                    echo '<form action="../app/handler.php" method="post">';
+                    echo '<form action="..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'handler.php" method="post">';
                     $check = 'checked';
                     foreach ($statistics as $key => $value) {
-                        echo '<label><input type="radio" name="vote" value="' . $key . '" ' . $check . '>' . $key . '</label>';
+                        echo '<label><input type="radio" name="vote" value="'.$key .'" '.$check .'>'.$key.'</label>';
                         $check = '';
                     }
-                    echo '<label><input type="submit"></label> </form>';
+                    echo '<label><input type="submit"></label></form>';
                 } else {
                     echo '<div>Wrong json file</div>';
                 }
                 ?>
-
-
         </div>
     </div>
 </body>
