@@ -78,10 +78,6 @@ function task3($heightTriangle) {
         return 'inputs is empty';
     }
 
-    if (!is_numeric($heightTriangle)) {
-        return 'input only numbers';
-    }
-
     if (!is_numeric($heightTriangle) || $heightTriangle < 0 ||$heightTriangle > 50) {
         return 'input only 0 to 50 numbers';
     }
