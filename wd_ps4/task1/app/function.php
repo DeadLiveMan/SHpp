@@ -69,7 +69,6 @@ function task2($firstNumber, $secondNumber, $filter) {
 }
 
 function task3($heightTriangle) {
-    $regWholeNumberPositive = "/^[0-9]+$/";
 
     if (!isset($heightTriangle)) {
         return 'something wrong';
@@ -83,16 +82,11 @@ function task3($heightTriangle) {
         return 'input only numbers';
     }
 
-    if (!preg_match($regWholeNumberPositive, $heightTriangle)) {
-        return 'input only whole positive numbers';
-    }
-
-    if ($heightTriangle > 50) {
+    if (!is_numeric($heightTriangle) || $heightTriangle < 0 ||$heightTriangle > 50) {
         return 'input only 0 to 50 numbers';
     }
 
     $result = '';
-
     for ($i = 1; $i <= $heightTriangle; $i++) {
         $result .= str_repeat("*", $i).'<br>';
     }
@@ -125,7 +119,7 @@ function task4($sizeBoard) {
     for ($i = 0; $i < $width; $i++) {
         $result .= '<div class="board-column">';
         for ($j = 0; $j < $height; $j++) {
-            if (($i + $j) % 2 == 0) {
+            if (($i + $j) % 2 === 0) {
                 $result .= '<div class="square-odd"></div>';
             } else {
                 $result .= '<div class="square-even"></div>';
@@ -167,15 +161,15 @@ function task6($firstNumber, $secondNumber) {
     $result = '';
 
     for ($i = 0; $i < 100; $i++) {
-        $massive[$i] = rand($firstNumber, $secondNumber);
+        $massive[] = rand($firstNumber, $secondNumber);
     }
 
     $massive = array_unique($massive);
     sort($massive);
     $massive = array_reverse($massive);
 
-    for ($i = 0; $i < count($massive); $i++){
-        $result .= $massive[$i].'<br>';
+    foreach ($massive as $numbers){
+        $result .= $numbers.'<br>';
     }
     return $result;
 }
