@@ -1,26 +1,32 @@
 <?php
 
+define('ERR_DEF_ARGS', "Wrong arguments");
+define('ERR_EMPTY_INPUT', "Inputs is empty");
+define('ERR_WHOLE_NUM', "Input only whole numbers");
+
 function isEmpty($value) {
     foreach ($value as $val) {
-        if ($val == '') {
+        if ($val === '') {
             return true;
         }
     }
     return false;
 }
 
-function task1($firstNumber, $secondNumber) {
+function task1() {
+    $firstNumber = $_POST['firstNumber'];
+    $secondNumber = $_POST['secondNumber'];
 
     if (!isset($firstNumber,$secondNumber)) {
-        return 'something wrong';
+        return ERR_DEF_ARGS;
     }
 
     if (isEmpty([$firstNumber, $secondNumber])) {
-        return 'inputs is empty';
+        return ERR_EMPTY_INPUT;
     }
 
     if(!is_numeric($firstNumber) || !is_numeric($secondNumber)) {
-        return 'input only whole numbers';
+        return ERR_WHOLE_NUM;
     }
 
     if ($firstNumber > $secondNumber) {
@@ -34,19 +40,23 @@ function task1($firstNumber, $secondNumber) {
     return $result;
 }
 
-function task2($firstNumber, $secondNumber, $filter) {
+function task2() {
+    $firstNumber = $_POST['firstNumber'];
+    $secondNumber = $_POST['secondNumber'];
+    $filter = $_POST['filter'];
+
     $regFilter = "/^[0-9](,[0-9])*$/";
 
     if (!isset($firstNumber, $secondNumber, $filter)) {
-        return 'something wrong';
+        return ERR_DEF_ARGS;
     }
 
     if (isEmpty([$firstNumber, $secondNumber, $filter])) {
-        return 'inputs is empty';
+        return ERR_EMPTY_INPUT;
     }
 
     if(!is_numeric($firstNumber) || !is_numeric($secondNumber)) {
-        return 'input only whole numbers';
+        return ERR_WHOLE_NUM;
     }
 
     if (!preg_match($regFilter, $filter)) {
@@ -68,14 +78,15 @@ function task2($firstNumber, $secondNumber, $filter) {
     return $result;
 }
 
-function task3($heightTriangle) {
+function task3() {
+    $heightTriangle = $_POST['heightTriangles'];
 
     if (!isset($heightTriangle)) {
-        return 'something wrong';
+        return ERR_DEF_ARGS;
     }
 
     if (isEmpty([$heightTriangle])) {
-        return 'inputs is empty';
+        return ERR_EMPTY_INPUT;
     }
 
     if (!is_numeric($heightTriangle) || $heightTriangle < 0 ||$heightTriangle > 50) {
@@ -89,37 +100,35 @@ function task3($heightTriangle) {
     return $result;
 }
 
-function task4($sizeBoard) {
+function task4() {
+    $sizeBoard = $_POST['sizeBoard'];
 
     if (!isset($sizeBoard)) {
-        return 'something wrong';
+        return ERR_DEF_ARGS;
     }
 
     if (isEmpty([$sizeBoard])) {
-        return 'inputs is empty';
+        return ERR_EMPTY_INPUT;
     }
 
     $sizeBoard = mb_strtolower($sizeBoard);
     $sizeBoard = str_replace('х', 'x', $sizeBoard);
 
     if (!preg_match("/^[0-9]+x[0-9]+$/", $sizeBoard)) {
-        return 'wrong input';
+        return 'wrong input size';
     }
 
-    $result = '';
     $size = explode('x', $sizeBoard);
-    $width = $size[0];
-    $height = $size[1];
 
-    $result .= '<div class="board">';
-    for ($i = 0; $i < $width; $i++) {
+    if ($size[0] > 50 || $size[1] > 50) {
+        return 'wrong size, max 50';
+    }
+
+    $result = '<div class="board">';
+    for ($i = 0; $i < $size[0]; $i++) {
         $result .= '<div class="board-column">';
-        for ($j = 0; $j < $height; $j++) {
-            if (($i + $j) % 2 === 0) {
-                $result .= '<div class="square-odd"></div>';
-            } else {
-                $result .= '<div class="square-even"></div>';
-            }
+        for ($j = 0; $j < $size[1]; $j++) {
+            $result .= (($i + $j) % 2 === 0)? '<div class="square-odd"></div>' : '<div class="square-even"></div>';
         }
         $result .= '</div>';
     }
@@ -127,30 +136,35 @@ function task4($sizeBoard) {
     return $result;
 }
 
-function task5($number) {
+function task5() {
+    $number = $_POST['firstNumber'];
+
     if (!isset($number)) {
-        return 'something wrong';
+        return ERR_DEF_ARGS;
     }
 
     if (isEmpty([$number])) {
-        return 'input is empty';
+        return ERR_EMPTY_INPUT;
     }
 
     return array_sum(str_split($number));
 }
 
-function task6($firstNumber, $secondNumber) {
+function task6() {
+
+    $firstNumber = $_POST['firstNumber'];
+    $secondNumber = $_POST['secondNumber'];
 
     if (!isset($firstNumber, $secondNumber)) {
-        return 'something wrong';
+        return ERR_DEF_ARGS;
     }
 
     if (isEmpty([$firstNumber, $secondNumber])) {
-        return 'input is empty';
+        return ERR_EMPTY_INPUT;
     }
 
     if(!is_numeric($firstNumber) || !is_numeric($secondNumber)) {
-        return 'input only whole numbers';
+        return ERR_WHOLE_NUM;
     }
 
     $massive = [];
@@ -169,4 +183,3 @@ function task6($firstNumber, $secondNumber) {
     }
     return $result;
 }
-

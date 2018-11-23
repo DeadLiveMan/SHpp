@@ -64,7 +64,7 @@ const HANDLER_PATH = 'handler.php';
             <form action="<?= HANDLER_PATH ?>" method="post" autocomplete="off">
                 <label>
                     <span> 5) Найти сумму цифр введённого числа.</span>
-                    <input type="text" name="number" value="123">
+                    <input type="text" name="firstNumber" value="123">
                     <input type="hidden" name="task" value="task5">
                     <input type="submit" value="Посчитать">
                 </label>
