@@ -19,6 +19,7 @@ const ATM = {
             console.log('please, logout current user');
             return;
         }
+        // search user
         for (let i = 0; i < this.users.length; i++) {
             if (this.users[i].number === number && this.users[i].pin === pin) {
                 this.is_auth = true;
