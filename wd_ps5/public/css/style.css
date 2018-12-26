@@ -1,0 +1,186 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+	width: 100%;
+    background-color: #b9c783;
+}
+
+/*----------------------- HEADER ------------------------------------------*/
+.header {
+    height: 2%;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+}
+
+.header-square {
+    width: 10%;
+}
+
+.header-square:nth-child(5n + 1) {
+    background-color: #635960;
+}
+
+.header-square:nth-child(5n + 2) {
+    background-color: #8b8e59;
+}
+
+.header-square:nth-child(5n + 3) {
+    background-color: #eada7d;
+}
+
+.header-square:nth-child(5n + 4) {
+    background-color: #fffecd;
+}
+
+.header-square:nth-child(5n + 5) {
+    background-color: #7bc3ab;
+}
+/*----------------------------------------------------------------*/
+
+
+/*ok*/
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 98%;
+}
+
+/*ok*/
+.main-text {
+    padding-top: 5%;
+    font-family: Pacifico, serif;
+    font-size: 60px;
+    color: #fffecd;
+}
+
+.main-form {
+    width: 40%;
+	min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/*ok*/
+form span {
+    font-family: Montserrat, serif;
+    font-weight: bold;
+    color: #635960;
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    width: 70%;
+}
+
+form input {
+    border: none;
+    font-family: Montserrat, serif;
+    font-size: 16px;
+    font-weight: 900;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: #fffecd;
+}
+
+/* reset outline */
+form input:focus {
+    outline: none;
+}
+
+#response {
+    padding: 10px;
+    color: darkred;
+}
+
+.not-valid {
+    border: 1px solid red;
+}
+
+.valid {
+    border: 1px solid #b9c783;
+}
+
+/*ok*/
+form input:last-child {
+    background-color: #635960;
+    color: #fffecd;
+     /*rgba(0,0,0,0.806);*/
+}
+
+#login-info, #password-info {
+    height: 20px;
+    color: darkred;
+    padding-bottom: 10px;
+    margin-left: 15px;
+}
+
+/*ok*/
+form input:last-child:hover {
+    background-color: #736970;
+    cursor: pointer;
+}
+
+/*------------------------ CHAT ----------------------------*/
+.form-chat {
+    /*width: 100%;*/
+}
+
+#chat-box {
+    border: solid 1px gray;
+    background-color: #fffecd;
+    font-family: Montserrat, serif;
+    margin: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    height: 250px;
+}
+
+#chat-box div {
+    margin: 10px;
+    word-wrap: break-word;
+}
+
+#chat-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#message {
+    width: 70%;
+}
+
+#send-message {
+    width: 20%;
+}
+
+#logout {
+    display: flex;
+    flex-direction: column;
+}
+
+#logout div {
+    align-self: flex-end;
+    margin: 10px;
+}
+
+#logout div:hover {
+    cursor: pointer;
+    color: red;
+}
