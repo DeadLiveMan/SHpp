@@ -1,8 +1,6 @@
 <?php
 $config = require '..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'config.php';
     session_start();
-//    define('CHAT_PATH', '..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'chat.php');
-//    define('FORM_PATH', '..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'login.php');
 ?>
 
 <!doctype html>

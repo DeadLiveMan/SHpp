@@ -9,8 +9,6 @@ require APP_DIRECTORY.'Auth.php';
 require APP_DIRECTORY . 'JsonMessagesDataBase.php';
 require APP_DIRECTORY . 'JsonUsersDataBase.php';
 
-//$auth = new Auth($config['filePathUsers']);
-
 $dbUsers = new JsonUsersDataBase($config['filePathUsers']);
 $auth = new Auth($dbUsers);
 
