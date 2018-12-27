@@ -9,6 +9,8 @@ require APP_DIRECTORY.'Auth.php';
 require APP_DIRECTORY . 'JsonMessagesDataBase.php';
 require APP_DIRECTORY . 'JsonUsersDataBase.php';
 
+define('SHOW_MESSAGE_LAST_HOURS', 1);
+
 $dbUsers = new JsonUsersDataBase($config['filePathUsers']);
 $auth = new Auth($dbUsers);
 
@@ -44,8 +46,15 @@ if (isset($_POST['login'], $_POST['pass'])) {
 
 // for read message
 if (isset($_POST['read'], $_SESSION['login'])) {
-    // todo last hour message
     $lastMessageTime = $_POST['read'];
+    if ($lastMessageTime == 0) {
+        $lastMessageTime = mktime(date('H') - SHOW_MESSAGE_LAST_HOURS,
+                                        date('i'),
+                                        date('s'),
+                                        date("m"),
+                                        date("d"),
+                                        date("Y")) * 1000;
+    }
     echo $messenger->readMessages($lastMessageTime);
     return;
 }
