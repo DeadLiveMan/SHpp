@@ -6,9 +6,16 @@ session_start();
 // require classes
 require APP_DIRECTORY.'Messenger.php';
 require APP_DIRECTORY.'Auth.php';
+require APP_DIRECTORY . 'JsonMessagesDataBase.php';
+require APP_DIRECTORY . 'JsonUsersDataBase.php';
 
-$auth = new Auth($config['filePathUsers']);
-$messenger = new Messenger($config['filePathChat']);
+//$auth = new Auth($config['filePathUsers']);
+
+$dbUsers = new JsonUsersDataBase($config['filePathUsers']);
+$auth = new Auth($dbUsers);
+
+$bdMessage = new JsonMessagesDataBase($config['filePathChat']);
+$messenger = new Messenger($bdMessage);
 
 if (isset($_POST['logout'])) {
     session_destroy();
@@ -39,6 +46,7 @@ if (isset($_POST['login'], $_POST['pass'])) {
 
 // for read message
 if (isset($_POST['read'], $_SESSION['login'])) {
+    // todo last hour message
     $lastMessageTime = $_POST['read'];
     echo $messenger->readMessages($lastMessageTime);
     return;
@@ -46,9 +54,6 @@ if (isset($_POST['read'], $_SESSION['login'])) {
 
 // check for new messages and return current file size
 if (isset($_POST['check'], $_SESSION['login'])) {
-    $fileSize = $messenger->getFileSize();
-    if($fileSize != $_POST['check']) {
-        echo $fileSize;
-    }
-    return false;
+    echo $messenger->checkChanges($_POST['check']);
+    return;
 }

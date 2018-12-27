@@ -69,7 +69,7 @@ window.onload = function() {
         // check state request
         request.onreadystatechange = function () {
             if (request.readyState === 4 && request.status === 200) {
-                if (request.response > changeFile) {
+                if (request.response) {
                     readMessages(lastTimeMessage);
                     changeFile = request.response;
                 }
