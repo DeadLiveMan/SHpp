@@ -8,4 +8,5 @@
     <div class="button-gradient"></div>
     <input id="submit" type="submit" value="Login">
 </form>
+<script src='script/AjaxPOST.js'></script>
 <script src='script/form.js'></script>

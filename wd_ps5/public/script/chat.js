@@ -7,20 +7,13 @@ window.onload = function() {
     let lastTimeMessage = 0;
     let changeFile = 0;
 
+    const ajax = new AjaxPOST(HANDLER_PATH);
+
     // event button logout
     LOGOUT_BUTTON.onclick = function () {
-        const request = new XMLHttpRequest();
-        request.open('POST', HANDLER_PATH);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        // check state request
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                location.reload();
-            }
-        };
-        const body = 'logout=1';
-        request.send(body);
+        ajax.send('logout', null, function () {
+            location.reload();
+        });
     };
 
     // event button on click
@@ -28,55 +21,30 @@ window.onload = function() {
         if (MESSAGE_INPUT.value === '') {
             return;
         }
-        const request = new XMLHttpRequest();
-        request.open('POST', HANDLER_PATH);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        // check state request
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                readMessages(Number(lastTimeMessage));
-            }
-        };
-        const body = 'message=' + encodeURIComponent(MESSAGE_INPUT.value);
+        ajax.send('send', 'message=' + encodeURIComponent(MESSAGE_INPUT.value), function () {
+            readMessages(Number(lastTimeMessage));
+        });
         MESSAGE_INPUT.value = "";
-        request.send(body);
     };
 
     function readMessages(lastTimeMessage = 0) {
-        const request = new XMLHttpRequest();
-        request.open('POST', HANDLER_PATH);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        // check state request
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                const messages = JSON.parse(request.response);
+        ajax.send('read', 'read=' + encodeURIComponent(lastTimeMessage.toString()), function (response) {
+            const messages = JSON.parse(response);
+            if (messages.length > 0) {
                 appendMessages(messages);
-                CHAT_BOX.scrollTop = CHAT_BOX.scrollHeight;
+                CHAT_BOX.scrollTop = CHAT_BOX.scrollHeight
             }
-        };
-        const body = 'read=' + encodeURIComponent(lastTimeMessage.toString());
-        request.send(body);
+        });
     }
 
     readMessages(lastTimeMessage);
     setInterval(function() {
-        const request = new XMLHttpRequest();
-        request.open('POST', HANDLER_PATH);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        // check state request
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                if (request.response) {
-                    readMessages(lastTimeMessage);
-                    changeFile = request.response;
-                }
+        ajax.send('check', 'check=' + encodeURIComponent(lastTimeMessage.toString()), function (response) {
+            if (response) {
+                readMessages(lastTimeMessage);
+                changeFile = response;
             }
-        };
-        const body = 'check=' + encodeURIComponent(lastTimeMessage.toString());
-        request.send(body);
+        })
     }, 1000);
 
     function appendMessages(messages) {

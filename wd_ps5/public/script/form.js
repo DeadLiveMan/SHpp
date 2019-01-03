@@ -23,6 +23,8 @@ window.onload = function () {
     let validLogin = false;
     let validPassword = false;
 
+    const ajax = new AjaxPOST(HANDLER_PATH);
+
     INPUT_LOGIN.setAttribute('placeholder', `Enter your Login (${MIN_LOGIN_LENGTH} - ${MAX_LOGIN_LENGTH} symbols)`);
     INPUT_PASSWORD.setAttribute('placeholder', `Enter password (${MIN_PASSWORD_LENGTH} - ${MAX_PASSWORD_LENGTH} symbols)`);
 
@@ -51,26 +53,16 @@ window.onload = function () {
             PASSWORD_TEXT.innerText = "";
         }
 
-        const request = new XMLHttpRequest();
-        request.open('POST', HANDLER_PATH);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        // check state request
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                if(request.response !== '0') {
-                    INPUT_PASSWORD.setAttribute('class', CLASS_NOT_VALID);
-                    PASSWORD_TEXT.innerText = request.response;
-                } else {
-                    INPUT_PASSWORD.setAttribute('class', CLASS_VALID);
-                    PASSWORD_TEXT.innerText = '';
-                    location.reload();
-                }
+        ajax.send('auth', '&login=' + INPUT_LOGIN.value + '&pass=' + INPUT_PASSWORD.value, function (response) {
+            if(response !== '0') {
+                INPUT_PASSWORD.setAttribute('class', CLASS_NOT_VALID);
+                PASSWORD_TEXT.innerText = response;
+            } else {
+                INPUT_PASSWORD.setAttribute('class', CLASS_VALID);
+                PASSWORD_TEXT.innerText = '';
+                location.reload();
             }
-        };
-        const body = 'login=' + encodeURIComponent(INPUT_LOGIN.value) +
-            '&pass=' + encodeURIComponent(INPUT_PASSWORD.value);
-        request.send(body);
+        });
     };
 
     // check inputs
@@ -81,6 +73,6 @@ window.onload = function () {
             return true;
         }
         elementInput.setAttribute('class', CLASS_NOT_VALID);
-        return false
+        return false;
     }
 };
