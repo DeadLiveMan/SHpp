@@ -117,6 +117,7 @@ function task4()
     }
 
     $sizeBoard = mb_strtolower($sizeBoard);
+    // replace cyrillic letter to latin
     $sizeBoard = str_replace('х', 'x', $sizeBoard);
 
     if (!preg_match("/^[0-9]+x[0-9]+$/", $sizeBoard)) {
