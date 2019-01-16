@@ -1,5 +1,6 @@
 <?php
-function getStatistics() {
+function getStatistics()
+{
     $fileName = '..'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'statistics.json';
 
     if (!file_exists($fileName)) {
