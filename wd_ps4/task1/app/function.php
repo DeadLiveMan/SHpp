@@ -4,7 +4,8 @@ define('ERR_DEF_ARGS', "Wrong arguments");
 define('ERR_EMPTY_INPUT', "Inputs is empty");
 define('ERR_WHOLE_NUM', "Input only whole numbers");
 
-function isEmpty($value) {
+function isEmpty($value)
+{
     foreach ($value as $val) {
         if ($val === '') {
             return true;
@@ -13,7 +14,8 @@ function isEmpty($value) {
     return false;
 }
 
-function task1() {
+function task1()
+{
     $firstNumber = $_POST['firstNumber'];
     $secondNumber = $_POST['secondNumber'];
 
@@ -40,7 +42,8 @@ function task1() {
     return $result;
 }
 
-function task2() {
+function task2()
+{
     $firstNumber = $_POST['firstNumber'];
     $secondNumber = $_POST['secondNumber'];
     $filter = $_POST['filter'];
@@ -78,7 +81,8 @@ function task2() {
     return $result;
 }
 
-function task3() {
+function task3()
+{
     $heightTriangle = $_POST['heightTriangles'];
 
     if (!isset($heightTriangle)) {
@@ -100,7 +104,8 @@ function task3() {
     return $result;
 }
 
-function task4() {
+function task4()
+{
     $sizeBoard = $_POST['sizeBoard'];
 
     if (!isset($sizeBoard)) {
@@ -136,7 +141,8 @@ function task4() {
     return $result;
 }
 
-function task5() {
+function task5()
+{
     $number = $_POST['firstNumber'];
 
     if (!isset($number)) {
@@ -150,7 +156,8 @@ function task5() {
     return array_sum(str_split($number));
 }
 
-function task6() {
+function task6()
+{
 
     $firstNumber = $_POST['firstNumber'];
     $secondNumber = $_POST['secondNumber'];
