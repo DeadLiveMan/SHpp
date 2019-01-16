@@ -1,7 +1,7 @@
 <?php
 
 define('ERR_DEF_ARGS', "Wrong arguments");
-define('ERR_EMPTY_INPUT', "Inputs is empty");
+define('ERR_EMPTY_INPUT', "Input is empty");
 define('ERR_WHOLE_NUM', "Input only whole numbers");
 
 function isEmpty($value)
