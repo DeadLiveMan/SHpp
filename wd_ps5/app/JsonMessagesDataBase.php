@@ -1,7 +1,8 @@
 <?php
 require APP_DIRECTORY . 'IMessagesDataBase.php';
 
-class JsonMessagesDataBase implements IMessagesDataBase {
+class JsonMessagesDataBase implements IMessagesDataBase
+{
 
     private $filePath;
     private $messageDataBase;
@@ -10,12 +11,14 @@ class JsonMessagesDataBase implements IMessagesDataBase {
     private const EMPTY_LOGIN = 'login is empty';
     private const EMPTY_MESSAGE = 'message is empty';
 
-    public function __construct($filePath) {
+    public function __construct($filePath)
+    {
         $this->filePath = $filePath;
         $this->messageDataBase = json_decode(file_get_contents($this->filePath), true);
     }
 
-    public function read($timeLastMessage) {
+    public function read($timeLastMessage)
+    {
         if ($timeLastMessage <= 0) {
             return file_get_contents($this->filePath);
         }
@@ -28,7 +31,8 @@ class JsonMessagesDataBase implements IMessagesDataBase {
         return json_encode($messages);
     }
 
-    public function write($login, $message) {
+    public function write($login, $message)
+    {
         if (!$login) return self::EMPTY_LOGIN;
         if (!$message) return self::EMPTY_MESSAGE;
 
@@ -43,7 +47,8 @@ class JsonMessagesDataBase implements IMessagesDataBase {
     }
 
     // if changed - return true
-    public function checkChanges($value) {
+    public function checkChanges($value)
+    {
         return filesize($this->filePath) !== $value;
     }
 }
