@@ -2,8 +2,6 @@
 function getStatistics()
 {
     define('FILE_NAME', '..'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'statistics.json');
-    //$fileName = '..'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'statistics.json';
-
     define('DEFAULT_STATISTIC',
         [
             'Cactus' => 0,
