@@ -4,7 +4,7 @@ define('ERR_DEF_ARGS', "Wrong arguments");
 define('ERR_EMPTY_INPUT', "Input is empty");
 define('ERR_WHOLE_NUM', "Input only whole numbers");
 
-function isEmpty($value)
+function isEmpty(...$value)
 {
     foreach ($value as $val) {
         if ($val === '') {
@@ -23,7 +23,7 @@ function task1()
         return ERR_DEF_ARGS;
     }
 
-    if (isEmpty([$firstNumber, $secondNumber])) {
+    if (isEmpty($firstNumber, $secondNumber)) {
         return ERR_EMPTY_INPUT;
     }
 
@@ -54,7 +54,7 @@ function task2()
         return ERR_DEF_ARGS;
     }
 
-    if (isEmpty([$firstNumber, $secondNumber, $filter])) {
+    if (isEmpty($firstNumber, $secondNumber, $filter)) {
         return ERR_EMPTY_INPUT;
     }
 
@@ -89,7 +89,7 @@ function task3()
         return ERR_DEF_ARGS;
     }
 
-    if (isEmpty([$heightTriangle])) {
+    if (isEmpty($heightTriangle)) {
         return ERR_EMPTY_INPUT;
     }
 
@@ -112,7 +112,7 @@ function task4()
         return ERR_DEF_ARGS;
     }
 
-    if (isEmpty([$sizeBoard])) {
+    if (isEmpty($sizeBoard)) {
         return ERR_EMPTY_INPUT;
     }
 
@@ -150,7 +150,7 @@ function task5()
         return ERR_DEF_ARGS;
     }
 
-    if (isEmpty([$number])) {
+    if (isEmpty($number)) {
         return ERR_EMPTY_INPUT;
     }
 
@@ -167,7 +167,7 @@ function task6()
         return ERR_DEF_ARGS;
     }
 
-    if (isEmpty([$firstNumber, $secondNumber])) {
+    if (isEmpty($firstNumber, $secondNumber)) {
         return ERR_EMPTY_INPUT;
     }
 
