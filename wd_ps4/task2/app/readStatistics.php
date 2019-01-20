@@ -1,7 +1,8 @@
 <?php
 function getStatistics()
 {
-    $fileName = '..'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'statistics.json';
+    define('FILE_NAME', '..'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'statistics.json');
+    //$fileName = '..'.DIRECTORY_SEPARATOR.'public'.DIRECTORY_SEPARATOR.'statistics.json';
 
     define('DEFAULT_STATISTIC',
         [
@@ -13,13 +14,13 @@ function getStatistics()
         ]
     );
 
-    if (!file_exists($fileName)) {
-        file_put_contents($fileName, json_encode(DEFAULT_STATISTIC));
+    if (!file_exists(FILE_NAME)) {
+        file_put_contents(FILE_NAME, json_encode(DEFAULT_STATISTIC));
     }
 
     $statistics = false;
-    if (filesize($fileName)) {
-        $statistics = json_decode(file_get_contents($fileName));
+    if (filesize(FILE_NAME)) {
+        $statistics = json_decode(file_get_contents(FILE_NAME));
     }
     return $statistics;
 }
