@@ -68,8 +68,6 @@ window.onload = function() {
     }
 
     function replacementSmiles(message) {
-        message = message.replace(/:\)/g, SMILE_GOOD);
-        message = message.replace(/:\(/g, SMILE_SAD);
-        return message;
+        return message.replace(/:\)/g, SMILE_GOOD).replace(/:\(/g, SMILE_SAD);
     }
 };
