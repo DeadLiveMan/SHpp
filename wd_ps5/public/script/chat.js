@@ -28,7 +28,7 @@ window.onload = function() {
     };
 
     function readMessages(lastTimeMessage = 0) {
-        ajax.send('read', 'read=' + encodeURIComponent(lastTimeMessage.toString()), function (response) {
+        ajax.send('read', 'lastTime=' + encodeURIComponent(lastTimeMessage.toString()), function (response) {
             const messages = JSON.parse(response);
             if (messages.length > 0) {
                 appendMessages(messages);
@@ -39,7 +39,7 @@ window.onload = function() {
 
     readMessages(lastTimeMessage);
     setInterval(function() {
-        ajax.send('check', 'check=' + encodeURIComponent(lastTimeMessage.toString()), function (response) {
+        ajax.send('check', 'lastTime=' + encodeURIComponent(lastTimeMessage.toString()), function (response) {
             if (response) {
                 readMessages(lastTimeMessage);
                 changeFile = response;

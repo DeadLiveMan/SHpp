@@ -25,6 +25,8 @@ class JsonMessagesDataBase implements IMessagesDataBase
         $messages = [];
         foreach ($this->messageDataBase as $value) {
             if ($value[0] > $timeLastMessage) {
+                // encode html special chars
+                $value[2] = html_entity_decode($value[2], ENT_QUOTES);
                 $messages[] = $value;
             }
         }
@@ -35,6 +37,9 @@ class JsonMessagesDataBase implements IMessagesDataBase
     {
         if (!$login) return self::EMPTY_LOGIN;
         if (!$message) return self::EMPTY_MESSAGE;
+
+        // decode html special chars
+        $message = htmlentities($message,ENT_QUOTES);
 
         $time = round(microtime(true) * 1000);
         // add new user in array

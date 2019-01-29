@@ -29,8 +29,8 @@ if (isset($_POST['command'])) {
              }
              break;
          case 'read':
-             if (isset($_POST['read'], $_SESSION['login'])) {
-                 $lastMessageTime = $_POST['read'];
+             if (isset($_POST['lastTime'], $_SESSION['login'])) {
+                 $lastMessageTime = $_POST['lastTime'];
                  if ($lastMessageTime == 0) {
                      $lastMessageTime = mktime(date('H') - SHOW_MESSAGE_LAST_HOURS,
                              date('i'),
@@ -53,10 +53,9 @@ if (isset($_POST['command'])) {
              }
              break;
          case 'check':
-             if (isset($_POST['check'], $_SESSION['login'])) {
-                 echo $messenger->checkChanges($_POST['check']);
+             if (isset($_POST['lastTime'], $_SESSION['login'])) {
+                 echo $messenger->checkChanges($_POST['lastTime']);
              }
              break;
-
      }
 }
