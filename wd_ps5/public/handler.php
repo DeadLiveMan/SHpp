@@ -5,57 +5,92 @@ session_start();
 
 // require classes
 require APP_DIRECTORY.'Messenger.php';
-require APP_DIRECTORY.'Auth.php';
+require APP_DIRECTORY.'UserHandler.php';
+require APP_DIRECTORY.'ErrorLogs.php';
+require APP_DIRECTORY.'Validator.php';
+
 // this classes implementation interfaces
 require APP_DIRECTORY.'JsonMessagesDataBase.php';
 require APP_DIRECTORY.'JsonUsersDataBase.php';
 
 define('SHOW_MESSAGE_LAST_HOURS', 1);
+$errorLogs = new ErrorLogs();
 
-$auth = new Auth(new JsonUsersDataBase($config['filePathUsers']));
 $messenger = new Messenger(new JsonMessagesDataBase($config['filePathChat']));
+$userHandler = new UserHandler(new JsonUsersDataBase($config['filePathUsers']));
+
+$validator = new Validator($errorLogs);
 
 if (isset($_POST['command'])) {
      switch($_POST['command']) {
+         case 'auth':
+             $login = $_POST['login'] ?? '';
+             $pass = $_POST['pass'] ?? '';
+             $login = trim($login);
+
+             if(!$validator->isValid($login, $pass)) {
+                 break;
+             }
+
+             if ($userHandler->userExist($login)) {
+                 if(!$userHandler->authorize($login, $pass)) {
+                     $errorLogs->addErrorPassword('Wrong password');
+                     break;
+                 }
+             } else {
+                 if(!$userHandler->registration($login, $pass)) {
+                     $errorLogs->addServerError('Error create new user');
+                     break;
+                 }
+             }
+
+             $_SESSION['login'] = $login;
+             break;
          case 'logout':
              session_destroy();
              break;
          case 'send':
-             if (isset($_POST['message'], $_SESSION['login'])) {
-                 $message = $_POST['message'];
-                 if($message) {
-                     $messenger->sendMessage($_SESSION['login'],$message);
-                 }
+             $login = $_SESSION['login'] ?? '';
+             $message = $_POST['message'] ?? '';
+
+             if ($login !== '' && $message !== '') {
+                 if(!$messenger->sendMessage($login, $message)) {
+                     $errorLogs->addServerError('Message not send');
+                 };
              }
              break;
          case 'read':
-             if (isset($_POST['lastTime'], $_SESSION['login'])) {
-                 $lastMessageTime = $_POST['lastTime'];
-                 if ($lastMessageTime == 0) {
-                     $lastMessageTime = mktime(date('H') - SHOW_MESSAGE_LAST_HOURS,
-                             date('i'),
-                             date('s'),
-                             date("m"),
-                             date("d"),
-                             date("Y")) * 1000;
+             $lastMessageTime = $_POST['lastTime'] ?? '';
+             $login = $_SESSION['login'] ?? '';
+
+             if ($lastMessageTime !== '' && $login !== '') {
+                 if (+$lastMessageTime === 0) {
+                     $lastMessageTime = mktime(
+                         date('H') - SHOW_MESSAGE_LAST_HOURS,
+                               date('i'),
+                               date('s'),
+                               date("m"),
+                               date("d"),
+                               date("Y")
+                         ) * 1000;
                  }
                  echo $messenger->readMessages($lastMessageTime);
                  return;
              }
              break;
-         case 'auth':
-             if (isset($_POST['login'], $_POST['pass'])) {
-                 $login = $_POST['login'];
-                 $pass = $_POST['pass'];
-                 if ($login && $pass) {
-                     $auth->login($login, $pass);
-                 }
-             }
-             break;
          case 'check':
-             if (isset($_POST['lastTime'], $_SESSION['login'])) {
-                 echo $messenger->checkChanges($_POST['lastTime']);
+             $lastMessageTime = $_POST['lastTime'] ?? '';
+             $login = $_SESSION['login'] ?? '';
+
+             if ($lastMessageTime !== '' && $login !== '') {
+                 echo($messenger->checkChanges($lastMessageTime));
+                 return;
              }
+             exit('logout');
+             break;
+         default:
+             $errorLogs->addServerError('Error command');
              break;
      }
+     echo(json_encode($errorLogs->getErrors()));
 }

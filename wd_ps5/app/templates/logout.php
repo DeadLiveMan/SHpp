@@ -1,3 +1,3 @@
-<div id="logout">
-    <div>[Logout]</div>
+<div class="logout">
+    <div id="logout-button">[Logout]</div>
 </div>

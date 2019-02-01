@@ -6,27 +6,27 @@ class JsonMessagesDataBase implements IMessagesDataBase
 
     private $filePath;
     private $messageDataBase;
-    private const SEND_ERROR = '-1';
-    private const SEND_OK = '0';
-    private const EMPTY_LOGIN = 'login is empty';
-    private const EMPTY_MESSAGE = 'message is empty';
 
     public function __construct($filePath)
     {
         $this->filePath = $filePath;
-        $this->messageDataBase = json_decode(file_get_contents($this->filePath), true);
+        $this->messageDataBase = file_get_contents($this->filePath);
     }
 
     public function read($timeLastMessage)
     {
-        if ($timeLastMessage <= 0) {
-            return file_get_contents($this->filePath);
+        if (!$this->messageDataBase) {
+            return false;
         }
+
+        if ($timeLastMessage <= 0) {
+            return $this->messageDataBase;
+        }
+
+        $messageDB = json_decode($this->messageDataBase);
         $messages = [];
-        foreach ($this->messageDataBase as $value) {
+        foreach ($messageDB as $value) {
             if ($value[0] > $timeLastMessage) {
-                // encode html special chars
-                $value[2] = html_entity_decode($value[2], ENT_QUOTES);
                 $messages[] = $value;
             }
         }
@@ -35,25 +35,28 @@ class JsonMessagesDataBase implements IMessagesDataBase
 
     public function write($login, $message)
     {
-        if (!$login) return self::EMPTY_LOGIN;
-        if (!$message) return self::EMPTY_MESSAGE;
+        if ($login === '') return false;
+        if ($message === '') return false;
 
         // decode html special chars
         $message = htmlentities($message,ENT_QUOTES);
 
         $time = round(microtime(true) * 1000);
+
+        $messageDB = json_decode($this->messageDataBase);
         // add new user in array
-        $this->messageDataBase[] = [$time, $login, $message];
+        $messageDB[] = [$time, $login, $message];
         // write to file new array
-        if (file_put_contents($this->filePath, json_encode($this->messageDataBase, JSON_PRETTY_PRINT))) {
-            return self::SEND_OK;
-        }
-        return self::SEND_ERROR;
+        return file_put_contents($this->filePath, json_encode($messageDB, JSON_PRETTY_PRINT));
     }
 
-    // if changed - return true
-    public function checkChanges($value)
+    public function checkChanges($lastTime)
     {
-        return filesize($this->filePath) !== $value;
+        $db = json_decode(file_get_contents($this->filePath), true);
+        $currentTime = $db[count($db) - 1][0];
+        if ($currentTime !== $lastTime) {
+             $lastTime = $currentTime;
+        }
+        return $lastTime;
     }
 }

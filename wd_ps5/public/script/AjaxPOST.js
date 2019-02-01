@@ -2,8 +2,7 @@ class AjaxPOST {
     constructor(target) {
         this.target = target;
     }
-
-    send(command, params, callback = function() {}) {
+    send(params = [], callback = function() {}) {
         const request = new XMLHttpRequest();
         request.open('POST', this.target);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -13,7 +12,12 @@ class AjaxPOST {
                 callback(request.response);
             }
         };
-        const body = 'command=' + command + '&' + params;
+
+        let body = '';
+        for (let key in params) {
+            body += key + '=' + params[key] + '&';
+        }
+        body = body.slice(0, -1);
         request.send(body);
     }
 }

@@ -151,8 +151,20 @@ form input:last-child:hover {
 }
 
 #chat-box div {
-    margin: 10px;
+    background: lavender;
+    display: flex;
+    margin: 4px 10px 4px 10px;
     word-wrap: break-word;
+}
+
+.user {
+    color: green;
+    align-self: center;
+}
+
+.message {
+    width: 60%;
+    color: blue;
 }
 
 #chat-form {
@@ -170,17 +182,17 @@ form input:last-child:hover {
     width: 20%;
 }
 
-#logout {
+.logout {
     display: flex;
     flex-direction: column;
 }
 
-#logout div {
+.logout div {
     align-self: flex-end;
     margin: 10px;
 }
 
-#logout div:hover {
+.logout div:hover {
     cursor: pointer;
     color: red;
 }

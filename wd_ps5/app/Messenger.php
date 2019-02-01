@@ -3,26 +3,25 @@
 
 class Messenger
 {
+    private $dbMessageHandler;
 
-    private $messageDataBase;
-
-    public function __construct(IMessagesDataBase $filePathChat)
+    public function __construct(IMessagesDataBase $dbMessageHandler)
     {
-        $this->messageDataBase = $filePathChat;
+        $this->dbMessageHandler = $dbMessageHandler;
     }
 
     public function sendMessage($login, $message)
     {
-        $this->messageDataBase->write($login, $message);
+        return $this->dbMessageHandler->write($login, $message);
     }
 
     public function readMessages($timeLastMessage)
     {
-        return $this->messageDataBase->read($timeLastMessage);
+        return $this->dbMessageHandler->read($timeLastMessage);
     }
 
     public function checkChanges($value)
     {
-        return $this->messageDataBase->checkChanges($value);
+        return $this->dbMessageHandler->checkChanges($value);
     }
 }

@@ -3,19 +3,23 @@ window.onload = function() {
     const CHAT_BOX = document.getElementById("chat-box");
     const MESSAGE_INPUT = document.getElementById('message');
     const CHAT_BUTTON = document.getElementById('send-message');
-    const LOGOUT_BUTTON = document.getElementById('logout');
+    const LOGOUT_BUTTON = document.getElementById('logout-button');
 
     const SMILE_GOOD = "<img class='smiles' src='img/good.png'>";
     const SMILE_SAD = "<img class='smiles' src='img/sad.png'>";
 
+    const COMMAND_LOGOUT = {"command":'logout'};
+    const COMMAND_MESSAGE = {"command":'send'};
+    const COMMAND_READ_MESSAGE = {"command": 'read'};
+    const COMMAND_CHECK_MESSAGE = {"command": 'check'};
+
     let lastTimeMessage = 0;
-    let changeFile = 0;
 
     const ajax = new AjaxPOST(HANDLER_PATH);
 
     // event button logout
     LOGOUT_BUTTON.onclick = function () {
-        ajax.send('logout', null, function () {
+        ajax.send(COMMAND_LOGOUT, function () {
             location.reload();
         });
     };
@@ -25,14 +29,15 @@ window.onload = function() {
         if (MESSAGE_INPUT.value === '') {
             return;
         }
-        ajax.send('send', 'message=' + encodeURIComponent(MESSAGE_INPUT.value), function () {
-            readMessages(Number(lastTimeMessage));
-        });
+        COMMAND_MESSAGE['message'] = encodeURIComponent(MESSAGE_INPUT.value);
+        ajax.send(COMMAND_MESSAGE);
         MESSAGE_INPUT.value = "";
+        readMessages(lastTimeMessage);
     };
 
     function readMessages(lastTimeMessage = 0) {
-        ajax.send('read', 'lastTime=' + encodeURIComponent(lastTimeMessage.toString()), function (response) {
+        COMMAND_READ_MESSAGE['lastTime'] = encodeURIComponent(lastTimeMessage.toString());
+        ajax.send(COMMAND_READ_MESSAGE, function (response) {
             const messages = JSON.parse(response);
             if (messages.length > 0) {
                 appendMessages(messages);
@@ -43,10 +48,14 @@ window.onload = function() {
 
     readMessages(lastTimeMessage);
     setInterval(function() {
-        ajax.send('check', 'lastTime=' + encodeURIComponent(lastTimeMessage.toString()), function (response) {
-            if (response) {
+        COMMAND_CHECK_MESSAGE['lastTime'] = encodeURIComponent(lastTimeMessage.toString());
+        ajax.send(COMMAND_CHECK_MESSAGE, function (response) {
+            if (response === 'logout') {
+                location.reload();
+                return;
+            }
+            if (+response !== lastTimeMessage) {
                 readMessages(lastTimeMessage);
-                changeFile = response;
             }
         })
     }, 1000);
@@ -61,9 +70,10 @@ window.onload = function() {
                 + ':' + date.getSeconds().toString().padStart(2, "0");
             // replace smiles
             messages[i][2] = replacementSmiles(messages[i][2]);
-            elementMessage.innerHTML = '[' + time + '] ' + messages[i][1] + ': ' + messages[i][2];
+            elementMessage.innerHTML =
+                `<div class="user">[${time}] ${messages[i][1]}:</div><div class="message">${messages[i][2]}</div>`;
             CHAT_BOX.appendChild(elementMessage);
-            lastTimeMessage = messages[i][0];
+            lastTimeMessage = +messages[i][0];
         }
     }
 

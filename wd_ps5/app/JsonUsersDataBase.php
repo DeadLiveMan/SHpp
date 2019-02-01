@@ -17,19 +17,14 @@ class JsonUsersDataBase implements IUsersDataBase
     {
         if ($this->checkUser($login)) {
             return $this->dbUsers[$login];
-        } else {
-            return false;
         }
+        return false;
     }
 
     public function write($login, $pass)
     {
         $this->dbUsers[$login] = $pass;
-        $status = file_put_contents($this->filePath, json_encode($this->dbUsers, JSON_PRETTY_PRINT));
-        if ($status) {
-            return true;
-        }
-        return false;
+        return file_put_contents($this->filePath, json_encode($this->dbUsers, JSON_PRETTY_PRINT));
     }
 
     public function checkUser($login)
