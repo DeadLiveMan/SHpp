@@ -1,5 +1,7 @@
 <?php
 
+namespace ps5;
+
 interface IUsersDataBase
 {
     public function read($login);

@@ -1,5 +1,7 @@
 <?php
 
+namespace ps5;
+
 class ErrorLogs
 {
 

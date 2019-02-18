@@ -1,4 +1,7 @@
 <?php
+
+namespace ps5;
+
 require APP_DIRECTORY . 'IMessagesDataBase.php';
 
 class JsonMessagesDataBase implements IMessagesDataBase

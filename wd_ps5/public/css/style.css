@@ -115,9 +115,10 @@ form input:focus {
 }
 
 /*ok*/
-form input:last-child {
+#submit {
     background-color: #635960;
     color: #fffecd;
+    z-index: 1;
      /*rgba(0,0,0,0.806);*/
 }
 
@@ -132,6 +133,15 @@ form input:last-child {
 form input:last-child:hover {
     background-color: #736970;
     cursor: pointer;
+}
+
+.button-gradient {
+    /*margin-top: -19px;*/
+    transform: skewY(-10grad) skewX(20grad) translate(40px);
+    position: relative;
+    /*width: 70%;*/
+    height: 200px;
+    background-image: linear-gradient(#00000059, #00000000);
 }
 
 /*------------------------ CHAT ----------------------------*/

@@ -1,6 +1,7 @@
 <?php
-$config = require '..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'config.php';
-    session_start();
+$config = require '..' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'config.php';
+session_start();
+
 ?>
 
 <!doctype html>
@@ -17,37 +18,37 @@ $config = require '..'.DIRECTORY_SEPARATOR.'app'.DIRECTORY_SEPARATOR.'config.php
 
 </head>
 <body>
-    <div class="header">
-        <div class="header-square"></div>
-        <div class="header-square"></div>
-        <div class="header-square"></div>
-        <div class="header-square"></div>
-        <div class="header-square"></div>
+<div class="header">
+    <div class="header-square"></div>
+    <div class="header-square"></div>
+    <div class="header-square"></div>
+    <div class="header-square"></div>
+    <div class="header-square"></div>
 
-        <div class="header-square"></div>
-        <div class="header-square"></div>
-        <div class="header-square"></div>
-        <div class="header-square"></div>
-        <div class="header-square"></div>
-    </div>
-    <?php
+    <div class="header-square"></div>
+    <div class="header-square"></div>
+    <div class="header-square"></div>
+    <div class="header-square"></div>
+    <div class="header-square"></div>
+</div>
+<?php
     if (isset($_SESSION['login'])) {
         require($config['filePathLogoutForm']);
-    }
-    ?>
-    <div class="content">
-            <div class="main-text">
-                Easy Chat
-            </div>
-            <div class="main-form">
-                <?php
-                    if (isset($_SESSION['login'])) {
-                        require($config['filePathChatForm']);
-                    } else {
-                        require($config['filePathLoginForm']);
-                    }
-                ?>
-            </div>
+}
+?>
+<div class="content">
+    <div class="main-text">
+        Easy Chat
     </div>
+    <div class="main-form">
+        <?php
+            if (isset($_SESSION['login'])) {
+                require($config['filePathChatForm']);
+            } else {
+                require($config['filePathLoginForm']);
+            }
+        ?>
+    </div>
+</div>
 </body>
 </html>

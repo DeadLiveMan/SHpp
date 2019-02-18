@@ -1,18 +1,20 @@
 <?php
 
+namespace ps5;
+
 class Validator
 {
-    private const MIN_LOGIN_LENGTH = 3;
-    private const MAX_LOGIN_LENGTH = 18;
-    private const MIN_PASSWORD_LENGTH = 3;
-    private const MAX_PASSWORD_LENGTH = 16;
-    private const PASSWORD_INCORRECT_LENGTH = 'Incorrect password length';
-    private const LOGIN_INCORRECT_LENGTH = 'Incorrect login length';
-    private const LOGIN_INCORRECT = 'Incorrect login symbols';
-    private const PASSWORD_INCORRECT = 'Incorrect password symbols';
+    const MIN_LOGIN_LENGTH = 3;
+    const MAX_LOGIN_LENGTH = 18;
+    const MIN_PASSWORD_LENGTH = 3;
+    const MAX_PASSWORD_LENGTH = 16;
+    const PASSWORD_INCORRECT_LENGTH = 'Incorrect password length';
+    const LOGIN_INCORRECT_LENGTH = 'Incorrect login length';
+    const LOGIN_INCORRECT = 'Incorrect login symbols';
+    const PASSWORD_INCORRECT = 'Incorrect password symbols';
 
-    private const VALID_LOGIN = '/(^[a-zA-Z]+([a-zA-Z0-9][\s]?)*$)/';
-    private const VALID_PASSWORD = '/(^[a-zA-Z0-9]+$)/';
+    const VALID_LOGIN = '/(^[a-zA-Z]+([a-zA-Z0-9][\s]?)*$)/';
+    const VALID_PASSWORD = '/(^[a-zA-Z0-9]+$)/';
 
     private $errorLogs;
 

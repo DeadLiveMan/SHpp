@@ -1,5 +1,7 @@
 <?php
 
+namespace ps5;
+
 interface IMessagesDataBase
 {
     public function read($timeLastMessage);
