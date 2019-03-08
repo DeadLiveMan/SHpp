@@ -36,8 +36,7 @@ class JsonMessagesDataBase implements IMessagesDataBase
 
     public function write($login, $message)
     {
-        if ($login === '') return false;
-        if ($message === '') return false;
+        if ($login === '' || $message === '') return false;
 
         // decode html special chars
         $message = htmlentities($message,ENT_QUOTES);
@@ -55,9 +54,7 @@ class JsonMessagesDataBase implements IMessagesDataBase
     {
         $db = json_decode(file_get_contents($this->filePath), true);
         $currentTime = $db[count($db) - 1][0];
-        if ($currentTime !== $lastTime) {
-             $lastTime = $currentTime;
-        }
+        $lastTime = ($currentTime != $lastTime) ?? $currentTime;
         return $lastTime;
     }
 }
