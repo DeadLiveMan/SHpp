@@ -1,6 +1,6 @@
 <?php
 
-namespace ps5;
+namespace App;
 
 class Validator
 {

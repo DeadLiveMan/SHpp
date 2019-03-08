@@ -1,34 +1,19 @@
 <?php
 
-namespace ps5;
-
-define('APP_DIRECTORY', '..' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR);
-$config = require APP_DIRECTORY . 'config.php';
+define('APP_DIRECTORY', dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'app');
+$config = require APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY_SEPARATOR . 'config.php';
 session_start();
 
-// require classes
-require APP_DIRECTORY . 'Messenger.php';
-require APP_DIRECTORY . 'UserHandler.php';
-require APP_DIRECTORY . 'ErrorLogs.php';
-require APP_DIRECTORY . 'Validator.php';
-
-// this classes implementation interfaces
-require APP_DIRECTORY . 'JsonMessagesDataBase.php';
-require APP_DIRECTORY . 'JsonUsersDataBase.php';
-
-//spl_autoload_register(function ($class) {
-//    $file = dirname(__DIR__).DIRECTORY_SEPARATOR.str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
-//    //if (isset($file) && file_exists($file)) {
-//        require_once $file;
-//    //}
-//});
+// classes autoloader
+use App\{ ErrorLogs, Messenger, JsonMessagesDataBase, UserHandler, JsonUsersDataBase, Validator };
+spl_autoload_register(function ($className) {
+    require_once(dirname( __DIR__ ,1) . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR ,$className) . '.php');
+});
 
 define('SHOW_MESSAGE_LAST_HOURS', 1);
 $errorLogs = new ErrorLogs();
-
 $messenger = new Messenger(new JsonMessagesDataBase($config['filePathChat']));
 $userHandler = new UserHandler(new JsonUsersDataBase($config['filePathUsers']));
-
 $validator = new Validator($errorLogs);
 
 if (isset($_POST['command'])) {

@@ -1,8 +1,6 @@
 <?php
 
-namespace ps5;
-
-require APP_DIRECTORY . 'IUsersDataBase.php';
+namespace App;
 
 class JsonUsersDataBase implements IUsersDataBase
 {

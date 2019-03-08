@@ -1,5 +1,5 @@
 <?php
-$config = require '..' . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'config.php';
+$config = require dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR  . 'config.php';
 session_start();
 
 ?>

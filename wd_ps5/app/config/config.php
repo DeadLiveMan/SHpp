@@ -1,6 +1,5 @@
 <?php
-    define('ROOT_DIRECTORY', '..'.DIRECTORY_SEPARATOR);
-
+    define('ROOT_DIRECTORY', dirname(__DIR__, 2) . DIRECTORY_SEPARATOR);
     return [
         'filePathUsers' => ROOT_DIRECTORY.'db'.DIRECTORY_SEPARATOR.'users.json',
         'filePathChat' => ROOT_DIRECTORY.'db'.DIRECTORY_SEPARATOR.'chat.json',
