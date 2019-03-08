@@ -19,9 +19,7 @@ window.onload = function() {
 
     // event button logout
     LOGOUT_BUTTON.onclick = function () {
-        ajax.send(COMMAND_LOGOUT, function () {
-            location.reload();
-        });
+        ajax.send(COMMAND_LOGOUT, location.reload());
     };
 
     // event button on click
@@ -30,9 +28,8 @@ window.onload = function() {
             return;
         }
         COMMAND_MESSAGE['message'] = encodeURIComponent(MESSAGE_INPUT.value);
-        ajax.send(COMMAND_MESSAGE);
+        ajax.send(COMMAND_MESSAGE, readMessages(lastTimeMessage));
         MESSAGE_INPUT.value = "";
-        readMessages(lastTimeMessage);
     };
 
     function readMessages(lastTimeMessage = 0) {
