@@ -7,5 +7,6 @@
     <div id="password-info"></div>
     <input id="submit" type="submit" value="Login">
 </form>
+<div class="gradient"></div>
 <script src='script/AjaxPOST.js'></script>
 <script src='script/form.js'></script>
