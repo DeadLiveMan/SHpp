@@ -53,7 +53,7 @@ html, body {
 }
 
 .main-form {
-    width: 400px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -62,12 +62,12 @@ html, body {
 }
 
 .gradient {
-    width: 279px;
+    width: 349px;
     height: 140px;
     position: absolute;
     top: 93%;
-    left: 110px;
-    transform: skew(39grad, -8.6grad);
+    left: 125px;
+    transform: skew(39grad, -7.2grad);
     background: linear-gradient(rgba(0,0,0, 0.06), rgba(0,0,0, 0));
 }
 
