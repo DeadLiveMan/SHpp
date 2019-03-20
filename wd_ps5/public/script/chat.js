@@ -28,7 +28,7 @@ window.onload = function() {
             return;
         }
         COMMAND_MESSAGE['message'] = encodeURIComponent(MESSAGE_INPUT.value);
-        ajax.send(COMMAND_MESSAGE, readMessages(lastTimeMessage));
+        ajax.send(COMMAND_MESSAGE);
         MESSAGE_INPUT.value = "";
     };
 
@@ -44,18 +44,24 @@ window.onload = function() {
     }
 
     readMessages(lastTimeMessage);
-    setInterval(function() {
-        COMMAND_CHECK_MESSAGE['lastTime'] = encodeURIComponent(lastTimeMessage.toString());
-        ajax.send(COMMAND_CHECK_MESSAGE, function (response) {
-            if (response === 'logout') {
-                location.reload();
-                return;
-            }
-            if (+response !== lastTimeMessage) {
-                readMessages(lastTimeMessage);
-            }
-        })
-    }, 1000);
+
+    let interval = function interval() {
+        setTimeout(function () {
+            console.log("test");
+            COMMAND_CHECK_MESSAGE['lastTime'] = encodeURIComponent(lastTimeMessage.toString());
+            ajax.send(COMMAND_CHECK_MESSAGE, function (response) {
+                if (response === 'logout') {
+                    location.reload();
+                    return;
+                }
+                if (+response !== lastTimeMessage) {
+                    readMessages(lastTimeMessage);
+                }
+                interval();
+            });
+        }, 1000);
+    };
+    interval();
 
     function appendMessages(messages) {
         let elementMessage;
