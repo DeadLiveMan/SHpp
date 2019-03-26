@@ -41,12 +41,13 @@ $(document).keydown(function (e) {
     sliding(index);
 });
 
-function sliding(index) {
+function sliding(indexSlider) {
+    index = indexSlider;
     for (let i = 0; i < IMAGES.length; i++) {
         $(SLIDER_PREVIEW[0].childNodes[i]).removeClass('current');
         $(CURRENT_IMAGES[i]).hide();
     }
-    $(SLIDER_PREVIEW[0].childNodes[index]).addClass('current');
-    $(CURRENT_IMAGES[index]).show();
+    $(SLIDER_PREVIEW[0].childNodes[indexSlider]).addClass('current');
+    $(CURRENT_IMAGES[indexSlider]).show();
 }
 
