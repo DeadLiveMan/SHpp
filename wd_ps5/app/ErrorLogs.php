@@ -9,33 +9,33 @@ class ErrorLogs
 
     function __construct()
     {
-        $this->logs['success'] = true;
-        $this->logs['messages']['login'] = false;
-        $this->logs['messages']['pass'] = false;
-        $this->logs['messages']['serverError'] = false;
+        $this->logs['isError'] = false;
+        $this->logs['data']['login'] = false;
+        $this->logs['data']['pass'] = false;
+        $this->logs['data']['serverError'] = false;
     }
 
     public function addErrorLogin($message)
     {
         $this->setError();
-        $this->logs['messages']['login'] = $message;
+        $this->logs['data']['login'] = $message;
     }
 
     public function addErrorPassword($message)
     {
         $this->setError();
-        $this->logs['messages']['pass'] = $message;
+        $this->logs['data']['pass'] = $message;
     }
 
     public function addServerError($message)
     {
         $this->setError();
-        $this->logs['messages']['serverError'] = $message;
+        $this->logs['data']['serverError'] = $message;
     }
 
-    public function isSuccess()
+    public function isError()
     {
-        return $this->logs['success'];
+        return $this->logs['isError'];
     }
 
     public function getErrors()
@@ -45,6 +45,6 @@ class ErrorLogs
 
     private function setError()
     {
-        $this->logs['success'] = false;
+        $this->logs['isError'] = true;
     }
 }

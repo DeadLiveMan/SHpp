@@ -7,10 +7,12 @@ class AjaxPOST {
         request.open('POST', this.target);
         request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         // check state request
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                callback(request.response);
-            }
+        request.onload = function () {
+            (request.status === 200) ? callback(request.response) : callback('');
+        };
+
+        request.onerror = function() {
+            callback('');
         };
 
         let body = '';

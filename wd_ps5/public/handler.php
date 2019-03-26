@@ -49,6 +49,7 @@ if (isset($_POST['command'])) {
             $message = $_POST['message'] ?? '';
 
             if ($login !== '' && $message !== '') {
+                $message = trim($message);
                 if (!$messenger->sendMessage($login, $message)) {
                     $errorLogs->addServerError('Message not send');
                 };
@@ -72,16 +73,6 @@ if (isset($_POST['command'])) {
                 echo $messenger->readMessages($lastMessageTime);
                 return;
             }
-            break;
-        case 'check':
-            $lastMessageTime = $_POST['lastTime'] ?? '';
-            $login = $_SESSION['login'] ?? '';
-
-            if ($lastMessageTime !== '' && $login !== '') {
-                echo($messenger->checkChanges($lastMessageTime));
-                return;
-            }
-            exit('logout');
             break;
         default:
             $errorLogs->addServerError('Error command');

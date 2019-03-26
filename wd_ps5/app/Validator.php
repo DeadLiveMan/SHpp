@@ -56,7 +56,7 @@ class Validator
         $this->checkPassword($password);
         $this->checkLoginLength($login);
         $this->checkPasswordLength($password);
-        return $this->errorLogs->isSuccess();
+        return !$this->errorLogs->isError();
     }
 
 }

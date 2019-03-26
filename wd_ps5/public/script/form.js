@@ -22,10 +22,8 @@ window.onload = function () {
     const CLASS_NOT_VALID = 'not-valid';
     const CLASS_VALID = 'valid';
 
-    let validLogin = true;
-    let validPassword = true;
-
-    const ajax = new AjaxPOST(HANDLER_PATH);
+    let validLogin = false;
+    let validPassword = false;
 
     INPUT_LOGIN.setAttribute('placeholder', `${MIN_LOGIN_LENGTH} - ${MAX_LOGIN_LENGTH} symbols`);
     INPUT_PASSWORD.setAttribute('placeholder', `${MIN_PASSWORD_LENGTH} - ${MAX_PASSWORD_LENGTH} symbols`);
@@ -44,45 +42,51 @@ window.onload = function () {
 
         if(!validLogin) {
             LOGIN_TEXT.innerText = INCORRECT_INPUT_MESSAGE;
-            INPUT_LOGIN.setAttribute('class', CLASS_NOT_VALID);
         }
 
         if(!validPassword) {
             PASSWORD_TEXT.innerText = INCORRECT_INPUT_MESSAGE;
-            INPUT_PASSWORD.setAttribute('class', CLASS_NOT_VALID);
         }
 
         if (!validLogin || !validPassword) {
             return;
         }
 
-        let params = [];
-        params['command'] = COMMAND_AUTHORIZED;
-        params['login'] = INPUT_LOGIN.value;
-        params['pass'] = INPUT_PASSWORD.value;
-
-        ajax.send(params, function (response) {
+        $.ajax({
+            method: "POST",
+            url: HANDLER_PATH,
+            data: {
+                command: COMMAND_AUTHORIZED,
+                login: INPUT_LOGIN.value,
+                pass: INPUT_PASSWORD.value
+            }
+        }).done(function (response) {
+            if (response === null) {
+                location.reload();
+            }
             response = JSON.parse(response);
-            if(response['success']) {
+            if(!response['isError']) {
                 INPUT_PASSWORD.setAttribute('class', CLASS_VALID);
                 PASSWORD_TEXT.innerText = '';
                 location.reload();
             } else {
-                if (response['messages'] && response['messages']['login']) {
+                if (response['data'] && response['data']['login']) {
                     INPUT_LOGIN.setAttribute('class', CLASS_NOT_VALID);
-                    LOGIN_TEXT.innerText = response['messages']['login'];
+                    LOGIN_TEXT.innerText = response['data']['login'];
                 }
-                if (response['messages'] && response['messages']['pass']) {
+                if (response['data'] && response['data']['pass']) {
                     INPUT_PASSWORD.setAttribute('class', CLASS_NOT_VALID);
-                    PASSWORD_TEXT.innerText = response['messages']['pass'];
+                    PASSWORD_TEXT.innerText = response['data']['pass'];
                 }
             }
+        }).fail(function() {
+            alert("Service is temporarily unavailable");
         });
     };
 
     // check inputs
     function validateInput(elementInput, minValue, maxValue, reg) {
-        const validSymbols = (reg).test(elementInput.value);
+        const validSymbols = reg.test(elementInput.value);
         if (elementInput.value.length >= minValue && elementInput.value.length <= maxValue && validSymbols) {
             elementInput.setAttribute('class', CLASS_VALID);
             return true;

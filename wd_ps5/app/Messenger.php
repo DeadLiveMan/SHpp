@@ -20,9 +20,4 @@ class Messenger
     {
         return $this->dbMessageHandler->read($timeLastMessage);
     }
-
-    public function checkChanges($value)
-    {
-        return $this->dbMessageHandler->checkChanges($value);
-    }
 }

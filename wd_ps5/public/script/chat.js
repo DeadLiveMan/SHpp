@@ -8,76 +8,92 @@ window.onload = function() {
     const SMILE_GOOD = "<img class='smiles' src='img/good.png'>";
     const SMILE_SAD = "<img class='smiles' src='img/sad.png'>";
 
-    const COMMAND_LOGOUT = {"command":'logout'};
-    const COMMAND_MESSAGE = {"command":'send'};
-    const COMMAND_READ_MESSAGE = {"command": 'read'};
-    const COMMAND_CHECK_MESSAGE = {"command": 'check'};
+    const TIME_INTERVAL_REQUEST = 1000;
 
-    let lastTimeMessage = 0;
+    let lastTime = 0;
 
-    const ajax = new AjaxPOST(HANDLER_PATH);
+    function readMessages(callback = function(){}) {
+        $.ajax({
+            method: "POST",
+            url: HANDLER_PATH,
+            data: {
+                command: 'read',
+                lastTime : lastTime
+            }
+        }).done(function(response) {
+            if (JSON.parse(response)['data'] && !JSON.parse(response)['data']['login']) {
+                location.reload();
+                return;
+            }
+            if (response.length > 0) {
+                const messages = JSON.parse(response);
+                if (messages.length > 0) {
+                    appendMessages(messages);
+                    CHAT_BOX.scrollTop = CHAT_BOX.scrollHeight
+                }
+            }
+        }).always(function() {callback()});
+    }
+
+    const intervalRequest = function interval() {
+        setTimeout(function () {
+            readMessages(intervalRequest);
+        }, TIME_INTERVAL_REQUEST);
+    };
+
+    // first run for recursion
+    intervalRequest();
 
     // event button logout
     LOGOUT_BUTTON.onclick = function () {
-        ajax.send(COMMAND_LOGOUT, location.reload());
-    };
+        $.ajax({
+                method: "POST",
+                url: HANDLER_PATH,
+                data: { command: 'logout' }
+            }).done(function() {
+                location.reload();
+            })
+        };
 
-    // event button on click
+    // event button on click - send message
     CHAT_BUTTON.onclick = function () {
-        if (MESSAGE_INPUT.value === '') {
+        if (MESSAGE_INPUT.value.replace(/\s/g,'') === '') {
+            MESSAGE_INPUT.value = "";
             return;
         }
-        COMMAND_MESSAGE['message'] = encodeURIComponent(MESSAGE_INPUT.value);
-        ajax.send(COMMAND_MESSAGE);
+
+        $.ajax({
+            method: "POST",
+            url: HANDLER_PATH,
+            data: {
+                command: 'send',
+                message: MESSAGE_INPUT.value
+            }
+        }).done(function() {
+            readMessages();
+        });
         MESSAGE_INPUT.value = "";
     };
 
-    function readMessages(lastTimeMessage = 0) {
-        COMMAND_READ_MESSAGE['lastTime'] = encodeURIComponent(lastTimeMessage.toString());
-        ajax.send(COMMAND_READ_MESSAGE, function (response) {
-            const messages = JSON.parse(response);
-            if (messages.length > 0) {
-                appendMessages(messages);
-                CHAT_BOX.scrollTop = CHAT_BOX.scrollHeight
-            }
-        });
-    }
-
-    readMessages(lastTimeMessage);
-
-    let interval = function interval() {
-        setTimeout(function () {
-            console.log("test");
-            COMMAND_CHECK_MESSAGE['lastTime'] = encodeURIComponent(lastTimeMessage.toString());
-            ajax.send(COMMAND_CHECK_MESSAGE, function (response) {
-                if (response === 'logout') {
-                    location.reload();
-                    return;
-                }
-                if (+response !== lastTimeMessage) {
-                    readMessages(lastTimeMessage);
-                }
-                interval();
-            });
-        }, 1000);
-    };
-    interval();
-
-    function appendMessages(messages) {
+    function appendMessages(data) {
         let elementMessage;
-        for (let i = 0; i < messages.length; i++) {
+        for (let i = 0; i < data.length; i++) {
+            // dropped duplicated messages
+            if (data[i]['time'] <= lastTime) {
+                continue;
+            }
             elementMessage = document.createElement("div");
-            let date = new Date(messages[i][0]);
+            let date = new Date(data[i]['time']);
             let time = date.getHours().toString().padStart(2, "0")
                 + ':' + date.getMinutes().toString().padStart(2, "0")
                 + ':' + date.getSeconds().toString().padStart(2, "0");
             // replace smiles
-            messages[i][2] = replacementSmiles(messages[i][2]);
+            data[i]['message'] = replacementSmiles(data[i]['message']);
             elementMessage.innerHTML =
-                `<div class="user">[${time}] ${messages[i][1]}:</div><div class="message">${messages[i][2]}</div>`;
+                `<div class="user">[${time}] ${data[i]['user']}:</div><div class="message">${data[i]['message']}</div>`;
             CHAT_BOX.appendChild(elementMessage);
-            lastTimeMessage = +messages[i][0];
         }
+        lastTime = +data[data.length - 1]['time'];
     }
 
     function replacementSmiles(message) {
