@@ -10,36 +10,59 @@ const IMAGES = [
     '?image=1039'
 ];
 
+const KEY_CODE_LEFT = 37;
+const KEY_CODE_RIGHT = 39;
+
 let index = 0;
 
 const SLIDER_CURRENT = $('.slider-current');
 const SLIDER_PREVIEW = $('.slider-previews');
 
+// create slider/preview elements
 $(IMAGES).each(function (index) {
-    SLIDER_CURRENT.append('<img src="' + API_URL + BIG_SIZE + IMAGES[index] + '" alt="0" style="display:none">');
-    SLIDER_PREVIEW.append($('<li>').append($('<img src="' + API_URL + SMALL_SIZE + IMAGES[index] + '">')).on('click', function () {
+    const sliderImages = document.createElement('img');
+    $(sliderImages).attr({
+        src : API_URL + BIG_SIZE + IMAGES[index],
+        alt : 'image',
+        style : 'display : none'
+    });
+    SLIDER_CURRENT.append(sliderImages);
+
+    const li = document.createElement('li');
+    const previewImage = document.createElement('img');
+    $(previewImage).attr({src : API_URL + SMALL_SIZE + IMAGES[index]});
+    $(li).append(previewImage);
+    $(SLIDER_PREVIEW).append(li);
+
+    // add event to li
+    $(li).on('click', function () {
         sliding(index);
-    }));
+    });
 });
 
 const CURRENT_IMAGES = $('.slider-current img');
 sliding(0);
 
 $(document).keydown(function (e) {
-    if (e.which === 37) {
+    if (e.which === KEY_CODE_LEFT) {
         index--;
-        if (index < 0) {
-            index = IMAGES.length - 1;
-        }
     }
-    if(e.which === 39) {
+    if(e.which === KEY_CODE_RIGHT) {
         index++;
-        if (index >= IMAGES.length) {
-            index = 0;
-        }
     }
+    index = correctionIndex(index);
     sliding(index);
 });
+
+function correctionIndex(index) {
+    if (index < 0) {
+        return IMAGES.length - 1;
+    }
+    if (index >= IMAGES.length) {
+        return 0;
+    }
+    return index;
+}
 
 function sliding(indexSlider) {
     index = indexSlider;
