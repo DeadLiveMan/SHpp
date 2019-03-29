@@ -15,8 +15,11 @@ const KEY_CODE_RIGHT = 39;
 
 let index = 0;
 
-const SLIDER_CURRENT = $('.slider-current');
-const SLIDER_PREVIEW = $('.slider-previews');
+const CURRENT_PREVIEW_CLASS = 'current';
+const CURRENT_IMAGES_CLASS = '.slider-current img';
+
+const CURRENT_SLIDER = $('.slider-current');
+const PREVIEW_SLIDER = $('.slider-previews');
 
 // create slider/preview elements
 $(IMAGES).each(function (index) {
@@ -26,21 +29,20 @@ $(IMAGES).each(function (index) {
         alt : 'image',
         style : 'display : none'
     });
-    SLIDER_CURRENT.append(sliderImages);
+    CURRENT_SLIDER.append(sliderImages);
 
     const li = document.createElement('li');
     const previewImage = document.createElement('img');
     $(previewImage).attr({src : API_URL + SMALL_SIZE + IMAGES[index]});
     $(li).append(previewImage);
-    $(SLIDER_PREVIEW).append(li);
+    $(PREVIEW_SLIDER).append(li);
 
     // add event to li
     $(li).on('click', function () {
         sliding(index);
     });
 });
-
-const CURRENT_IMAGES = $('.slider-current img');
+const CURRENT_IMAGES = $(CURRENT_IMAGES_CLASS);
 sliding(0);
 
 $(document).keydown(function (e) {
@@ -67,10 +69,10 @@ function correctionIndex(index) {
 function sliding(indexSlider) {
     index = indexSlider;
     for (let i = 0; i < IMAGES.length; i++) {
-        $(SLIDER_PREVIEW[0].childNodes[i]).removeClass('current');
+        $(PREVIEW_SLIDER[0].childNodes[i]).removeClass(CURRENT_PREVIEW_CLASS);
         $(CURRENT_IMAGES[i]).hide();
     }
-    $(SLIDER_PREVIEW[0].childNodes[indexSlider]).addClass('current');
+    $(PREVIEW_SLIDER[0].childNodes[indexSlider]).addClass(CURRENT_PREVIEW_CLASS);
     $(CURRENT_IMAGES[indexSlider]).show();
 }
 
