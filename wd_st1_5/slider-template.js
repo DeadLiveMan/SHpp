@@ -20,6 +20,7 @@ const CURRENT_IMAGES_CLASS = '.slider-current img';
 
 const CURRENT_SLIDER = $('.slider-current');
 const PREVIEW_SLIDER = $('.slider-previews');
+const IMAGES_COUNT = IMAGES.length;
 
 // create slider/preview elements
 $(IMAGES).each(function (index) {
@@ -37,7 +38,7 @@ $(IMAGES).each(function (index) {
     $(li).append(previewImage);
     $(PREVIEW_SLIDER).append(li);
 
-    // add event to li
+    // add event to li element
     $(li).on('click', function () {
         sliding(index);
     });
@@ -58,9 +59,9 @@ $(document).keydown(function (e) {
 
 function correctionIndex(index) {
     if (index < 0) {
-        return IMAGES.length - 1;
+        return IMAGES_COUNT - 1;
     }
-    if (index >= IMAGES.length) {
+    if (index >= IMAGES_COUNT) {
         return 0;
     }
     return index;
@@ -68,7 +69,7 @@ function correctionIndex(index) {
 
 function sliding(indexSlider) {
     index = indexSlider;
-    for (let i = 0; i < IMAGES.length; i++) {
+    for (let i = 0; i < IMAGES_COUNT; i++) {
         $(PREVIEW_SLIDER[0].childNodes[i]).removeClass(CURRENT_PREVIEW_CLASS);
         $(CURRENT_IMAGES[i]).hide();
     }
