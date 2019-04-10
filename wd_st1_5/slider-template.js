@@ -1,4 +1,4 @@
-window.onload = function() {
+$(function() {
     const API_URL = 'https://picsum.photos/';
     const BIG_SIZE = '600/400';
     const SMALL_SIZE = '60';
@@ -68,4 +68,4 @@ window.onload = function() {
         $('.current').removeClass(CURRENT_PREVIEW_CLASS);
         $($('.slider-previews li')[index]).addClass(CURRENT_PREVIEW_CLASS);
     }
-};
+});
