@@ -36,9 +36,9 @@ $(function() {
         });
     });
 
-    const sliderImages = document.createElement('img');
-    $(sliderImages).attr({src : API_URL + BIG_SIZE + IMAGES[index]});
-    currentSlider.append(sliderImages);
+    const sliderImage = document.createElement('img');
+    $(sliderImage).attr({src : API_URL + BIG_SIZE + IMAGES[index]});
+    currentSlider.append(sliderImage);
     sliding(index);
 
     $(document).keydown(function (e) {
@@ -63,7 +63,7 @@ $(function() {
     }
 
     function sliding(indexSlider) {
-        $(sliderImages).attr({src : API_URL + BIG_SIZE + IMAGES[indexSlider]});
+        $(sliderImage).attr({src : API_URL + BIG_SIZE + IMAGES[indexSlider]});
         index = indexSlider;
         $('.current').removeClass(CURRENT_PREVIEW_CLASS);
         $($('.slider-previews li')[index]).addClass(CURRENT_PREVIEW_CLASS);
