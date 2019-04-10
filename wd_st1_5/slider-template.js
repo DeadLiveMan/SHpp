@@ -10,6 +10,7 @@ window.onload = function() {
         '?image=1050',
         '?image=1039'
     ];
+    const IMAGES_COUNT = IMAGES.length;
 
     const KEY_CODE_LEFT = 37;
     const KEY_CODE_RIGHT = 39;
@@ -17,35 +18,28 @@ window.onload = function() {
     let index = 0;
 
     const CURRENT_PREVIEW_CLASS = 'current';
-    const CURRENT_IMAGES_CLASS = '.slider-current img';
 
-    const CURRENT_SLIDER = $('.slider-current');
-    const PREVIEW_SLIDER = $('.slider-previews');
-    const IMAGES_COUNT = IMAGES.length;
+    const currentSlider = $('.slider-current');
+    const previewSlider = $('.slider-previews');
 
-// create slider/preview elements
+// create preview elements
     $(IMAGES).each(function (index) {
-        const sliderImages = document.createElement('img');
-        $(sliderImages).attr({
-            src : API_URL + BIG_SIZE + IMAGES[index],
-            alt : 'image',
-            style : 'display : none'
-        });
-        CURRENT_SLIDER.append(sliderImages);
-
         const li = document.createElement('li');
         const previewImage = document.createElement('img');
         $(previewImage).attr({src : API_URL + SMALL_SIZE + IMAGES[index]});
         $(li).append(previewImage);
-        $(PREVIEW_SLIDER).append(li);
+        $(previewSlider).append(li);
 
         // add event to li element
         $(li).on('click', function () {
             sliding(index);
         });
     });
-    const CURRENT_IMAGES = $(CURRENT_IMAGES_CLASS);
-    sliding(0);
+
+    const sliderImages = document.createElement('img');
+    $(sliderImages).attr({src : API_URL + BIG_SIZE + IMAGES[index]});
+    currentSlider.append(sliderImages);
+    sliding(index);
 
     $(document).keydown(function (e) {
         if (e.which === KEY_CODE_LEFT) {
@@ -69,12 +63,9 @@ window.onload = function() {
     }
 
     function sliding(indexSlider) {
+        $(sliderImages).attr({src : API_URL + BIG_SIZE + IMAGES[indexSlider]});
         index = indexSlider;
-        for (let i = 0; i < IMAGES_COUNT; i++) {
-            $(PREVIEW_SLIDER[0].childNodes[i]).removeClass(CURRENT_PREVIEW_CLASS);
-            $(CURRENT_IMAGES[i]).hide();
-        }
-        $(PREVIEW_SLIDER[0].childNodes[indexSlider]).addClass(CURRENT_PREVIEW_CLASS);
-        $(CURRENT_IMAGES[indexSlider]).show();
+        $('.current').removeClass(CURRENT_PREVIEW_CLASS);
+        $($('.slider-previews li')[index]).addClass(CURRENT_PREVIEW_CLASS);
     }
 };
