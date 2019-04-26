@@ -1,14 +1,19 @@
 <?php
 
 define('APP_DIRECTORY', dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'app');
-define('SHOW_MESSAGE_LAST_HOURS', 1);                                                                                   // show message last x hours
+define('SHOW_MESSAGE_LAST_HOURS', 1);                                                       // show message last x hours
 $config = require APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY_SEPARATOR . 'config.php';
 session_start();
 
 // classes autoloader
 use App\{ ErrorLogs, Messenger, JsonMessagesDataBase, UserHandler, JsonUsersDataBase, Validator };
 spl_autoload_register(function ($className) {
-    require_once(dirname( __DIR__ ,1) . DIRECTORY_SEPARATOR . str_replace('\\', DIRECTORY_SEPARATOR ,$className) . '.php');
+    require_once(
+        dirname( __DIR__ ,1)
+        . DIRECTORY_SEPARATOR
+        . str_replace('\\', DIRECTORY_SEPARATOR ,$className)
+        . '.php'
+    );
 });
 
 $errorLogs = new ErrorLogs();

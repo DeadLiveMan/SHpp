@@ -1,4 +1,4 @@
-window.onload = function () {
+$(function () {
 
     const HANDLER_PATH = 'handler.php';
 
@@ -53,7 +53,7 @@ window.onload = function () {
         }
 
         $.ajax({
-            method: "POST",
+            method: 'POST',
             url: HANDLER_PATH,
             data: {
                 command: COMMAND_AUTHORIZED,
@@ -80,7 +80,7 @@ window.onload = function () {
                 }
             }
         }).fail(function() {
-            alert("Service is temporarily unavailable");
+            alert('Service is temporarily unavailable');
         });
     };
 
@@ -94,4 +94,4 @@ window.onload = function () {
         elementInput.setAttribute('class', CLASS_NOT_VALID);
         return false;
     }
-};
+});

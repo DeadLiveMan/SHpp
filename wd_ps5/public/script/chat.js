@@ -1,12 +1,12 @@
 window.onload = function() {
     const HANDLER_PATH = 'handler.php';
-    const CHAT_BOX = document.getElementById("chat-box");
+    const CHAT_BOX = document.getElementById('chat-box');
     const MESSAGE_INPUT = document.getElementById('message');
     const CHAT_BUTTON = document.getElementById('send-message');
     const LOGOUT_BUTTON = document.getElementById('logout-button');
 
-    const SMILE_GOOD = "<img class='smiles' src='img/good.png'>";
-    const SMILE_SAD = "<img class='smiles' src='img/sad.png'>";
+    const SMILE_GOOD = '<img class="smiles" src="img/good.png">';
+    const SMILE_SAD = '<img class="smiles" src="img/sad.png">';
 
     const TIME_INTERVAL_REQUEST = 1000;
 
@@ -14,7 +14,7 @@ window.onload = function() {
 
     function readMessages(callback = function(){}) {
         $.ajax({
-            method: "POST",
+            method: 'POST',
             url: HANDLER_PATH,
             data: {
                 command: 'read',
@@ -47,7 +47,7 @@ window.onload = function() {
     // event button logout
     LOGOUT_BUTTON.onclick = function () {
         $.ajax({
-                method: "POST",
+                method: 'POST',
                 url: HANDLER_PATH,
                 data: { command: 'logout' }
             }).done(function() {
@@ -63,7 +63,7 @@ window.onload = function() {
         }
 
         $.ajax({
-            method: "POST",
+            method: 'POST',
             url: HANDLER_PATH,
             data: {
                 command: 'send',
@@ -72,7 +72,7 @@ window.onload = function() {
         }).done(function() {
             readMessages();
         });
-        MESSAGE_INPUT.value = "";
+        MESSAGE_INPUT.value = '';
     };
 
     function appendMessages(data) {
@@ -82,11 +82,11 @@ window.onload = function() {
             if (data[i]['time'] <= lastTime) {
                 continue;
             }
-            elementMessage = document.createElement("div");
+            elementMessage = document.createElement('div');
             let date = new Date(data[i]['time']);
-            let time = date.getHours().toString().padStart(2, "0")
-                + ':' + date.getMinutes().toString().padStart(2, "0")
-                + ':' + date.getSeconds().toString().padStart(2, "0");
+            let time = date.getHours().toString().padStart(2, '0')
+                + ':' + date.getMinutes().toString().padStart(2, '0')
+                + ':' + date.getSeconds().toString().padStart(2, '0');
             // replace smiles
             data[i]['message'] = replacementSmiles(data[i]['message']);
             elementMessage.innerHTML =
