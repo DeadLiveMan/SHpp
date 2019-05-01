@@ -7,48 +7,47 @@ $(function () {
     const MIN_PASSWORD_LENGTH = 3;
     const MAX_PASSWORD_LENGTH = 16;
 
-    const INPUT_LOGIN = document.getElementById('login');
-    const INPUT_PASSWORD = document.getElementById('password');
-    const SUBMIT_BUTTON = document.getElementById('submit');
-    const LOGIN_TEXT = document.getElementById('login-info');
-    const PASSWORD_TEXT = document.getElementById('password-info');
+    const INPUT_LOGIN = $('#login');
+    const INPUT_PASSWORD = $('#password');
+    const SUBMIT_BUTTON = $('#submit');
+    const LOGIN_TEXT = $('#login-info');
+    const PASSWORD_TEXT = $('#password-info');
 
     const VALID_LOGIN = /(^[a-zA-Z]+([a-zA-Z0-9][\s]?)*$)/;
     const VALID_PASSWORD = /(^[a-zA-Z0-9]+$)/;
 
     const COMMAND_AUTHORIZED = 'auth';
 
-    const INCORRECT_INPUT_MESSAGE = 'Incorrect input';
     const CLASS_NOT_VALID = 'not-valid';
     const CLASS_VALID = 'valid';
 
-    let validLogin = false;
-    let validPassword = false;
+    let passwordErrorMessage = 'empty password';
+    let loginErrorMessage = 'empty login';
 
-    INPUT_LOGIN.setAttribute('placeholder', `${MIN_LOGIN_LENGTH} - ${MAX_LOGIN_LENGTH} symbols`);
-    INPUT_PASSWORD.setAttribute('placeholder', `${MIN_PASSWORD_LENGTH} - ${MAX_PASSWORD_LENGTH} symbols`);
+    INPUT_LOGIN.attr('placeholder', `${MIN_LOGIN_LENGTH} - ${MAX_LOGIN_LENGTH} symbols`);
+    INPUT_PASSWORD.attr('placeholder', `${MIN_PASSWORD_LENGTH} - ${MAX_PASSWORD_LENGTH} symbols`);
 
-    INPUT_LOGIN.oninput = function () {
-        validLogin = validateInput(this, MIN_LOGIN_LENGTH, MAX_LOGIN_LENGTH, VALID_LOGIN);
-    };
+    INPUT_LOGIN.on('input', function () {
+        loginErrorMessage = checkInputError(this, MIN_LOGIN_LENGTH, MAX_LOGIN_LENGTH, VALID_LOGIN);
+    });
 
-    INPUT_PASSWORD.oninput = function () {
-        validPassword = validateInput(this, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, VALID_PASSWORD);
-    };
+    INPUT_PASSWORD.on('input', function () {
+        passwordErrorMessage = checkInputError(this, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, VALID_PASSWORD);
+    });
 
-    SUBMIT_BUTTON.onclick = function() {
-        LOGIN_TEXT.innerText = '';
-        PASSWORD_TEXT.innerText = '';
+    SUBMIT_BUTTON.on('click', function() {
+        LOGIN_TEXT[0].innerText = '';
+        PASSWORD_TEXT[0].innerText = '';
 
-        if(!validLogin) {
-            LOGIN_TEXT.innerText = INCORRECT_INPUT_MESSAGE;
+        if(loginErrorMessage) {
+            LOGIN_TEXT[0].innerText = loginErrorMessage;
         }
 
-        if(!validPassword) {
-            PASSWORD_TEXT.innerText = INCORRECT_INPUT_MESSAGE;
+        if(passwordErrorMessage) {
+            PASSWORD_TEXT[0].innerText = passwordErrorMessage;
         }
 
-        if (!validLogin || !validPassword) {
+        if (loginErrorMessage || passwordErrorMessage) {
             return;
         }
 
@@ -57,8 +56,8 @@ $(function () {
             url: HANDLER_PATH,
             data: {
                 command: COMMAND_AUTHORIZED,
-                login: INPUT_LOGIN.value,
-                pass: INPUT_PASSWORD.value
+                login: INPUT_LOGIN[0].value,
+                pass: INPUT_PASSWORD[0].value
             }
         }).done(function (response) {
             if (response === null) {
@@ -66,32 +65,35 @@ $(function () {
             }
             response = JSON.parse(response);
             if(!response['isError']) {
-                INPUT_PASSWORD.setAttribute('class', CLASS_VALID);
-                PASSWORD_TEXT.innerText = '';
+                INPUT_PASSWORD.attr('class', CLASS_VALID);
+                PASSWORD_TEXT[0].innerText = '';
                 location.reload();
             } else {
                 if (response['data'] && response['data']['login']) {
-                    INPUT_LOGIN.setAttribute('class', CLASS_NOT_VALID);
-                    LOGIN_TEXT.innerText = response['data']['login'];
+                    INPUT_LOGIN.attr('class', CLASS_NOT_VALID);
+                    LOGIN_TEXT[0].innerText = response['data']['login'];
                 }
                 if (response['data'] && response['data']['pass']) {
-                    INPUT_PASSWORD.setAttribute('class', CLASS_NOT_VALID);
-                    PASSWORD_TEXT.innerText = response['data']['pass'];
+                    INPUT_PASSWORD.attr('class', CLASS_NOT_VALID);
+                    PASSWORD_TEXT[0].innerText = response['data']['pass'];
                 }
             }
         }).fail(function() {
             alert('Service is temporarily unavailable');
         });
-    };
+    });
 
-    // check inputs
-    function validateInput(elementInput, minValue, maxValue, reg) {
-        const validSymbols = reg.test(elementInput.value);
-        if (elementInput.value.length >= minValue && elementInput.value.length <= maxValue && validSymbols) {
-            elementInput.setAttribute('class', CLASS_VALID);
-            return true;
+    function checkInputError(elementInput, minValue, maxValue, reg) {
+
+        if (elementInput.value.length < minValue || elementInput.value.length > maxValue) {
+            elementInput.setAttribute('class', CLASS_NOT_VALID);
+            return 'length must be: ' + minValue + ' - ' + maxValue + ' symbols';
         }
-        elementInput.setAttribute('class', CLASS_NOT_VALID);
+        if (!reg.test(elementInput.value)) {
+            elementInput.setAttribute('class', CLASS_NOT_VALID);
+            return 'only latin and numbers' + ((reg === VALID_LOGIN) ? ', first symbol must be letter' : '');
+        }
+        elementInput.setAttribute('class', CLASS_VALID);
         return false;
     }
 });

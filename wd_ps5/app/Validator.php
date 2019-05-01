@@ -58,5 +58,4 @@ class Validator
         $this->checkPasswordLength($password);
         return !$this->errorLogs->isError();
     }
-
 }

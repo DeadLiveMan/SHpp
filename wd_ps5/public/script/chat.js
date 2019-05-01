@@ -1,9 +1,11 @@
 window.onload = function() {
     const HANDLER_PATH = 'handler.php';
-    const CHAT_BOX = document.getElementById('chat-box');
-    const MESSAGE_INPUT = document.getElementById('message');
-    const CHAT_BUTTON = document.getElementById('send-message');
-    const LOGOUT_BUTTON = document.getElementById('logout-button');
+    const CHAT_BOX = $('#chat-box');
+    const MESSAGE_INPUT = $('#message');
+    const CHAT_BUTTON = $('#send-message');
+    const LOGOUT_BUTTON = $('#logout-button');
+    const labelError = $('.error');
+    const timeActualMessages = 60000 * 60;
 
     const SMILE_GOOD = '<img class="smiles" src="img/good.png">';
     const SMILE_SAD = '<img class="smiles" src="img/sad.png">';
@@ -29,15 +31,20 @@ window.onload = function() {
                 const messages = JSON.parse(response);
                 if (messages.length > 0) {
                     appendMessages(messages);
-                    CHAT_BOX.scrollTop = CHAT_BOX.scrollHeight
+                    CHAT_BOX[0].scrollTop = CHAT_BOX[0].scrollHeight
                 }
             }
-        }).always(function() {callback()});
+            labelError[0].innerText = '';
+        }).always(function() {callback()}).fail(function() {
+            labelError[0].innerText = 'Service is temporarily unavailable';
+            console.log(labelError[0].value);
+        });
     }
 
     const intervalRequest = function interval() {
         setTimeout(function () {
             readMessages(intervalRequest);
+            //removeOldMessages();
         }, TIME_INTERVAL_REQUEST);
     };
 
@@ -45,20 +52,20 @@ window.onload = function() {
     intervalRequest();
 
     // event button logout
-    LOGOUT_BUTTON.onclick = function () {
+    LOGOUT_BUTTON.on('click', function () {
         $.ajax({
-                method: 'POST',
-                url: HANDLER_PATH,
-                data: { command: 'logout' }
-            }).done(function() {
-                location.reload();
-            })
-        };
+            method: 'POST',
+            url: HANDLER_PATH,
+            data: { command: 'logout' }
+        }).done(function() {
+            location.reload();
+        })
+    });
 
     // event button on click - send message
-    CHAT_BUTTON.onclick = function () {
-        if (MESSAGE_INPUT.value.replace(/\s/g,'') === '') {
-            MESSAGE_INPUT.value = "";
+    CHAT_BUTTON.on('click', function () {
+        if (MESSAGE_INPUT[0].value.replace(/\s/g,'') === '') {
+            MESSAGE_INPUT[0].value = "";
             return;
         }
 
@@ -67,13 +74,13 @@ window.onload = function() {
             url: HANDLER_PATH,
             data: {
                 command: 'send',
-                message: MESSAGE_INPUT.value
+                message: MESSAGE_INPUT[0].value
             }
         }).done(function() {
             readMessages();
         });
-        MESSAGE_INPUT.value = '';
-    };
+        MESSAGE_INPUT[0].value = '';
+    });
 
     function appendMessages(data) {
         let elementMessage;
@@ -90,10 +97,15 @@ window.onload = function() {
             // replace smiles
             data[i]['message'] = replacementSmiles(data[i]['message']);
             elementMessage.innerHTML =
-                `<div class="user">[${time}] ${data[i]['user']}:</div><div class="message">${data[i]['message']}</div>`;
-            CHAT_BOX.appendChild(elementMessage);
+                `<div class="time">[${time}]</div><div class="user">${data[i]['user']}:</div><div class="message">${data[i]['message']}</div>`;
+            CHAT_BOX.append(elementMessage);
         }
         lastTime = +data[data.length - 1]['time'];
+    }
+
+    function removeOldMessages() {
+        const nowDate = new Date();
+        console.log(new Date(CHAT_BOX[0].firstChild.firstChild.textContent.substr(1, 8)));
     }
 
     function replacementSmiles(message) {
