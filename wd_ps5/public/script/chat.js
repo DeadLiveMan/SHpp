@@ -1,10 +1,11 @@
 window.onload = function() {
     const HANDLER_PATH = 'handler.php';
-    const CHAT_BOX = $('#chat-box');
-    const MESSAGE_INPUT = $('#message');
-    const CHAT_BUTTON = $('#send-message');
-    const LOGOUT_BUTTON = $('#logout-button');
-    const labelError = $('.error')[0];
+    const chatBox = $('#chat-box');
+    const messageInput = $('#message');
+    const chatButton = $('#send-message');
+    const logoutButton = $('#logout-button');
+    const labelError = $('.error');
+    const mainText = $('.main-text');
 
     const SMILE_GOOD = '<img class="smiles" src="img/good.png">';
     const SMILE_SAD = '<img class="smiles" src="img/sad.png">';
@@ -13,6 +14,8 @@ window.onload = function() {
     const MAX_MESSAGE_LENGTH = 255;
 
     let lastTime = 0;
+
+    mainText.text('Hello ');
 
     function readMessages(callback = function(){}) {
         $.ajax({
@@ -31,18 +34,18 @@ window.onload = function() {
                 const messages = JSON.parse(response);
                 if (messages.length > 0) {
                     appendMessages(messages);
-                    CHAT_BOX[0].scrollTop = CHAT_BOX[0].scrollHeight
+                    chatBox[0].scrollTop = chatBox[0].scrollHeight
                 }
             }
-            if (labelError.innerText) {
-                labelError.innerText = '';
+            if (labelError.text()) {
+                labelError.text('');
             }
 
         }).always(function() {
             callback();
         }).fail(function() {
-            if (labelError.innerText === '') {
-                labelError.innerText = 'Service is temporarily unavailable';
+            if (labelError.text() === '') {
+                labelError.text('Service is temporarily unavailable');
             }
         });
     }
@@ -57,7 +60,7 @@ window.onload = function() {
     intervalRequest();
 
     // event button logout
-    LOGOUT_BUTTON.on('click', function () {
+    logoutButton.on('click', function () {
         $.ajax({
             method: 'POST',
             url: HANDLER_PATH,
@@ -68,15 +71,15 @@ window.onload = function() {
     });
 
     // event button on click - send message
-    CHAT_BUTTON.on('click', function () {
-        if (MESSAGE_INPUT[0].value.replace(/\s/g,'') === '') {
-            MESSAGE_INPUT[0].value = '';
+    chatButton.on('click', function () {
+        if (messageInput.val().replace(/\s/g,'') === '') {
+            messageInput.val('');
             return;
         }
 
-        if (MESSAGE_INPUT[0].value.length > MAX_MESSAGE_LENGTH) {
+        if (messageInput.val().length > MAX_MESSAGE_LENGTH) {
             alert('to long message, maximum ' + MAX_MESSAGE_LENGTH + ' symbols, delete please '
-                + (MESSAGE_INPUT[0].value.length - MAX_MESSAGE_LENGTH)  + ' symbols');
+                + (messageInput.val().length - MAX_MESSAGE_LENGTH)  + ' symbols');
             return;
         }
 
@@ -85,10 +88,10 @@ window.onload = function() {
             url: HANDLER_PATH,
             data: {
                 command: 'send',
-                message: MESSAGE_INPUT[0].value
+                message: messageInput.val()
             }
         }).done(function() {
-            MESSAGE_INPUT[0].value = '';
+            messageInput.val('');
             readMessages();
         });
     });
@@ -109,7 +112,7 @@ window.onload = function() {
             data[i]['message'] = replacementSmiles(data[i]['message']);
             elementMessage.innerHTML =
                 `<div class="time">[${time}]</div><div class="user">${data[i]['user']}:</div><div class="message">${data[i]['message']}</div>`;
-            CHAT_BOX.append(elementMessage);
+            chatBox.append(elementMessage);
         }
         lastTime = +data[data.length - 1]['time'];
     }

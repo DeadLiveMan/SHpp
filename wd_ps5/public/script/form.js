@@ -36,15 +36,15 @@ $(function () {
     });
 
     SUBMIT_BUTTON.on('click', function() {
-        LOGIN_TEXT[0].innerText = '';
-        PASSWORD_TEXT[0].innerText = '';
+        LOGIN_TEXT.text('');
+        PASSWORD_TEXT.text('');
 
         if(loginErrorMessage) {
-            LOGIN_TEXT[0].innerText = loginErrorMessage;
+            LOGIN_TEXT.text(loginErrorMessage);
         }
 
         if(passwordErrorMessage) {
-            PASSWORD_TEXT[0].innerText = passwordErrorMessage;
+            PASSWORD_TEXT.text(passwordErrorMessage);
         }
 
         if (loginErrorMessage || passwordErrorMessage) {
@@ -56,8 +56,8 @@ $(function () {
             url: HANDLER_PATH,
             data: {
                 command: COMMAND_AUTHORIZED,
-                login: INPUT_LOGIN[0].value,
-                pass: INPUT_PASSWORD[0].value
+                login: INPUT_LOGIN.val(),
+                pass: INPUT_PASSWORD.val()
             }
         }).done(function (response) {
             if (response === null) {
@@ -66,16 +66,16 @@ $(function () {
             response = JSON.parse(response);
             if(!response['isError']) {
                 INPUT_PASSWORD.attr('class', CLASS_VALID);
-                PASSWORD_TEXT[0].innerText = '';
+                PASSWORD_TEXT.text('');
                 location.reload();
             } else {
                 if (response['data'] && response['data']['login']) {
                     INPUT_LOGIN.attr('class', CLASS_NOT_VALID);
-                    LOGIN_TEXT[0].innerText = response['data']['login'];
+                    LOGIN_TEXT.text(response['data']['login']);
                 }
                 if (response['data'] && response['data']['pass']) {
                     INPUT_PASSWORD.attr('class', CLASS_NOT_VALID);
-                    PASSWORD_TEXT[0].innerText = response['data']['pass'];
+                    PASSWORD_TEXT.text(response['data']['pass']);
                 }
             }
         }).fail(function() {
