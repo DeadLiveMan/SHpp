@@ -4,13 +4,13 @@ window.onload = function() {
     const MESSAGE_INPUT = $('#message');
     const CHAT_BUTTON = $('#send-message');
     const LOGOUT_BUTTON = $('#logout-button');
-    const labelError = $('.error');
-    const timeActualMessages = 60000 * 60;
+    const labelError = $('.error')[0];
 
     const SMILE_GOOD = '<img class="smiles" src="img/good.png">';
     const SMILE_SAD = '<img class="smiles" src="img/sad.png">';
 
     const TIME_INTERVAL_REQUEST = 1000;
+    const MAX_MESSAGE_LENGTH = 255;
 
     let lastTime = 0;
 
@@ -34,17 +34,22 @@ window.onload = function() {
                     CHAT_BOX[0].scrollTop = CHAT_BOX[0].scrollHeight
                 }
             }
-            labelError[0].innerText = '';
-        }).always(function() {callback()}).fail(function() {
-            labelError[0].innerText = 'Service is temporarily unavailable';
-            console.log(labelError[0].value);
+            if (labelError.innerText) {
+                labelError.innerText = '';
+            }
+
+        }).always(function() {
+            callback();
+        }).fail(function() {
+            if (labelError.innerText === '') {
+                labelError.innerText = 'Service is temporarily unavailable';
+            }
         });
     }
 
     const intervalRequest = function interval() {
         setTimeout(function () {
             readMessages(intervalRequest);
-            //removeOldMessages();
         }, TIME_INTERVAL_REQUEST);
     };
 
@@ -65,7 +70,13 @@ window.onload = function() {
     // event button on click - send message
     CHAT_BUTTON.on('click', function () {
         if (MESSAGE_INPUT[0].value.replace(/\s/g,'') === '') {
-            MESSAGE_INPUT[0].value = "";
+            MESSAGE_INPUT[0].value = '';
+            return;
+        }
+
+        if (MESSAGE_INPUT[0].value.length > MAX_MESSAGE_LENGTH) {
+            alert('to long message, maximum ' + MAX_MESSAGE_LENGTH + ' symbols, delete please '
+                + (MESSAGE_INPUT[0].value.length - MAX_MESSAGE_LENGTH)  + ' symbols');
             return;
         }
 
@@ -77,9 +88,9 @@ window.onload = function() {
                 message: MESSAGE_INPUT[0].value
             }
         }).done(function() {
+            MESSAGE_INPUT[0].value = '';
             readMessages();
         });
-        MESSAGE_INPUT[0].value = '';
     });
 
     function appendMessages(data) {
@@ -101,11 +112,6 @@ window.onload = function() {
             CHAT_BOX.append(elementMessage);
         }
         lastTime = +data[data.length - 1]['time'];
-    }
-
-    function removeOldMessages() {
-        const nowDate = new Date();
-        console.log(new Date(CHAT_BOX[0].firstChild.firstChild.textContent.substr(1, 8)));
     }
 
     function replacementSmiles(message) {
