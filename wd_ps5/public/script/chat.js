@@ -1,11 +1,10 @@
-window.onload = function() {
+$(function () {
     const HANDLER_PATH = 'handler.php';
     const chatBox = $('#chat-box');
     const messageInput = $('#message');
     const chatButton = $('#send-message');
     const logoutButton = $('#logout-button');
     const labelError = $('.error');
-    const mainText = $('.main-text');
 
     const SMILE_GOOD = '<img class="smiles" src="img/good.png">';
     const SMILE_SAD = '<img class="smiles" src="img/sad.png">';
@@ -15,23 +14,22 @@ window.onload = function() {
 
     let lastTime = 0;
 
-    mainText.text('Hello ');
-
     function readMessages(callback = function(){}) {
         $.ajax({
             method: 'POST',
             url: HANDLER_PATH,
+            dataType: 'json',
             data: {
                 command: 'read',
                 lastTime : lastTime
             }
         }).done(function(response) {
-            if (JSON.parse(response)['data'] && !JSON.parse(response)['data']['login']) {
+            if (response['data'] && !response['data']['login']) {
                 location.reload();
                 return;
             }
             if (response.length > 0) {
-                const messages = JSON.parse(response);
+                const messages = response;
                 if (messages.length > 0) {
                     appendMessages(messages);
                     chatBox[0].scrollTop = chatBox[0].scrollHeight
@@ -66,7 +64,8 @@ window.onload = function() {
             url: HANDLER_PATH,
             data: { command: 'logout' }
         }).done(function() {
-            location.reload();
+            //location.reload();
+            location.href = ('index.php');
         })
     });
 
@@ -86,11 +85,16 @@ window.onload = function() {
         $.ajax({
             method: 'POST',
             url: HANDLER_PATH,
+            dataType: 'json',
             data: {
                 command: 'send',
                 message: messageInput.val()
             }
-        }).done(function() {
+        }).done(function(response) {
+            if(response['isError']) {
+                alert(response['data']['serverError']);
+                return;
+            }
             messageInput.val('');
             readMessages();
         });
@@ -120,4 +124,4 @@ window.onload = function() {
     function replacementSmiles(message) {
         return message.replace(/:\)/g, SMILE_GOOD).replace(/:\(/g, SMILE_SAD);
     }
-};
+});

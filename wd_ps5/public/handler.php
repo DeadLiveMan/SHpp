@@ -1,8 +1,10 @@
 <?php
 
+if (!$_POST) http_response_code(404);
+
 define('APP_DIRECTORY', dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'app');
 define('SHOW_MESSAGE_LAST_HOURS', 1);                                                       // show message last x hours
-$config = require APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY_SEPARATOR . 'config.php';
+$config = require_once APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY_SEPARATOR . 'config.php';
 session_start();
 
 // classes autoloader
@@ -53,12 +55,18 @@ if (isset($_POST['command'])) {
             $login = $_SESSION['login'] ?? '';
             $message = $_POST['message'] ?? '';
 
-            if ($login !== '' && $message !== '') {
-                $message = trim($message);
-                if (!$messenger->sendMessage($login, $message)) {
-                    $errorLogs->addServerError('Message not send');
-                };
+            if ($login == '' || $message == '') {
+                break;
             }
+
+            if (strlen($message) > $config['maxMessageLength']) {
+                $errorLogs->addServerError('Message to long, max symbols - ' . $config['maxMessageLength']);
+                break;
+            }
+            $message = trim($message);
+            if (!$messenger->sendMessage($login, $message)) {
+                $errorLogs->addServerError('Message not send');
+            };
             break;
         case 'read':
             $lastMessageTime = $_POST['lastTime'] ?? '';

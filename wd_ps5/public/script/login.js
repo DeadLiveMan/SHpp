@@ -7,12 +7,6 @@ $(function () {
     const MIN_PASSWORD_LENGTH = 3;
     const MAX_PASSWORD_LENGTH = 16;
 
-    const INPUT_LOGIN = $('#login');
-    const INPUT_PASSWORD = $('#password');
-    const SUBMIT_BUTTON = $('#submit');
-    const LOGIN_TEXT = $('#login-info');
-    const PASSWORD_TEXT = $('#password-info');
-
     const VALID_LOGIN = /(^[a-zA-Z]+([a-zA-Z0-9][\s]?)*$)/;
     const VALID_PASSWORD = /(^[a-zA-Z0-9]+$)/;
 
@@ -21,30 +15,36 @@ $(function () {
     const CLASS_NOT_VALID = 'not-valid';
     const CLASS_VALID = 'valid';
 
+    const inputLogin = $('#login');
+    const inputPassword = $('#password');
+    const btnLogin = $('#submit');
+    const labelLoginError = $('#login-info');
+    const labelPasswordError = $('#password-info');
+
     let passwordErrorMessage = 'empty password';
     let loginErrorMessage = 'empty login';
 
-    INPUT_LOGIN.attr('placeholder', `${MIN_LOGIN_LENGTH} - ${MAX_LOGIN_LENGTH} symbols`);
-    INPUT_PASSWORD.attr('placeholder', `${MIN_PASSWORD_LENGTH} - ${MAX_PASSWORD_LENGTH} symbols`);
+    inputLogin.attr('placeholder', `${MIN_LOGIN_LENGTH} - ${MAX_LOGIN_LENGTH} symbols`);
+    inputPassword.attr('placeholder', `${MIN_PASSWORD_LENGTH} - ${MAX_PASSWORD_LENGTH} symbols`);
 
-    INPUT_LOGIN.on('input', function () {
+    inputLogin.on('input', function () {
         loginErrorMessage = checkInputError(this, MIN_LOGIN_LENGTH, MAX_LOGIN_LENGTH, VALID_LOGIN);
     });
 
-    INPUT_PASSWORD.on('input', function () {
+    inputPassword.on('input', function () {
         passwordErrorMessage = checkInputError(this, MIN_PASSWORD_LENGTH, MAX_PASSWORD_LENGTH, VALID_PASSWORD);
     });
 
-    SUBMIT_BUTTON.on('click', function() {
-        LOGIN_TEXT.text('');
-        PASSWORD_TEXT.text('');
+    btnLogin.on('click', function() {
+        labelLoginError.text('');
+        labelPasswordError.text('');
 
         if(loginErrorMessage) {
-            LOGIN_TEXT.text(loginErrorMessage);
+            labelLoginError.text(loginErrorMessage);
         }
 
         if(passwordErrorMessage) {
-            PASSWORD_TEXT.text(passwordErrorMessage);
+            labelPasswordError.text(passwordErrorMessage);
         }
 
         if (loginErrorMessage || passwordErrorMessage) {
@@ -54,28 +54,28 @@ $(function () {
         $.ajax({
             method: 'POST',
             url: HANDLER_PATH,
+            dataType: 'json',
             data: {
                 command: COMMAND_AUTHORIZED,
-                login: INPUT_LOGIN.val(),
-                pass: INPUT_PASSWORD.val()
+                login: inputLogin.val(),
+                pass: inputPassword.val()
             }
         }).done(function (response) {
-            if (response === null) {
+            if (response === null ) {
                 location.reload();
             }
-            response = JSON.parse(response);
             if(!response['isError']) {
-                INPUT_PASSWORD.attr('class', CLASS_VALID);
-                PASSWORD_TEXT.text('');
+                inputPassword.attr('class', CLASS_VALID);
+                labelPasswordError.text('');
                 location.reload();
             } else {
                 if (response['data'] && response['data']['login']) {
-                    INPUT_LOGIN.attr('class', CLASS_NOT_VALID);
-                    LOGIN_TEXT.text(response['data']['login']);
+                    inputLogin.attr('class', CLASS_NOT_VALID);
+                    labelLoginError.text(response['data']['login']);
                 }
                 if (response['data'] && response['data']['pass']) {
-                    INPUT_PASSWORD.attr('class', CLASS_NOT_VALID);
-                    PASSWORD_TEXT.text(response['data']['pass']);
+                    inputPassword.attr('class', CLASS_NOT_VALID);
+                    labelPasswordError.text(response['data']['pass']);
                 }
             }
         }).fail(function() {
@@ -83,8 +83,8 @@ $(function () {
         });
     });
 
+    // check inputs, for password and login
     function checkInputError(elementInput, minValue, maxValue, reg) {
-
         if (elementInput.value.length < minValue || elementInput.value.length > maxValue) {
             elementInput.setAttribute('class', CLASS_NOT_VALID);
             return 'length must be: ' + minValue + ' - ' + maxValue + ' symbols';

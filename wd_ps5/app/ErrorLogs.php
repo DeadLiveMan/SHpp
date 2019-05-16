@@ -10,9 +10,9 @@ class ErrorLogs
     function __construct()
     {
         $this->logs['isError'] = false;
-        $this->logs['data']['login'] = false;
-        $this->logs['data']['pass'] = false;
-        $this->logs['data']['serverError'] = false;
+        $this->logs['data']['login'] = '';
+        $this->logs['data']['pass'] = '';
+        $this->logs['data']['serverError'] = '';
     }
 
     public function addErrorLogin($message)
