@@ -24,15 +24,6 @@ if(!isset($_SESSION['login'])) {
 <div class="header">
     <div class="header-square"></div>
     <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
 </div>
 <div class="logout">
     <div id="logout-button">[Logout]</div>

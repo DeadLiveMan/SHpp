@@ -26,15 +26,6 @@ if (isset($_SESSION['login'])) {
 <div class="header">
     <div class="header-square"></div>
     <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
 </div>
 <div class="content">
     <div class="main-text">

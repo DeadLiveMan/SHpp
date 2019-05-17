@@ -11,33 +11,23 @@ html, body {
     height: 2%;
     display: flex;
     flex-direction: row;
-    background-color: black;
 }
 
 .header-square {
-    width: 10%;
+    width: 50%;
+    background-image: linear-gradient(
+            to right,
+            #635960 0%, #635960 20%,
+            #8b8e59 20%, #8b8e59 40%,
+            #eada7d 40%, #eada7d 60%,
+            #fffecd 60%, #fffecd 80%,
+            #7bc3ab 80%, #7bc3ab 100%
+    );
 }
+/*--------------------------------------------------------------------------*/
 
-.header-square:nth-child(5n + 1) {
-    background-color: #635960;
-}
 
-.header-square:nth-child(5n + 2) {
-    background-color: #8b8e59;
-}
 
-.header-square:nth-child(5n + 3) {
-    background-color: #eada7d;
-}
-
-.header-square:nth-child(5n + 4) {
-    background-color: #fffecd;
-}
-
-.header-square:nth-child(5n + 5) {
-    background-color: #7bc3ab;
-}
-/*----------------------------------------------------------------*/
 .content {
     display: flex;
     flex-direction: column;
