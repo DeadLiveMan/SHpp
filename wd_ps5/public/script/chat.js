@@ -22,7 +22,6 @@ $(function () {
     setTimeout(function() {
         mainText.animate({opacity: "0", marginLeft: "-=2000px"}, ANIMATE_TIME_WELCOME_MESSAGE , function() {
             mainText[0].innerText = "Easy Chat";
-            console.log(mainText);
             mainText.animate({opacity: "1", marginLeft: "+=2000px"}, ANIMATE_TIME_WELCOME_MESSAGE);
         });
     }, SHOW_TIME_WELCOME_MESSAGE);
