@@ -20,9 +20,9 @@ $(function () {
 
     // animate main-text
     setTimeout(function() {
-        $(mainText).animate({opacity: "0", marginLeft: "-=1000px"}, ANIMATE_TIME_WELCOME_MESSAGE , function() {
+        $(mainText).animate({opacity: "0", marginLeft: "-=2000px"}, ANIMATE_TIME_WELCOME_MESSAGE , function() {
             $(mainText)[0].innerText = "Easy Chat";
-            $(mainText).animate({opacity: "1", marginLeft: "+=1000px"}, ANIMATE_TIME_WELCOME_MESSAGE);
+            $(mainText).animate({opacity: "1", marginLeft: "+=2000px"}, ANIMATE_TIME_WELCOME_MESSAGE);
         });
     }, SHOW_TIME_WELCOME_MESSAGE);
 
