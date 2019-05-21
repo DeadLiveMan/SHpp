@@ -10,6 +10,9 @@ $(function () {
     const SMILE_GOOD = '<img class="smiles" src="img/good.png">';
     const SMILE_SAD = '<img class="smiles" src="img/sad.png">';
 
+    const ANIMATE_TIME_WELCOME_MESSAGE = 300;
+    const SHOW_TIME_WELCOME_MESSAGE = 2000;
+
     const TIME_INTERVAL_REQUEST = 1000;
     const MAX_MESSAGE_LENGTH = 255;
 
@@ -17,11 +20,11 @@ $(function () {
 
     // animate main-text
     setTimeout(function() {
-        $(mainText).animate({opacity: "0", marginLeft: "-=1000px"}, 300 , function() {
+        $(mainText).animate({opacity: "0", marginLeft: "-=1000px"}, ANIMATE_TIME_WELCOME_MESSAGE , function() {
             $(mainText)[0].innerText = "Easy Chat";
-            $(mainText).animate({opacity: "1", marginLeft: "+=1000px"}, 300);
+            $(mainText).animate({opacity: "1", marginLeft: "+=1000px"}, ANIMATE_TIME_WELCOME_MESSAGE);
         });
-    }, 2000);
+    }, SHOW_TIME_WELCOME_MESSAGE);
 
     function readMessages(callback = function(){}) {
         $.ajax({
