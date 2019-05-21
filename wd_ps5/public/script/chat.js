@@ -114,23 +114,23 @@ $(function () {
     });
 
     function appendMessages(data) {
-        let elementMessage;
+        let messages = '';
+
         for (let i = 0; i < data.length; i++) {
             // dropped duplicated messages
             if (data[i]['time'] <= lastTime) {
                 continue;
             }
-            elementMessage = document.createElement('div');
             let date = new Date(data[i]['time']);
             let time = date.getHours().toString().padStart(2, '0')
                 + ':' + date.getMinutes().toString().padStart(2, '0')
                 + ':' + date.getSeconds().toString().padStart(2, '0');
             // replace smiles
             data[i]['message'] = replacementSmiles(data[i]['message']);
-            elementMessage.innerHTML =
-                `<div class="time">[${time}]</div><div class="user">${data[i]['user']}:</div><div class="message">${data[i]['message']}</div>`;
-            chatBox.append(elementMessage);
+            messages += `<div><div class="time">[${time}]</div><div class="user">${data[i]['user']}:</div><div class="message">${data[i]['message']}</div></div>`;
+
         }
+        chatBox.append(messages);
         lastTime = +data[data.length - 1]['time'];
     }
 
