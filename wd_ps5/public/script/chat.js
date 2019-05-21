@@ -5,7 +5,7 @@ $(function () {
     const chatButton = $('#send-message');
     const logoutButton = $('#logout-button');
     const labelError = $('.error');
-    const mainText = $('.main-text');
+    const mainText = $('#main-text');
 
     const SMILE_GOOD = '<img class="smiles" src="img/good.png">';
     const SMILE_SAD = '<img class="smiles" src="img/sad.png">';
@@ -21,7 +21,7 @@ $(function () {
     // animate main-text
     setTimeout(function() {
         $(mainText).animate({opacity: "0", marginLeft: "-=2000px"}, ANIMATE_TIME_WELCOME_MESSAGE , function() {
-            $(mainText)[0].innerText = "Easy Chat";
+            mainText[0].innerText = "Easy Chat";
             $(mainText).animate({opacity: "1", marginLeft: "+=2000px"}, ANIMATE_TIME_WELCOME_MESSAGE);
         });
     }, SHOW_TIME_WELCOME_MESSAGE);

@@ -35,7 +35,7 @@ html, body {
     min-height: 98%;
 }
 
-.main-text {
+#main-text {
     padding-top: 50px;
     font-family: Pacifico, serif;
     font-size: 60px;

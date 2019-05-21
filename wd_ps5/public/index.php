@@ -29,7 +29,7 @@ if(!isset($_SESSION['login'])) {
     <div id="logout-button">[Logout]</div>
 </div>
 <div class="content">
-    <div class="main-text">
+    <div id="main-text">
         <?php echo ("Hello $_SESSION[login]"); ?>
     </div>
     <div class="main-form">
