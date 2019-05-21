@@ -9,5 +9,6 @@
         'filePathLogoutForm' => ROOT_DIRECTORY.'app'.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'logout.php',
 
         'maxLoginLength' => 18,
-        'maxMessageLength' => 255
+        'maxMessageLength' => 255,
+        'timeForOldPosts' => 1              //  in hours
     ];

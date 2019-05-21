@@ -3,8 +3,8 @@
 if (!$_POST) http_response_code(404);
 
 define('APP_DIRECTORY', dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'app');
-define('SHOW_MESSAGE_LAST_HOURS', 1);                                                       // show message last x hours
 $config = require_once APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY_SEPARATOR . 'config.php';
+
 session_start();
 
 // classes autoloader
@@ -68,7 +68,7 @@ if (isset($_POST['command'])) {
             if ($lastMessageTime !== '' && $login !== '') {
                 if (+$lastMessageTime === 0) {
                     $lastMessageTime = mktime(
-                            date('H') - SHOW_MESSAGE_LAST_HOURS,
+                            date('H') - $config['timeForOldPosts'],
                             date('i'),
                             date('s'),
                             date("m"),
