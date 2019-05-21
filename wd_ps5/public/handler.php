@@ -54,15 +54,8 @@ if (isset($_POST['command'])) {
         case 'send':
             $login = $_SESSION['login'] ?? '';
             $message = $_POST['message'] ?? '';
-
-            if ($login == '' || $message == '') {
-                break;
-            }
-
-            if (strlen($message) > $config['maxMessageLength']) {
-                $errorLogs->addServerError('Message to long, max symbols - ' . $config['maxMessageLength']);
-                break;
-            }
+            if ($login == '' || $message == '') { break; }
+            if (!$validator->checkMessageLength($message)) { break; }
             $message = trim($message);
             if (!$messenger->sendMessage($login, $message)) {
                 $errorLogs->addServerError('Message not send');

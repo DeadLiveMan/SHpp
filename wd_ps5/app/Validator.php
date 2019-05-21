@@ -15,6 +15,7 @@ class Validator
 
     private const VALID_LOGIN = '/(^[a-zA-Z]+([a-zA-Z0-9][\s]?)*$)/';
     private const VALID_PASSWORD = '/(^[a-zA-Z0-9]+$)/';
+    private const MAX_MESSAGE_LENGTH = 255;
 
     private $errorLogs;
 
@@ -48,6 +49,14 @@ class Validator
         if(strlen($password) > self::MAX_PASSWORD_LENGTH || strlen($password) < self::MIN_PASSWORD_LENGTH) {
             $this->errorLogs->addErrorPassword(self::PASSWORD_INCORRECT_LENGTH);
         }
+    }
+
+    public function checkMessageLength($message) {
+        if (strlen($message) > self::MAX_MESSAGE_LENGTH) {
+            $this->errorLogs->addServerError('Message to long, max symbols - ' . self::MAX_MESSAGE_LENGTH);
+            return false;
+        }
+        return true;
     }
 
     public function isValid($login, $password)
