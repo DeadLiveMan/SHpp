@@ -5,6 +5,7 @@ $(function () {
     const chatButton = $('#send-message');
     const logoutButton = $('#logout-button');
     const labelError = $('.error');
+    const mainText = $('.main-text');
 
     const SMILE_GOOD = '<img class="smiles" src="img/good.png">';
     const SMILE_SAD = '<img class="smiles" src="img/sad.png">';
@@ -13,6 +14,14 @@ $(function () {
     const MAX_MESSAGE_LENGTH = 255;
 
     let lastTime = 0;
+
+    // animate main-text
+    setTimeout(function() {
+        $(mainText).animate({opacity: "0", marginLeft: "-=1000px"}, 300 , function() {
+            $(mainText)[0].innerText = "Easy Chat";
+            $(mainText).animate({opacity: "1", marginLeft: "+=1000px"}, 300);
+        });
+    }, 2000);
 
     function readMessages(callback = function(){}) {
         $.ajax({
