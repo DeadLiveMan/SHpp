@@ -28,7 +28,7 @@ if (isset($_SESSION['login'])) {
     <div class="header-square"></div>
 </div>
 <div class="content">
-    <div class="main-text">
+    <div id="main-text">
         Easy Chat
     </div>
     <div class="main-form">
