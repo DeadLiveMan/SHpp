@@ -1,13 +1,13 @@
 <?php
 
-define('ERR_DEF_ARGS', "Wrong arguments");
-define('ERR_EMPTY_INPUT', "Input is empty");
-define('ERR_WHOLE_NUM', "Input only whole numbers");
+define('ERR_DEF_ARGS', 'Wrong arguments');
+define('ERR_EMPTY_INPUT', 'Input is empty');
+define('ERR_WHOLE_NUM', 'Input only whole numbers');
 
-function isEmpty(...$value)
+function isEmpty(...$arguments)
 {
-    foreach ($value as $val) {
-        if ($val === '') {
+    foreach ($arguments as $argument) {
+        if ($argument === '') {
             return true;
         }
     }
