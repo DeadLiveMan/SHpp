@@ -4,7 +4,7 @@ $config = require APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY_SEPA
 
 session_start();
 if (isset($_SESSION['login'])) {
-    header("Location:index.php");
+    header('Location:index.php');
     return;
 }
 ?>
