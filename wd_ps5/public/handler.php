@@ -1,6 +1,9 @@
 <?php
 
-if (!$_POST) http_response_code(404);
+if (!$_POST) {
+    http_response_code(404);
+    return;
+}
 
 define('APP_DIRECTORY', dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'app');
 $config = require_once APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY_SEPARATOR . 'config.php';
