@@ -1,0 +1,41 @@
+body {
+    background-color: green;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.input {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button {
+    margin-top: 10px;
+}
+
+.button input, form button {
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input input {
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: cadetblue;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.incorrect {
+    border-color: red;
+}
+
