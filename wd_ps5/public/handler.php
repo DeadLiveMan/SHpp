@@ -39,12 +39,12 @@ if (isset($_POST['command'])) {
 
             if (!$userHandler->userExist($login)) {
                 if (!$userHandler->registration($login, $pass)) {
-                    $errorLogs->addServerError('Error create new user');
+                    $errorLogs->setServerError('Error create new user');
                     break;
                 }
             } else {
                 if (!$userHandler->authorize($login, $pass)) {
-                    $errorLogs->addErrorPassword('Wrong password');
+                    $errorLogs->setErrorPassword('Wrong password');
                     break;
                 }
             }
@@ -61,7 +61,7 @@ if (isset($_POST['command'])) {
             if (!$validator->checkMessageLength($message)) { break; }
             $message = trim($message);
             if (!$messenger->sendMessage($login, $message)) {
-                $errorLogs->addServerError('Message not send');
+                $errorLogs->setServerError('Message not send');
             };
             break;
         case 'read':
@@ -84,7 +84,7 @@ if (isset($_POST['command'])) {
             }
             break;
         default:
-            $errorLogs->addServerError('Error command');
+            $errorLogs->setServerError('Error command');
             break;
     }
     echo(json_encode($errorLogs->getErrors()));

@@ -27,33 +27,33 @@ class Validator
     private function checkLogin($login)
     {
         if (!preg_match(self::VALID_LOGIN, $login)) {
-            $this->errorLogs->addErrorLogin(self::LOGIN_INCORRECT);
+            $this->errorLogs->setErrorLogin(self::LOGIN_INCORRECT);
         }
     }
 
     private function checkLoginLength($login)
     {
         if(strlen($login) > self::MAX_LOGIN_LENGTH || strlen($login) < self::MIN_LOGIN_LENGTH) {
-            $this->errorLogs->addErrorLogin(self::LOGIN_INCORRECT_LENGTH);
+            $this->errorLogs->setErrorLogin(self::LOGIN_INCORRECT_LENGTH);
         }
     }
 
     private function checkPassword($password)
     {
         if (!preg_match(self::VALID_PASSWORD, $password)) {
-            $this->errorLogs->addErrorPassword(self::PASSWORD_INCORRECT);
+            $this->errorLogs->setErrorPassword(self::PASSWORD_INCORRECT);
         }
     }
 
     private function checkPasswordLength($password) {
         if(strlen($password) > self::MAX_PASSWORD_LENGTH || strlen($password) < self::MIN_PASSWORD_LENGTH) {
-            $this->errorLogs->addErrorPassword(self::PASSWORD_INCORRECT_LENGTH);
+            $this->errorLogs->setErrorPassword(self::PASSWORD_INCORRECT_LENGTH);
         }
     }
 
     public function checkMessageLength($message) {
         if (strlen($message) > self::MAX_MESSAGE_LENGTH) {
-            $this->errorLogs->addServerError('Message to long, max symbols - ' . self::MAX_MESSAGE_LENGTH);
+            $this->errorLogs->setServerError('Message to long, max symbols - ' . self::MAX_MESSAGE_LENGTH);
             return false;
         }
         return true;

@@ -15,22 +15,19 @@ class ErrorLogs
         $this->logs['data']['serverError'] = '';
     }
 
-    public function addErrorLogin($message)
+    public function setErrorLogin($message)
     {
-        $this->setError();
-        $this->logs['data']['login'] = $message;
+        $this->setError()->logs['data']['login'] = $message;
     }
 
-    public function addErrorPassword($message)
+    public function setErrorPassword($message)
     {
-        $this->setError();
-        $this->logs['data']['pass'] = $message;
+        $this->setError()->logs['data']['pass'] = $message;
     }
 
-    public function addServerError($message)
+    public function setServerError($message)
     {
-        $this->setError();
-        $this->logs['data']['serverError'] = $message;
+        $this->setError()->logs['data']['serverError'] = $message;
     }
 
     public function isError()
@@ -46,5 +43,6 @@ class ErrorLogs
     private function setError()
     {
         $this->logs['isError'] = true;
+        return $this;
     }
 }
