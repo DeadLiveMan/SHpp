@@ -54,7 +54,7 @@ $(function () {
         }).always(function() {
             callback();
         }).fail(function() {
-            if (labelError.text() === '') {
+            if (!labelError.text()) {
                 labelError.text('Service is temporarily unavailable');
             }
         });
