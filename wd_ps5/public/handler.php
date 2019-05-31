@@ -10,6 +10,10 @@ $config = require_once APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY
 
 session_start();
 
+if (!isset($_POST['command'])) {
+    return;
+}
+
 // classes autoloader
 use App\{ ErrorLogs, Messenger, JsonMessagesDataBase, UserHandler, JsonUsersDataBase, Validator };
 spl_autoload_register(function ($className) {
@@ -25,10 +29,6 @@ $errorLogs = new ErrorLogs();
 $messenger = new Messenger(new JsonMessagesDataBase($config['filePathChat']));
 $userHandler = new UserHandler(new JsonUsersDataBase($config['filePathUsers']));
 $validator = new Validator($errorLogs);
-
-if (!isset($_POST['command'])) {
-    return;
-}
 
 switch ($_POST['command']) {
     case 'auth':
