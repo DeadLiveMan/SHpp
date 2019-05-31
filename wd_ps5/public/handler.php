@@ -37,14 +37,14 @@ if (isset($_POST['command'])) {
                 break;
             }
 
-            if ($userHandler->userExist($login)) {
-                if (!$userHandler->authorize($login, $pass)) {
-                    $errorLogs->addErrorPassword('Wrong password');
+            if (!$userHandler->userExist($login)) {
+                if (!$userHandler->registration($login, $pass)) {
+                    $errorLogs->addServerError('Error create new user');
                     break;
                 }
             } else {
-                if (!$userHandler->registration($login, $pass)) {
-                    $errorLogs->addServerError('Error create new user');
+                if (!$userHandler->authorize($login, $pass)) {
+                    $errorLogs->addErrorPassword('Wrong password');
                     break;
                 }
             }
