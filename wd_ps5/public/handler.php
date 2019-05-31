@@ -5,14 +5,14 @@ if (!$_POST) {
     return;
 }
 
+if (!isset($_POST['command'])) {
+    return;
+}
+
 define('APP_DIRECTORY', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'app');
 $config = require_once APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY_SEPARATOR . 'config.php';
 
 session_start();
-
-if (!isset($_POST['command'])) {
-    return;
-}
 
 // classes autoloader
 use App\{ ErrorLogs, Messenger, JsonMessagesDataBase, UserHandler, JsonUsersDataBase, Validator };
