@@ -4,15 +4,18 @@ namespace App;
 
 class ErrorLogs
 {
-
-    private $logs = [];
+    private $logs;
 
     function __construct()
     {
-        $this->logs['isError'] = false;
-        $this->logs['data']['login'] = '';
-        $this->logs['data']['pass'] = '';
-        $this->logs['data']['serverError'] = '';
+        $this->logs = array(
+            'isError' => false,
+            'data' => array(
+                'login',
+                'pass',
+                'serverError'
+            )
+        );
     }
 
     public function setErrorLogin($message)
