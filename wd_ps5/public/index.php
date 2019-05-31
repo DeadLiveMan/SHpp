@@ -30,7 +30,7 @@ if(!isset($_SESSION['login'])) {
 </div>
 <div class="content">
     <div id="main-text">
-        <?php echo ("Hello $_SESSION[login]"); ?>
+        <?= ("Hello $_SESSION[login]"); ?>
     </div>
     <div class="main-form">
         <div id="chat-box"></div>
