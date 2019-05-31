@@ -5,7 +5,7 @@ if (!$_POST) {
     return;
 }
 
-define('APP_DIRECTORY', dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'app');
+define('APP_DIRECTORY', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'app');
 $config = require_once APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY_SEPARATOR . 'config.php';
 
 session_start();
@@ -14,7 +14,7 @@ session_start();
 use App\{ ErrorLogs, Messenger, JsonMessagesDataBase, UserHandler, JsonUsersDataBase, Validator };
 spl_autoload_register(function ($className) {
     require_once(
-        dirname( __DIR__ ,1)
+        dirname( __DIR__)
         . DIRECTORY_SEPARATOR
         . str_replace('\\', DIRECTORY_SEPARATOR ,$className)
         . '.php'
