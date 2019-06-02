@@ -26,29 +26,29 @@ class MySqlMessagesDataBase implements IMessagesDataBase
         //$timeLastMessage = $timeLastMessage / 1000;
         $sql = "SELECT created_at, username, message FROM messages WHERE created_at > $timeLastMessage";
         $pre = $this->pdo->prepare($sql);
+        //$pre->bindParam(":message",$message);
         $pre->execute();
 
-        $messages = [];
+        $data = [];
         while ($result = $pre->fetch(PDO::FETCH_ASSOC)) {
-            array_push($messages, [+$result['created_at'], $result['username'], $result['message'], $timeLastMessage]);
-            //$messages = array_reverse($messages);
+            if (+$result['created_at'] > $timeLastMessage) {
+                $data[] = [
+                    'time' => +$result['created_at'],
+                    'user' => $result['username'],
+                    'message' => htmlentities($result['message'],ENT_QUOTES)
+                ];
+            }
         }
-        return json_encode($messages);
+        return json_encode($data);
     }
 
     public function write($login, $message)
     {
+        if ($login === '' || $message === '') return false;
+
         $time = round(microtime(true) * 1000);
+
         $sql = "INSERT INTO messages (username, message, created_at) VALUES ('$login', '$message', '$time')";
         return $this->pdo->exec($sql);
-    }
-
-    public function checkChanges($value)
-    {
-        $sql = "SELECT * FROM messages ORDER BY id DESC LIMIT 1";
-        $pre = $this->pdo->prepare($sql);
-        $pre->execute();
-        $result = $pre->fetch(PDO::FETCH_ASSOC);
-        return ($result['created_at'] != $value) ?? $result['created_at'];
     }
 }

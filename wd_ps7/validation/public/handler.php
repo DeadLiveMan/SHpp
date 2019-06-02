@@ -37,7 +37,7 @@ foreach ($data as $key => $value) {
 
 //var_dump($validData);
 $_SESSION['response'] = $validData;
-header('Location: index.php');
+header('Location: index.html');
 
 
 function isValid($key, $value, $validData) {
