@@ -1,4 +1,4 @@
-window.onload = function () {
+$(function() {
 
     const textArea = document.getElementById('text-area');
     const regInput = document.getElementById('input-reg');
@@ -68,5 +68,4 @@ window.onload = function () {
         }
         return $('<div />').html(value).text();
     }
-
-};
+});
