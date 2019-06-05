@@ -31,14 +31,72 @@ body {
     padding: 5px;
 }
 
+.label-regular {
+    display: flex;
+}
+
 #input-reg {
     height: 20px;
     border-radius: 5px;
     padding: 5px;
+    width: 80%;
 }
 
 #output-text {
     width: 50%;
     white-space: pre-wrap;
     word-wrap: break-word;
+}
+
+#flags-box {
+    background-color: cadetblue;
+    border-radius: 5px;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+#flags-box div {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+#flags-info {
+    align-self: center;
+    padding: 5px;
+}
+
+#flags-input {
+    display: flex;
+    padding: 10px;
+}
+
+#bottom-elements {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    margin-top: 10px;
+    width: 19%;
+    border-radius: 5px;
+}
+
+.flag-reg {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+#flags-input label{
+    margin-right: 20px;
+    display: flex;
+    font-size: 15px;
+}
+
+#regular-input {
+    display: flex;
+    justify-content: space-between;
 }
