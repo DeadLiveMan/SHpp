@@ -15,7 +15,7 @@ $config = require_once APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY
 session_start();
 
 // classes autoloader
-use App\{ ErrorLogs, Messenger, JsonMessagesDataBase, UserHandler, JsonUsersDataBase, Validator };
+use App\{ ErrorLogs, Messenger, MySqlMessagesDataBase, UserHandler, MySqlUsersDataBase, Validator };
 spl_autoload_register(function ($className) {
     require_once(
         dirname( __DIR__)
@@ -26,8 +26,8 @@ spl_autoload_register(function ($className) {
 });
 
 $errorLogs = new ErrorLogs();
-$messenger = new Messenger(new JsonMessagesDataBase($config['filePathChat']));
-$userHandler = new UserHandler(new JsonUsersDataBase($config['filePathUsers']));
+$messenger = new Messenger(new MySqlMessagesDataBase($config['db']));
+$userHandler = new UserHandler(new MySqlUsersDataBase($config['db']));
 $validator = new Validator($errorLogs);
 
 switch ($_POST['command']) {

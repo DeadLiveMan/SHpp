@@ -5,10 +5,13 @@
             'dbhost' => 'localhost',
             'dbuser' => 'root',
             'dbpassword' => '',
-            'dbname' => 'wd_ps6'
+            'dbname' => 'wd_ps6',
+            'tableMessages' => 'message',
+            'tableUsers' => 'users'
         ],
-        'filePathLoginForm' => ROOT_DIRECTORY . 'public' . DIRECTORY_SEPARATOR . 'login.php',
-        'filePathChatForm' => ROOT_DIRECTORY . 'public' . DIRECTORY_SEPARATOR . 'chat.php',
+
+        'filePathLogin' => ROOT_DIRECTORY . 'public' . DIRECTORY_SEPARATOR . 'login.php',
+        'filePathChat' => ROOT_DIRECTORY . 'public' . DIRECTORY_SEPARATOR . 'chat.php',
 
         'maxLoginLength' => 18,
         'maxMessageLength' => 255,

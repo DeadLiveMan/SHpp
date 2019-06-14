@@ -1,6 +1,6 @@
 <?php
 namespace App;
-use PDO;
+use PDO, PDOException;
 
 class MySqlUsersDataBase implements IUsersDataBase
 {
@@ -9,25 +9,23 @@ class MySqlUsersDataBase implements IUsersDataBase
 
     public function __construct($params)
     {
-        $dbhost = $params['dbhost'];
-        $dbuser = $params['dbuser'];
-        $dbpassword = $params['dbpassword'];
-        $dbname = $params['dbname'];
+        $dbHost = $params['dbhost'];
+        $dbUser = $params['dbuser'];
+        $dbPassword = $params['dbpassword'];
+        $dbName = $params['dbname'];
         try {
-            $this->pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpassword);
-
-        } catch (\PDOException $e) {
+            $this->pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
+        } catch (PDOException $e) {
             $this->success = false;
         }
-
     }
 
     // return user password
     public function read($login)
     {
-        $sql = "SELECT password FROM users WHERE username='$login'";
+        $sql = 'SELECT password FROM users WHERE username=:login';
         $pre = $this->pdo->prepare($sql);
-        $pre->execute();
+        $pre->execute(['login' => $login]);
         $result = $pre->fetch(PDO::FETCH_ASSOC);
         return $result['password'];
     }
@@ -35,17 +33,21 @@ class MySqlUsersDataBase implements IUsersDataBase
     // write new user to db
     public function write($login, $pass)
     {
-        $sql = "INSERT INTO users (username, password) VALUES ('$login', '$pass')";
-        $this->pdo->exec($sql);
+        $sql = 'INSERT INTO users (username, password) VALUES (:login, :pass)';
+        $pre = $this->pdo->prepare($sql);
+        $pre->execute([
+            'login' => $login,
+            'pass' => $pass
+            ]);
         return $this->success;
     }
 
     // return true if user exist
     public function checkUser($login)
     {
-        $sql = "SELECT username FROM users WHERE username='$login'";
+        $sql = 'SELECT username FROM users WHERE username=:login';
         $pre = $this->pdo->prepare($sql);
-        $pre->execute();
+        $pre->execute(['login' => $login]);
         $result = $pre->fetch(PDO::FETCH_ASSOC);
 
         return $result ? true : false;

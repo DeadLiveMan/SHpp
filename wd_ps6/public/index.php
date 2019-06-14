@@ -41,7 +41,7 @@ if(!isset($_SESSION['login'])) {
         <div class="error"></div>
     </div>
 </div>
-</body>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src='script/chat.js'></script>
+</body>
 </html>

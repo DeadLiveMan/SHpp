@@ -1,6 +1,6 @@
 <?php
 namespace App;
-use PDO;
+use PDO, PDOException;
 
 class MySqlMessagesDataBase implements IMessagesDataBase
 {
@@ -16,18 +16,18 @@ class MySqlMessagesDataBase implements IMessagesDataBase
         try {
             $this->pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpassword);
 
-        } catch (\PDOException $e) {
+        } catch (PDOException $e) {
             $this->success = false;
         }
     }
 
     public function read($timeLastMessage)
     {
-        //$timeLastMessage = $timeLastMessage / 1000;
-        $sql = "SELECT created_at, username, message FROM messages WHERE created_at > $timeLastMessage";
+        $sql = 'SELECT created_at, username, message FROM messages WHERE created_at > :timeLastMessage';
         $pre = $this->pdo->prepare($sql);
-        //$pre->bindParam(":message",$message);
-        $pre->execute();
+        $pre->execute([
+            'timeLastMessage' => $timeLastMessage
+        ]);
 
         $data = [];
         while ($result = $pre->fetch(PDO::FETCH_ASSOC)) {
@@ -48,7 +48,13 @@ class MySqlMessagesDataBase implements IMessagesDataBase
 
         $time = round(microtime(true) * 1000);
 
-        $sql = "INSERT INTO messages (username, message, created_at) VALUES ('$login', '$message', '$time')";
-        return $this->pdo->exec($sql);
+        $sql = 'INSERT INTO messages (username, message, created_at) VALUES (:login, :message, :time)';
+        $pre = $this->pdo->prepare($sql);
+        $pre->execute([
+            'login' => $login,
+            'message' => $message,
+            'time' => $time
+                ]);
+        return true;
     }
 }
