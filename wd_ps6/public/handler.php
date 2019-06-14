@@ -11,6 +11,7 @@ if (!isset($_POST['command'])) {
 
 define('APP_DIRECTORY', dirname(__DIR__) . DIRECTORY_SEPARATOR . 'app');
 $config = require_once APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY_SEPARATOR . 'config.php';
+$configDB = require_once APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTORY_SEPARATOR . 'configDB.php';
 
 session_start();
 
@@ -26,8 +27,8 @@ spl_autoload_register(function ($className) {
 });
 
 $errorLogs = new ErrorLogs();
-$messenger = new Messenger(new MySqlMessagesDataBase($config['db']));
-$userHandler = new UserHandler(new MySqlUsersDataBase($config['db']));
+$messenger = new Messenger(new MySqlMessagesDataBase($configDB['db']));
+$userHandler = new UserHandler(new MySqlUsersDataBase($configDB['db']));
 $validator = new Validator($errorLogs);
 
 switch ($_POST['command']) {

@@ -78,8 +78,7 @@ $(function () {
                     labelPasswordError.text(response['data']['pass']);
                 }
             }
-        }).fail(function(e) {
-            console.log(e);
+        }).fail(function() {
             alert('Service is temporarily unavailable');
         });
     });

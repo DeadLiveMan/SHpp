@@ -7,12 +7,12 @@ class MySqlMessagesDataBase implements IMessagesDataBase
     private $pdo;
     private $success;
 
-    public function __construct($params)
+    public function __construct($db)
     {
-        $dbhost = $params['dbhost'];
-        $dbuser = $params['dbuser'];
-        $dbpassword = $params['dbpassword'];
-        $dbname = $params['dbname'];
+        $dbhost = $db['dbhost'];
+        $dbuser = $db['dbuser'];
+        $dbpassword = $db['dbpassword'];
+        $dbname = $db['dbname'];
         try {
             $this->pdo = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpassword);
 

@@ -7,12 +7,12 @@ class MySqlUsersDataBase implements IUsersDataBase
     private $pdo;
     private $success = true;
 
-    public function __construct($params)
+    public function __construct($db)
     {
-        $dbHost = $params['dbhost'];
-        $dbUser = $params['dbuser'];
-        $dbPassword = $params['dbpassword'];
-        $dbName = $params['dbname'];
+        $dbHost = $db['dbhost'];
+        $dbUser = $db['dbuser'];
+        $dbPassword = $db['dbpassword'];
+        $dbName = $db['dbname'];
         try {
             $this->pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
         } catch (PDOException $e) {
