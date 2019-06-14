@@ -6,7 +6,6 @@
 
         'filePathLoginForm' => ROOT_DIRECTORY . 'public' . DIRECTORY_SEPARATOR . 'login.php',
         'filePathChatForm' => ROOT_DIRECTORY . 'public' . DIRECTORY_SEPARATOR . 'chat.php',
-        'filePathLogoutForm' => ROOT_DIRECTORY . 'app' . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR . 'logout.php',
 
         'maxLoginLength' => 18,
         'maxMessageLength' => 255,
