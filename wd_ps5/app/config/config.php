@@ -10,5 +10,5 @@
 
         'maxLoginLength' => 18,
         'maxMessageLength' => 255,
-        'timeForOldPosts' => 1              //  in hours
+        'timeForOldPosts' => 3600000              //  in ms (3600s x 1000)
     ];

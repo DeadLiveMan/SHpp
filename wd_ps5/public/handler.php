@@ -65,7 +65,7 @@ switch ($_POST['command']) {
         $message = trim($message);
         if (!$messenger->sendMessage($login, $message)) {
             $errorLogs->setServerError('Message not send');
-        };
+        }
         break;
     case 'read':
         $lastMessageTime = $_POST['lastTime'] ?? '';
@@ -73,14 +73,8 @@ switch ($_POST['command']) {
 
         if ($lastMessageTime !== '' && $login !== '') {
             if (+$lastMessageTime === 0) {
-                $lastMessageTime = mktime(
-                        date('H') - $config['timeForOldPosts'],
-                        date('i'),
-                        date('s'),
-                        date("m"),
-                        date("d"),
-                        date("Y")
-                    ) * 1000;
+                $date = new DateTime();
+                $lastMessageTime = round(microtime(true) * 1000) - $config['timeForOldPosts'];
             }
             echo $messenger->readMessages($lastMessageTime);
             return;
