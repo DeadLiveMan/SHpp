@@ -73,7 +73,6 @@ switch ($_POST['command']) {
 
         if ($lastMessageTime !== '' && $login !== '') {
             if (+$lastMessageTime === 0) {
-                $date = new DateTime();
                 $lastMessageTime = round(microtime(true) * 1000) - $config['timeForOldPosts'];
             }
             echo $messenger->readMessages($lastMessageTime);
