@@ -30,6 +30,6 @@ class JsonUsersDataBase implements IUsersDataBase
 
     public function checkUser($login)
     {
-        return array_key_exists($login, $this->dbUsers);
+        return isset($this->dbUsers[$login]);
     }
 }
