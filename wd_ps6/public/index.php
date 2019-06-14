@@ -1,7 +1,10 @@
 <?php
-$config = require dirname(__DIR__, 1) . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR  . 'config.php';
 session_start();
 
+if(!isset($_SESSION['login'])) {
+    header('Location:login.php');
+    return;
+}
 ?>
 
 <!doctype html>
@@ -11,7 +14,7 @@ session_start();
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Welcome to Chat</title>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -21,37 +24,24 @@ session_start();
 <div class="header">
     <div class="header-square"></div>
     <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
-    <div class="header-square"></div>
 </div>
-<?php
-    if (isset($_SESSION['login'])) {
-        require($config['filePathLogoutForm']);
-}
-?>
+<div class="logout">
+    <div id="logout-button">[Logout]</div>
+</div>
 <div class="content">
-    <div class="main-text">
-        Easy Chat
+    <div id="main-text">
+        <?= ("Hello $_SESSION[login]"); ?>
     </div>
     <div class="main-form">
-        <?php
-            if (isset($_SESSION['login'])) {
-                require($config['filePathChatForm']);
-            } else {
-                require($config['filePathLoginForm']);
-            }
-        ?>
+        <div id="chat-box"></div>
+        <form id="chat-form" onsubmit="return false" autocomplete="off" class="form-chat">
+            <input id="message" type="text" name="message" placeholder="Enter Message">
+            <input id="send-message" type="submit" value="Send">
+        </form>
+        <div class="error"></div>
     </div>
 </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src='script/chat.js'></script>
 </html>

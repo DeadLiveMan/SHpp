@@ -7,7 +7,10 @@
             'dbpassword' => '',
             'dbname' => 'wd_ps6'
         ],
-        'filePathLoginForm' => ROOT_DIRECTORY.'app'.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'login.php',
-        'filePathChatForm' => ROOT_DIRECTORY.'app'.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'chat.php',
-        'filePathLogoutForm' => ROOT_DIRECTORY.'app'.DIRECTORY_SEPARATOR.'templates'.DIRECTORY_SEPARATOR.'logout.php'
+        'filePathLoginForm' => ROOT_DIRECTORY . 'public' . DIRECTORY_SEPARATOR . 'login.php',
+        'filePathChatForm' => ROOT_DIRECTORY . 'public' . DIRECTORY_SEPARATOR . 'chat.php',
+
+        'maxLoginLength' => 18,
+        'maxMessageLength' => 255,
+        'timeForOldPosts' => 3600000              //  in ms (3600s x 1000)
     ];
