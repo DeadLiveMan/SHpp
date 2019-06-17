@@ -1,8 +1,8 @@
 $(function () {
 
-    const textArea = document.getElementById('text-area');
-    const regInput = document.getElementById('input-reg');
-    const outputDiv = document.getElementById('output-text');
+    const textArea = $('#text-area');
+    const regInput = $('#input-reg');
+    const outputDiv = $('#output-text');
 
     const flagsInfo = $('#flags-info h2');
     const button = $('#btn');
@@ -10,10 +10,12 @@ $(function () {
 
     const mark = {
         open: '<mark>',
-        close: '</mark>'
+        close: '</mark>',
+        openKostil: 'markKostilOpen',
+        closeKostil: 'markKostilClose'
     };
-
     let flags;
+
     /* event for regExp flags (click checkbox)*/
     flagReg.on('click', function () {
         flags = '';
@@ -21,67 +23,62 @@ $(function () {
             flags += this.checked ? this.value : '';
             flagsInfo[0].innerText = '/' + flags + '/';
         });
-        const regExp = isCorrectReg(regInput.value);
+        const regExp = isCorrectReg(regInput.val());
         regExp ? printMarkedText(regExp) : printMarkedText('');
     });
 
     /* event for input in textArea */
-    textArea.oninput = function () {
-        const regExp = isCorrectReg(regInput.value);
+    textArea.on('input', function () {
+        const regExp = isCorrectReg(regInput.val());
         regExp ? printMarkedText(regExp) : printMarkedText('');
-    };
+    });
 
     /* event for input regExp */
-    regInput.oninput = function () {
-        const regExp = isCorrectReg(regInput.value);
+    regInput.on('input', function () {
+        const regExp = isCorrectReg(regInput.val());
         regExp ? printMarkedText(regExp) : printMarkedText('');
-    };
+    });
 
     /* event for click button "Check" */
     button.click(function (e) {
         e.preventDefault();
-        const regExp = isCorrectReg(regInput.value);
+        const regExp = isCorrectReg(regInput.val());
         regExp ? printMarkedText(regExp) : printMarkedText('');
     });
 
     /* if regExp not correct, return false, else create and return regExp object */
     function isCorrectReg(reg) {
         if (!reg) {
-            $(regInput).removeClass('error');
+            regInput.removeClass('error');
             return false;
         }
         let regExp;
         try {
             regExp = new RegExp('(' + reg + ')', flags);
-            $(regInput).removeClass('error');
+            regInput.removeClass('error');
         } catch {
-            $(regInput).addClass('error');
+            regInput.addClass('error');
             return false;
         }
         return regExp;
     }
 
     // todo problem for tag <mark>, Coming Soon
-    function printMarkedText(regExp) {
-        const text = textArea.value;
+    function printMarkedText(reg) {
+        const text = textArea.val();
 
-        let markedText = text.replace(regExp, function (findElement) {
-            return mark.open + findElement + mark.close;
+        let markedText = text.replace(reg, function (findElement) {
+            return mark.openKostil + findElement + mark.closeKostil;
         });
 
-        let arr = markedText.split(mark.open);
+        let result = htmlEncode(markedText);
 
-        let result = '';
-        for (let i = 0; i < arr.length; i++) {
-            const marker = arr[i].split(mark.close);
+        reg = new RegExp(mark.openKostil, "g");
+        result = result.replace(reg, mark.open);
 
-            if (marker.length > 1 && marker[0] !== '') {
-                result += mark.open + htmlEncode(marker[0]) + mark.close;
-            } else {
-                result += htmlEncode(marker[0]);
-            }
-            result += htmlEncode(marker[1]);
-        }
+        reg = new RegExp(mark.closeKostil, "g");
+        result = result.replace(reg, mark.close);
+
         $(outputDiv).html(result);
     }
 
