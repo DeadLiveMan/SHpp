@@ -8,6 +8,8 @@ $(function () {
     const button = $('#btn');
     const flagReg = $('.flag-reg');
 
+    const ERROR_CLASS = 'error';
+
     const mark = {
         open: '<mark>',
         close: '</mark>',
@@ -49,15 +51,15 @@ $(function () {
     /* if regExp not correct, return false, else create and return regExp object */
     function isCorrectReg(reg) {
         if (!reg) {
-            regInput.removeClass('error');
+            regInput.removeClass(ERROR_CLASS);
             return false;
         }
         let regExp;
         try {
             regExp = new RegExp('(' + reg + ')', flags);
-            regInput.removeClass('error');
+            regInput.removeClass(ERROR_CLASS);
         } catch {
-            regInput.addClass('error');
+            regInput.addClass(ERROR_CLASS);
             return false;
         }
         return regExp;
