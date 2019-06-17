@@ -25,28 +25,29 @@ $(function () {
             flags += this.checked ? this.value : '';
             flagsInfo[0].innerText = '/' + flags + '/';
         });
-        const regExp = isCorrectReg(regInput.val());
-        regExp ? printMarkedText(regExp) : printMarkedText('');
+        regExpHandler();
     });
 
     /* event for input in textArea */
     textArea.on('input', function () {
-        const regExp = isCorrectReg(regInput.val());
-        regExp ? printMarkedText(regExp) : printMarkedText('');
+        regExpHandler();
     });
 
     /* event for input regExp */
     regInput.on('input', function () {
-        const regExp = isCorrectReg(regInput.val());
-        regExp ? printMarkedText(regExp) : printMarkedText('');
+        regExpHandler();
     });
 
     /* event for click button "Check" */
-    button.click(function (e) {
+    button.on('click', function (e) {
         e.preventDefault();
+        regExpHandler();
+    });
+
+    function regExpHandler() {
         const regExp = isCorrectReg(regInput.val());
         regExp ? printMarkedText(regExp) : printMarkedText('');
-    });
+    }
 
     /* if regExp not correct, return false, else create and return regExp object */
     function isCorrectReg(reg) {
