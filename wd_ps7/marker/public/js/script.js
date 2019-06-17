@@ -7,6 +7,7 @@ $(function () {
     const flagsInfo = $('#flags-info h2');
     const button = $('#btn');
     const flagReg = $('.flag-reg');
+    const interactiveCheckBox = $('.interactive-checkbox');
 
     const ERROR_CLASS = 'error';
 
@@ -17,6 +18,14 @@ $(function () {
         closeKostil: 'markKostilClose'
     };
     let flags;
+    let interactiveMode = interactiveCheckBox.checked;
+
+    interactiveCheckBox.on('click', function () {
+        interactiveMode = interactiveCheckBox[0].checked;
+        if(interactiveMode) {
+            regExpHandler();
+        }
+    });
 
     /* event for regExp flags (click checkbox)*/
     flagReg.on('click', function () {
@@ -25,17 +34,23 @@ $(function () {
             flags += this.checked ? this.value : '';
             flagsInfo[0].innerText = '/' + flags + '/';
         });
-        regExpHandler();
+        if(interactiveMode) {
+            regExpHandler();
+        }
     });
 
     /* event for input in textArea */
     textArea.on('input', function () {
-        regExpHandler();
+        if(interactiveMode) {
+            regExpHandler();
+        }
     });
 
     /* event for input regExp */
     regInput.on('input', function () {
-        regExpHandler();
+        if(interactiveMode) {
+            regExpHandler();
+        }
     });
 
     /* event for click button "Check" */
