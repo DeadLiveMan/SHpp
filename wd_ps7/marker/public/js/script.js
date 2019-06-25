@@ -24,6 +24,11 @@ $(function () {
         interactiveMode = interactiveCheckBox[0].checked;
         if(interactiveMode) {
             regExpHandler();
+            textArea.on('input', eventTextAreaInput);
+            regInput.on('input', eventRegInput);
+        } else {
+            textArea.off('input', eventTextAreaInput);
+            regInput.off('input', eventRegInput);
         }
     });
 
@@ -34,24 +39,14 @@ $(function () {
             flags += this.checked ? this.value : '';
             flagsInfo[0].innerText = '/' + flags + '/';
         });
-        if(interactiveMode) {
             regExpHandler();
-        }
     });
 
     /* event for input in textArea */
-    textArea.on('input', function () {
-        if(interactiveMode) {
-            regExpHandler();
-        }
-    });
+    const eventTextAreaInput = () => regExpHandler();
 
     /* event for input regExp */
-    regInput.on('input', function () {
-        if(interactiveMode) {
-            regExpHandler();
-        }
-    });
+    const eventRegInput = () => regExpHandler();
 
     /* event for click button "Check" */
     button.on('click', function (e) {
