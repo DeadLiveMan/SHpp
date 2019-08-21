@@ -10,7 +10,8 @@ create table messages
 (
     id         int unsigned auto_increment
         primary key,
-    username   varchar(255) not null,
-    message    text         not null,
-    created_at text         null
+    user_id    int(10) not null,
+    message    text    not null,
+    created_at text    null
+
 );
