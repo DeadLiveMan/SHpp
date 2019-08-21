@@ -52,6 +52,8 @@ class MySqlMessagesDataBase implements IMessagesDataBase
 
         if ($login === '' || $message === '') return false;
         $userId = $this->getUserId($login);
+        if($userId == null) return false;
+
         $time = round(microtime(true) * 1000);
 
         $sql = 'INSERT INTO messages (user_id, message, created_at) 
