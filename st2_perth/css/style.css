@@ -180,3 +180,39 @@ body, header {
 .wrap-third__right-column__title {
     font-size: 32px;
 }
+
+@media (min-width: 690px) and (max-width: 950px) {
+    .wrap-main__header {
+        width: 680px;
+    }
+    .wrap-main__content {
+        width: 680px;
+    }
+
+    .content__wrap-first__text {
+        font-size: 20px;
+    }
+}
+@media (min-width: 490px) and (max-width: 689px) {
+    .wrap-main__header {
+        width: 480px;
+    }
+    .wrap-main__content {
+        width: 480px;
+    }
+    .content__wrap-first__text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 489px) {
+    .wrap-main__header {
+        width: 320px;
+    }
+    .wrap-main__content {
+        width: 320px;
+    }
+    .content__wrap-first__text {
+        font-size: 14px;
+    }
+}
