@@ -1,29 +1,23 @@
 <?php
 namespace App;
-use PDO, PDOException;
+use PDO;
 
 class MySqlMessagesDataBase implements IMessagesDataBase
 {
     private $pdo;
-    private $success;
+    private $success = true;
 
-    public function __construct($db)
+
+    public function __construct($pdo)
     {
-        $dbHost = $db['dbhost'];
-        $dbUser = $db['dbuser'];
-        $dbPassword = $db['dbpassword'];
-        $dbName = $db['dbname'];
-        try {
-            $this->pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
-
-        } catch (PDOException $e) {
+        if($pdo == null) {
             $this->success = false;
         }
+        $this->pdo = $pdo;
     }
 
     public function read($timeLastMessage)
     {
-        //$sql = 'SELECT created_at, message, user_id FROM messages LEFT JOIN users USING (id) WHERE id = user_id AND created_at > :timeLastMessage';
         $sql = 'SELECT messages.created_at, messages.message, users.username
                 FROM messages
                 INNER JOIN users ON messages.user_id=users.id

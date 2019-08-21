@@ -16,7 +16,7 @@ $configDB = require_once APP_DIRECTORY . DIRECTORY_SEPARATOR . 'config'. DIRECTO
 session_start();
 
 // classes autoloader
-use App\{ ErrorLogs, Messenger, MySqlMessagesDataBase, UserHandler, MySqlUsersDataBase, Validator };
+use App\{ ErrorLogs, Messenger, MySqlMessagesDataBase, UserHandler, MySqlUsersDataBase, Validator, DbConnect };
 spl_autoload_register(function ($className) {
     require_once(
         dirname( __DIR__)
@@ -27,8 +27,12 @@ spl_autoload_register(function ($className) {
 });
 
 $errorLogs = new ErrorLogs();
-$messenger = new Messenger(new MySqlMessagesDataBase($configDB['db']));
-$userHandler = new UserHandler(new MySqlUsersDataBase($configDB['db']));
+
+$dbConnect = new DbConnect($configDB['db']);
+$pdo = $dbConnect->getPdo();
+
+$messenger = new Messenger(new MySqlMessagesDataBase($pdo));
+$userHandler = new UserHandler(new MySqlUsersDataBase($pdo));
 $validator = new Validator($errorLogs);
 
 switch ($_POST['command']) {

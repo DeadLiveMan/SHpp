@@ -1,23 +1,18 @@
 <?php
 namespace App;
-use PDO, PDOException;
+use PDO;
 
 class MySqlUsersDataBase implements IUsersDataBase
 {
     private $pdo;
     private $success = true;
 
-    public function __construct($db)
+    public function __construct($pdo)
     {
-        $dbHost = $db['dbhost'];
-        $dbUser = $db['dbuser'];
-        $dbPassword = $db['dbpassword'];
-        $dbName = $db['dbname'];
-        try {
-            $this->pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
-        } catch (PDOException $e) {
+        if($pdo == null) {
             $this->success = false;
         }
+        $this->pdo = $pdo;
     }
 
     // return user password
