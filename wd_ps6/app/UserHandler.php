@@ -18,7 +18,7 @@ class UserHandler
 
     public function authorize($login, $password)
     {
-        return $this->dbUsersHandler->read($login) === $password;
+        return password_verify($password, $this->dbUsersHandler->read($login));
     }
 
     public function registration($login, $password)

@@ -33,6 +33,8 @@ class MySqlUsersDataBase implements IUsersDataBase
     // write new user to db
     public function write($login, $pass)
     {
+        $pass = password_hash($pass, PASSWORD_DEFAULT);
+
         $sql = 'INSERT INTO users (username, password) VALUES (:login, :pass)';
         $pre = $this->pdo->prepare($sql);
         $pre->execute([
